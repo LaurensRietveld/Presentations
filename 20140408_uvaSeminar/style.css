@@ -14,3 +14,31 @@
   stroke: steelblue;
   stroke-width: 1.5px;
 }
+
+
+div.bottomBar {
+	position:fixed;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	width: 100%;
+	margin-bottom: 20px;
+
+}
+.bottomBar img {
+	height:auto;
+	width:auto;
+	max-height: 80px;
+	margin-left: 20px;
+}
+/* .vuLogo { */
+/* 	width: 100px; */
+/* 	height: 80px; */
+/* } */
+/* .d2sLogo{ */
+/* 	width: 200px; */
+/* 	height: 80px; */
+/* } */
+img.commitLogo {
+	max-height: 70px;
+}
