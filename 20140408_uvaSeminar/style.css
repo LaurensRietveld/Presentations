@@ -23,22 +23,39 @@ div.bottomBar {
 	right: 0px;
 	width: 100%;
 	margin-bottom: 20px;
-
+	height: 5%;
+}
+.reveal section img.svg {
+	margin:0; background: inherit; border: 0px; box-shadow: none;
 }
 .bottomBar img {
 	height:auto;
 	width:auto;
-	max-height: 80px;
 	margin-left: 20px;
 }
-/* .vuLogo { */
-/* 	width: 100px; */
-/* 	height: 80px; */
-/* } */
-/* .d2sLogo{ */
-/* 	width: 200px; */
-/* 	height: 80px; */
-/* } */
 img.commitLogo {
-	max-height: 70px;
+	max-height: 90%;
 }
+
+.sorting_asc, .sorting_desc, .sorting {
+	cursor: pointer;
+}
+
+table.dataTable thead tr th {
+	padding-bottom: 5px;
+	border-bottom: 4px solid #eeeeee;
+/* 	border-color :red; */
+}
+
+table { 
+/*     border-spacing: 10px; */
+/*     border-collapse: separate; */
+}
+
+table.dataTable tbody tr td { 
+	padding: 5px 5px;
+/*     padding: 10px; */
+}
+div.spacer {  
+clear: both;  
+}  

@@ -30,8 +30,15 @@
 				document.getElementsByTagName( 'head' )[0].appendChild( link );
 			}
 		</script>
-		<script src="../assets/js/d3js/3.4.3/d3.js"></script>
+		<script src="../assets/jquery-2.1.0.min.js"></script>
 		
+		<script src="../assets/d3js/3.4.3/d3.js"></script>
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.min.js"></script>
+		
+		<script src="../assets/datatables/1.9.4/media/js/jquery.dataTables.min.js"></script>
+		<script src="../assets/jquery-ui/1.10.4/js/jquery-ui-1.10.4.custom.min.js"></script>
+		<script src="main.js"></script>
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
@@ -39,7 +46,6 @@
 
 
 
-<!DOCTYPE html>
 <meta charset="utf-8">
 <style>
 
@@ -71,31 +77,269 @@ body {
 
 
 	<body>
-
 		<div class="reveal">
-
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
+				<div class="slides">
 				<section>
 					<aside class="notes">
         Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-    </aside>
-					<h1>SampLD: Sampling Large Linked Data graphs</h1>
+   					 </aside>
+					<h1>SampLD</h1>
+					<h2>Sampling Large Linked Data graphs</h2>
+					<img class="stretch" src="imgs/large-scale-projects.jpg"/>
 					<h4><a href='http://presentations.laurensrietveld.nl/20140408_uvaSeminar' target='_blank'>http://presentations.laurensrietveld.nl/20140408_uvaSeminar</a></h4>
 <!-- 					<p> -->
 <!-- 						<small>Follow the presentation online: <a href='http://presentations.laurensrietveld.nl/20140408_uvaSeminar' target='_blank'>http://presentations.laurensrietveld.nl/20140408_uvaSeminar</a></small> -->
 <!-- 					</p> -->
 				</section>
+	
+				
+				<section>
+				<h1>Datasets</h1>
+				<table id='datasetTable'>
+				<thead>
+					<tr><th>Dataset</th><th>#triples</th><th>#queries</th><th>coverage</th></tr>
+				</thead>
+				<tbody>
+					<tr><td>DBpedia</td><td>764M</td><td>a lot</td><td>unknown yet</td></tr>
+					<tr><td>Linked Geo Data</td><td>300M</td><td>a lot</td><td>unknown yet</td></tr>
+					<tr><td>Open-BioMed</td><td>93M</td><td>928</td><td>0.01%</td></tr>
+					<tr><td>BIO2RDF</td><td>50M</td><td>1294</td><td>1%</td></tr>
+					<tr><td>Semantic Web Dog Food</td><td>0.25M</td><td>197</td><td>unknown yet</td></tr>
+				</tbody>
+				</table>
+				<script type="text/javascript">
+				$(document).ready(function() {
+				    $('#datasetTable').dataTable({
+				    	 "bLengthChange": false,
+				         "bPaginate": false,
+				         "bFilter": false,
+				         "bInfo": false,
+				    });
+				} );
+				</script>
+				</section>
+				
+				<section>
+				<h1>How?</h1>
+				<p style="text-align:left;">Informed vs. Uninformed</p><br>
+				<ul style="float:left;">
+				<li >Network Analysis <p style="font-size: 60%; ">e.g. Pagerank, Betweenness, Indegree, Outdegree</p></li>
+				<li>Rewrite RDF</li>
+				<li>Aggregate node weights to triples</li>
+				<li>Select <i>k</i> best triples</li>
+				<li>Evaluate</li>
+				
+				</ul>
+				
+				</section>
+				<section>
+				<h1>Scalability</h1>
+				<h2 style='display:inline' >Hadoop</h2> <img style='margin: 0px;max-height: 50px;'src="imgs/hadoop.png"/>
+				<h3 style='text-align: left'>Pig </h3>
+				<div>
+					  <img id='pigIcon' style='float:left; margin: 0px;max-height: 80px;'src="imgs/pig.jpg"/> 
+					  <div style="float: right; width: 90%">
+					  <iframe id='pigExample' style="height: 100%; width: 100%;"></iframe>		    
+					   <script type="text/javascript">
+					   var config = { 
+							   value: "dbpedia = LOAD 'dbpediaInput' AS (lhs, rhs);\n" +
+							   		"dbpediaGrouped = GROUP dbpedia BY lhs;\n" + 
+									"counts = FOREACH dbpediaGrouped GENERATE group, COUNT(dbpedia);",
+								mode: "text/x-java" //actually looks nicer than the pig layout ;)
+					   }
+					   $("#pigExample").attr("src", "codemirror.html?" + encodeURIComponent(JSON.stringify(config)));
+					   </script>
+					   </div>
+				</div>
+				<div class="spacer"></div>  
+			   <h3 style='text-align: left'>Giraph</h3>
+			   <img style='float:left;margin: 0px;max-height: 80px;'src="imgs/giraph.jpg"/> 
+				</section>
+				
+				
+				<section>
+				<h1>How?</h1>
+				<p style="text-align:left;">Informed vs. Uninformed</p><br>
+				<ul style="float:left;">
+				<li ><span style="text-decoration: underline;">Network Analysis</span> <p style="font-size: 60%; ">e.g. <span style="text-decoration: underline">Pagerank, Betweenness</span>, Indegree, Outdegree</p></li>
+				<li>Rewrite RDF</li>
+				<li>Aggregate node weights to triples</li>
+				<li>Select <i>k</i> best triples</li>
+				<li><span style="text-decoration:underline">Evaluate</span></li>
+				
+				
+				</ul>
+				</section>
+				
+				<section>
+				 <img style='margin: 0px;max-height: 130px;position: absolute; top:0px;right:0px;'src="imgs/giraph.jpg"/> 
+				<h1>PageRank</h1>
+				<div style="width: 50%; float:left;"><i>Assumption: important websites
+receive more links</i>
+<ul>
+<li>The more votes you as page gets,
+the higher your authority, the higher
+your voting weight</li>
+<li>The more sites you point to, the less
+each vote counts</li>
+</ul>
 
+				</div>
+				<div style="width: 50%; float:right;"><img src="imgs/pagerank.png"/></div>
+				</section>
+				<section>
+				<img style='margin: 0px;max-height: 130px;position: absolute; top:0px;right:0px;'src="imgs/giraph.jpg"/> 
+				<h1>Pagerank</h1>
+				<img class="svg" src="imgs/pagerank_iterations.svg" >.
+<!-- 				<p>pagerank plots</p> -->
+				</section>
+				
+				<section>
+				<img style='margin: 0px;max-height: 130px;position: absolute; top:0px;right:0px;'src="imgs/giraph.jpg"/> 
+				<h1><span style="font-size: 90%;">PageRank + Giraph</span></h1>
+				<iframe id='giraphExample' style="height: 100%; width: 100%;" frameborder="0"></iframe>		    
+				   <script type="text/javascript">
+				   var config = { 
+						   value: "public void compute(Vertex vertex, Iterable messages) {\n\
+\tdouble pageRank= 0;\n\
+\twhile (messages.hasNext()) {\n\
+\t\tpageRank += messages.next().get();\n\
+\t}\n\
+\tsetVertexValue(pageRank);\n\
+\tif (getSuperstep() < 30) {\n\
+\t\tlong numberOfEdges = getOutEdges.size();\n\
+\t\twhile(getOutEdges.hasNext()) {\n\
+\t\t\tsendMsg(getOutEdges.next(), pageRank/ numberOfEdges);\n\
+\t\t}\n\
+\t} else {\n\
+\t\tvoteToHalt();\n\
+\t}\n\
+}",
+							mode: "text/x-java"
+				   }
+				   $("#giraphExample").attr("src", "codemirror.html?" + encodeURIComponent(JSON.stringify(config)))
+					.load(function() {
+						//grmbl, chrome always calculates a height which is a few pixels too small. ugly workaround coming!
+					    $(this).height( $(this).contents().find("body").outerHeight(true) + 20 );
+					});
+				   </script>
+				</section>
+				
+
+
+				
+				<section>
+				<h1>Betweenness Centrality</h1>
+				<h4 style="text-align: left;">Approach</h4>
+				<ul style="text-align: left;">
+				<li>Calculate all shortest paths between all nodes</li>
+				<li>Count the number of shortest paths each node is in</li>
+				</ul>
+				<h4 style="text-align: left;">Problem</h4>
+				<ul style="text-align: left;">
+				<li>dependency between all nodes (need shared memory)</li>
+				</ul>
+				</section>
+				
+				<section>
+				<h1>Evaluation</h1>
+				<img class="svg" src="imgs/evaluation.svg"/>
+				</section>
+				
+				<section>
+				<h1>Evaluation: Problems</h1>
+				<ul>
+				<li>6 datasets</li>
+				<li>16 sampling methods per dataset</li>
+				<li>Samples are still quite large<br>&nbsp;</li>
+				<li>Fast loading of samples</li>
+				<li>Powerful hardware</li>
+				<li style="text-decoration: underline;">STABILITY</li>
+				
+				</ul>
+				
+				</section>
+				
+				<section>
+				<h1>Evaluation: How?</h1>
+				<ul>
+				<li>Retrieve which triples are used by a query</li>
+				<li>Use a hadoop cluster to find the weights of these triples</li>
+				<li>Determine whether the weight of these triples is high enough to have been included in the sample</li>
+				</ul>
+				
+				</section>
+				
+				<section>
+				<h1>Evaluation: Example</h1>
+				<div style="float:left;width: 100%">
+				<div style="width: 50%;">
+				<h4 style="text-align: left;">Query</h4>
+				<iframe id=sparqlQueryExample style=" width: 90%; height:auto;" frameborder="0" align="left"></iframe>		    
+				   <script type="text/javascript">
+				   var config = { 
+						   value: "SELECT ?person ?country WHERE {\n\
+\t?person :bornIn ?city .\n\
+\t?city :capitalOf ?country .\n\
+}",
+							mode: "sparql"
+				   }
+				   $("#sparqlQueryExample").attr("src", "codemirror.html?" + encodeURIComponent(JSON.stringify(config)))
+				   .load(function() {
+					   //$(this).iframeAutoHeight();
+					   //return true;
+					   
+					  // console.log($(this).contents().find("body").height() );
+					   
+						//grmbl, chrome always calculates a height which is a few pixels too small. ugly workaround coming!
+					    $(this).height( $(this).contents().find(".CodeMirror").outerHeight(true) + 15 );
+					});
+					
+				   </script>
+				   </div>
+				   <div  style="float:right; width: 50%">
+						<table id="resultsetExample">
+						   <thead><tr><th>?person</th><th>?country</th></tr></thead>
+						   <tbody>
+						   <tr><td>:Laurens</td><td>:NL</td></tr>
+						   <tr><td>:Stefan</td><td>:Germany</td></tr>
+						   </tbody>
+					   </table>
+				   </div>
+				   </div>
+					<div class='spacer'></div>
+				   <h4 style="text-align: left;">Dataset</h4>
+				   <table style="margin-top: -15px;"id="datasetExample">
+				   <thead><tr><th>Subject</th><th>Predicate</th><th>Object</th><th>Weight</th></tr></thead>
+				   <tbody>
+				   <tr><td>:Laurens</td><td>:bornIn</td><td>:Amsterdam</td><td>0.6</td></tr>
+				   <tr><td>:Amsterdam</td><td>:capitalOf</td><td>:NL</td><td>0.1</td></tr>
+				   <tr><td>:Stefan</td><td>:bornIn</td><td>:Berline</td><td>0.5</td></tr>
+				   <tr><td>:Berlin</td><td>:capitalOf</td><td>:Germany</td><td>0.5</td></tr>
+				   <tr><td>:Rinke</td><td>:bornIn</td><td>:Heerenveen</td><td>0.1</td></tr>
+				   </tbody>
+				   </table>
+				   <script type="text/javascript">
+				   $(document).ready(function() {
+					    $('#resultsetExample').dataTable({
+					    	 "bLengthChange": false,
+					         "bPaginate": false,
+					         "bFilter": false,
+					         "bInfo": false,
+					    });
+					    $('#datasetExample').dataTable({
+					    	 "bLengthChange": false,
+					         "bPaginate": false,
+					         "bFilter": false,
+					         "bInfo": false,
+					    });
+					} );
+				   </script>
+				</section>
+				
 				<section>
 					
 					
-					
-					
-					
-					
-
-
 					<h2>Heads Up</h2>
 					 <svg id="sample1" style='height:600px;width:800px'></svg>
 					 <script src='drawD3js.js'></script>
@@ -385,11 +629,7 @@ body {
 
 		</div>
 
-		
-		<script src="../reveal.js/lib/js/head.min.js"></script>
-		<script src="../reveal.js/js/reveal.min.js"></script>
-		<script src="../assets/js/jquery-2.1.0.min.js"></script>
-		<script src="main.js"></script>
+
 
 		<script>
 
