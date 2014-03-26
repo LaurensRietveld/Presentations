@@ -16,7 +16,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1395568664495</id>
+			<id>1395829600890</id>
 			<name></name>
 			<type>30</type>
 			<matcher>
@@ -25,12 +25,39 @@
 			</matcher>
 		</filter>
 		<filter>
-			<id>1395568664502</id>
+			<id>1395829600892</id>
 			<name></name>
 			<type>30</type>
 			<matcher>
 				<id>org.eclipse.ui.ide.multiFilter</id>
-				<arguments>1.0-name-matches-false-false-assets</arguments>
+				<arguments>1.0-name-matches-false-false-jquery*</arguments>
+			</matcher>
+		</filter>
+		<filter>
+			<id>1395829600894</id>
+			<name></name>
+			<type>30</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-false-false-codemirror</arguments>
+			</matcher>
+		</filter>
+		<filter>
+			<id>1395829600896</id>
+			<name></name>
+			<type>30</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-false-false-d3js</arguments>
+			</matcher>
+		</filter>
+		<filter>
+			<id>1395829600899</id>
+			<name></name>
+			<type>30</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-false-false-datatables</arguments>
 			</matcher>
 		</filter>
 	</filteredResources>

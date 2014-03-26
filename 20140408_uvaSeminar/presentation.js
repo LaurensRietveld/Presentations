@@ -12,19 +12,6 @@ $( document ).ready(function() {
 	else {
 		$('div.reveal').append(header);
 	}
-	
-//	Reveal.addEventListener( 'ready', function( event ) {
-//		$("#pigIcon").position({
-//			my: "center",
-//			at: "center",
-//			of: "#pigCode",
-//			collision: "none",
-//			within: $(this).closest("section")
-//		});
-//	} );
-//	Reveal.addEventListener( 'somestate', function(event) {
-//		console.log(event);
-//	}, false );
-	
+
 });
 
