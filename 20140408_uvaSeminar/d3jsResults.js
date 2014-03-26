@@ -1,5 +1,5 @@
 var margin = {top: 20, right: 20, bottom: 30, left: 50},
-    width = 960 - margin.left - margin.right,
+    width = 700 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
 
@@ -37,33 +37,7 @@ var svgContainer = d3.select("#d3jsResults")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-//draw x axis
-svgContainer.append("g")
-.attr("class", "x axis")
-.attr("transform", "translate(0," + height + ")")
-    .call(xAxis);
 
-
-//add x label
-svgContainer.append("text")
-.attr("transform", "translate(" + (width) + " ," + (height + margin.bottom - 40) + ")")
-.style("text-anchor", "end")
-.text("Sample Size");
-
-//draw y axis
-svgContainer.append("g")
-.attr("class", "y axis")
-.call(yAxis);
-
-
-
-//add y label
-svgContainer.append("text")
-  .attr("transform", "rotate(-90)")
-  .attr("y", 6)//offset to right
-  .attr("dy", ".71em")
-  .style("text-anchor", "end")
-  .text("Recall");
 
 
 d3.tsv("data2.tsv", function(error, data) {
@@ -88,12 +62,64 @@ d3.tsv("data2.tsv", function(error, data) {
       }),
       d3.max(sampleMethods, function(c) { return d3.max(c.values, function(v) { return v.recall; }); })
     ]);
-//	y.domain(d3.extent(data, function(d) { return d.recall1; }));
+	
+	/**
+	 * add legend
+	 */
+//	console.log("translate(" + (width) + " ," + (height + margin.bottom - 40) + ")");
+	var legends = svgContainer.append('g').attr('class', 'legend').attr("transform", "translate(-40 ," + (height + margin.bottom - 110) + ")");
+	var legend = legends.selectAll('g')
+	  .data(sampleMethods)
+	  .enter()
+	.append('g');
+  
+	legend.append('rect')
+    .attr('x', width - 20)
+    .attr('y', function(d, i){ return i *  20;})
+    .attr('width', 10)
+    .attr('height', 10)
+    .style('fill', function(d) { 
+      return color(d.name);
+    });
+    
+	legend.append('text')
+    .attr('x', width - 8)
+    .attr('y', function(d, i){ return (i *  20) + 9;})
+    .text(function(d){ return d.name; });
+	
+	//draw x axis
+	svgContainer.append("g")
+	.attr("class", "x axis")
+	.attr("transform", "translate(0," + height + ")")
+	    .call(xAxis);
+
+
+	//add x label
+	svgContainer.append("text")
+	.attr("transform", "translate(" + (width) + " ," + (height + margin.bottom - 40) + ")")
+	.style("text-anchor", "end")
+	.text("Sample Size");
+
+	//draw y axis
+	svgContainer.append("g")
+	.attr("class", "y axis")
+	.call(yAxis);
+
+
+
+	//add y label
+	svgContainer.append("text")
+	  .attr("transform", "rotate(-90)")
+	  .attr("y", 6)//offset to right
+	  .attr("dy", ".71em")
+	  .style("text-anchor", "end")
+	  .text("Recall");
 
 	var sampleMethod = svgContainer.selectAll(".sampleMethod")
 	    .data(sampleMethods)
-	  .enter().append("g")
-	    .attr("class", "sampleMethod");
+	  .enter().append("g").each(function(methodObj) {d3.select(this).attr("class", "sampleMethod " + methodObj.name);});;
+	
+	
 	sampleMethod.append("path")
     .attr("class", "line")
     .attr("d", function(d) { 
@@ -103,10 +129,7 @@ d3.tsv("data2.tsv", function(error, data) {
     	return color(d.name); 
     	});
 	
-//	svgContainer.append("path")
-//	  .attr("class", "line")
-//	  .attr("d", lineFunction(data));
- 
+//	.each(function() {console.log(this);});
 });
 
 function doStuff() {
@@ -138,12 +161,12 @@ function doStuff() {
       	.data(sampleMethods);
 		
 		newparameters
-  	.select( "path.line" )
-   	.transition() 
-	.ease("linear")
-	.duration(750) 
-     	.attr("d", function(d) { 
-	    	return lineFunction(d.values); 
+		  	.select( "path.line" )
+		   	.transition() 
+			.ease("linear")
+			.duration(750) 
+	     	.attr("d", function(d) { 
+		    	return lineFunction(d.values); 
 	    	});
 	});
 }
