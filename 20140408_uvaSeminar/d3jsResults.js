@@ -3,7 +3,7 @@ var margin = {top: 20, right: 20, bottom: 30, left: 50},
     height = 500 - margin.top - margin.bottom;
 
 
-//var color = d3.scale.category20();
+var color = d3.scale.category20();
 
 var x = d3.scale.linear()
 .range([0, width]);
@@ -21,9 +21,13 @@ var yAxis = d3.svg.axis()
     .orient("left");
 
 var lineFunction = d3.svg.line()
-    .x(function(d) { return x(d.sampleSize); })
-    .y(function(d) { return y(d.recall1); })
-    .interpolate("linear");
+    .x(function(d) { 
+    	return x(d.sampleSize); 
+    	})
+    .y(function(d) { 
+    	return y(d.recall); 
+    	})
+    .interpolate("basis");
 
 
 var svgContainer = d3.select("#d3jsResults")
@@ -63,12 +67,83 @@ svgContainer.append("text")
 
 
 d3.tsv("data2.tsv", function(error, data) {
+	console.log(data);
+	color.domain(d3.keys(data[0]).filter(function(key) {
+		return key !== "sampleSize"; 
+		}));
+	
+	var sampleMethods = color.domain().map(function(name) {
+	    return {
+	      name: name,
+	      values: data.map(function(d) {
+//	        return {sampleSize: d.sampleSize, recall: +d[name]};
+	    	  return {sampleSize: d.sampleSize, recall: +d[name]};
+	      })
+	    };
+	  });
 	x.domain(d3.extent(data, function(d) { return d.sampleSize; }));
-	y.domain(d3.extent(data, function(d) { return d.recall1; }));
+	y.domain([
+      d3.min(sampleMethods, function(c) { return d3.min(c.values, function(v) { 
+    	  return v.recall; }); 
+      }),
+      d3.max(sampleMethods, function(c) { return d3.max(c.values, function(v) { return v.recall; }); })
+    ]);
+//	y.domain(d3.extent(data, function(d) { return d.recall1; }));
 
-
-	svgContainer.append("path")
-	  .attr("class", "line")
-	  .attr("d", lineFunction(data));
+	var sampleMethod = svgContainer.selectAll(".sampleMethod")
+	    .data(sampleMethods)
+	  .enter().append("g")
+	    .attr("class", "sampleMethod");
+	sampleMethod.append("path")
+    .attr("class", "line")
+    .attr("d", function(d) { 
+    	return lineFunction(d.values); 
+    	})
+    .style("stroke", function(d) { 
+    	return color(d.name); 
+    	});
+	
+//	svgContainer.append("path")
+//	  .attr("class", "line")
+//	  .attr("d", lineFunction(data));
  
 });
+
+function doStuff() {
+	
+	d3.tsv("data.tsv", function(error, data) {
+		console.log(data);
+		color.domain(d3.keys(data[0]).filter(function(key) {
+			return key !== "sampleSize"; 
+			}));
+		
+		var sampleMethods = color.domain().map(function(name) {
+		    return {
+		      name: name,
+		      values: data.map(function(d) {
+//		        return {sampleSize: d.sampleSize, recall: +d[name]};
+		    	  return {sampleSize: d.sampleSize, recall: +d[name]};
+		      })
+		    };
+		  });
+		x.domain(d3.extent(data, function(d) { return d.sampleSize; }));
+		y.domain([
+	      d3.min(sampleMethods, function(c) { return d3.min(c.values, function(v) { 
+	    	  return v.recall; }); 
+	      }),
+	      d3.max(sampleMethods, function(c) { return d3.max(c.values, function(v) { return v.recall; }); })
+	    ]);
+		
+		var newparameters = svgContainer.selectAll("g.sampleMethod")
+      	.data(sampleMethods);
+		
+		newparameters
+  	.select( "path.line" )
+   	.transition() 
+	.ease("linear")
+	.duration(750) 
+     	.attr("d", function(d) { 
+	    	return lineFunction(d.values); 
+	    	});
+	});
+}
