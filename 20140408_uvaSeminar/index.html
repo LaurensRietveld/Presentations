@@ -182,7 +182,7 @@
 				   $("#giraphExample").attr("src", "codemirror.html?" + encodeURIComponent(JSON.stringify(config)))
 					.load(function() {
 						//grmbl, chrome always calculates a height which is a few pixels too small. ugly workaround coming!
-					    $(this).height( $(this).contents().find("body").outerHeight(true) + 20 );
+					    $(this).height( $(this).contents().find("body").outerHeight(true) + 80 );
 					});
 				   </script>
 				</section>
@@ -237,12 +237,12 @@
 				<div style="float:left;width: 100%">
 				<div style="width: 50%;">
 				<h4 style="text-align: left;">Query</h4>
-				<iframe id=sparqlQueryExample style=" width: 90%; height:auto;" frameborder="0" align="left"></iframe>		    
+				<iframe id=sparqlQueryExample style=" width: 100%; height:auto;" frameborder="0" align="left"></iframe>		    
 				   <script type="text/javascript">
 				   var config = { 
 						   value: "SELECT ?person ?country WHERE {\n\
-\t?person :bornIn ?city .\n\
-\t?city :capitalOf ?country .\n\
+  ?person :bornIn ?city .\n\
+  ?city :capitalOf ?country .\n\
 }",
 							mode: "sparql"
 				   }
@@ -254,7 +254,7 @@
 					  // console.log($(this).contents().find("body").height() );
 					   
 						//grmbl, chrome always calculates a height which is a few pixels too small. ugly workaround coming!
-					    $(this).height( $(this).contents().find(".CodeMirror").outerHeight(true) + 15 );
+					    $(this).height( $(this).contents().find(".CodeMirror").outerHeight(true) + 28 );
 					});
 					
 				   </script>
@@ -305,37 +305,37 @@
 				<div style="float:left;width: 100%">
 				<div style="width: 50%;">
 <!-- 				<h4 style="text-align: left;">Query</h4> -->
-				<iframe id="sparqlQueryExample2" style=" width: 90%; height:auto;" frameborder="0" align="left"></iframe>		    
+				<iframe id="sparqlQueryExample2" style=" width: 100%; height:auto;" frameborder="0" align="left"></iframe>		    
 				   <script type="text/javascript">
 				   var config = { 
 						   value: "SELECT ?person ?country WHERE {\n\
-\t?person :bornIn ?city .\n\
-\t?city :capitalOf ?country .\n\
+  ?person :bornIn ?city .\n\
+  ?city :capitalOf ?country .\n\
 }",
 							mode: "sparql"
 				   }
 				   $("#sparqlQueryExample2").attr("src", "codemirror.html?" + encodeURIComponent(JSON.stringify(config)))
 				   .load(function() {
 						//grmbl, chrome always calculates a height which is a few pixels too small. ugly workaround coming!
-					    $(this).height( $(this).contents().find(".CodeMirror").outerHeight(true) + 15 );
+					    $(this).height( $(this).contents().find(".CodeMirror").outerHeight(true) + 28 );
 					});
 					
 				   </script>
 				   </div>
 				   <div  style="float:right; width: 50%">
-						<iframe id="sparqlQueryExample3" style=" width: 90%; height:auto;" frameborder="0" align="left"></iframe>	 
+						<iframe id="sparqlQueryExample3" style=" width: 100%; height:auto;" frameborder="0" align="left"></iframe>	 
 				   <script type="text/javascript">
 				   var config = { 
 						   value: "SELECT DISTINCT * WHERE {\n\
-\t?person :bornIn ?city .\n\
-\t?city :capitalOf ?country .\n\
+  ?person :bornIn ?city .\n\
+  ?city :capitalOf ?country .\n\
 }",
 							mode: "sparql"
 				   }
 				   $("#sparqlQueryExample3").attr("src", "codemirror.html?" + encodeURIComponent(JSON.stringify(config)))
 				   .load(function() {
 						//grmbl, chrome always calculates a height which is a few pixels too small. ugly workaround coming!
-					    $(this).height( $(this).contents().find(".CodeMirror").outerHeight(true) + 15 );
+					    $(this).height( $(this).contents().find(".CodeMirror").outerHeight(true) + 28 );
 					});
 					
 				   </script>
@@ -411,20 +411,20 @@
 				<h1>Special case: UNIONS</h1>
 				<div style="width: 50%;">
 <!-- 				<h4 style="text-align: left;">Query</h4> -->
-				<iframe id="sparqlUnionExample1" style=" width: 90%; height:auto;" frameborder="0" align="left"></iframe>		    
+				<iframe id="sparqlUnionExample1" style=" width: 100%; height:auto;" frameborder="0" align="left"></iframe>		    
 				   <script type="text/javascript">
 				   var config = { 
 						   value: "SELECT ?name WHERE {\n\
-\t{:laurens rdfs:label ?name}\n\
-\tUNION\n\
-\t{:laurens foaf:name ?name}\n\
+  {:laurens rdfs:label ?name}\n\
+  UNION\n\
+  {:laurens foaf:name ?name}\n\
 }",
 							mode: "sparql"
 				   }
 				   $("#sparqlUnionExample1").attr("src", "codemirror.html?" + encodeURIComponent(JSON.stringify(config)))
 				   .load(function() {
 						//grmbl, chrome always calculates a height which is a few pixels too small. ugly workaround coming!
-					    $(this).height( $(this).contents().find(".CodeMirror").outerHeight(true) + 15 );
+					    $(this).height( $(this).contents().find(".CodeMirror").outerHeight(true) + 28 );
 					});
 					
 				   </script>
@@ -434,16 +434,16 @@
 				   <script type="text/javascript">
 				   var config = { 
 						   value: "SELECT DISTINCT * WHERE {\n\
-\t{:laurens rdfs:label ?name}\n\
-\tUNION\n\
-\t{:laurens foaf:name ?name}\n\
+  {:laurens rdfs:label ?name}\n\
+  UNION\n\
+  {:laurens foaf:name ?name}\n\
 }",
 							mode: "sparql"
 				   }
 				   $("#sparqlUnionExample2").attr("src", "codemirror.html?" + encodeURIComponent(JSON.stringify(config)))
 				   .load(function() {
 						//grmbl, chrome always calculates a height which is a few pixels too small. ugly workaround coming!
-					    $(this).height( $(this).contents().find(".CodeMirror").outerHeight(true) + 15 );
+					    $(this).height( $(this).contents().find(".CodeMirror").outerHeight(true) + 28 );
 					});
 					
 				   </script>
@@ -458,7 +458,7 @@
 				<section>
 					<h1>Results</h1>
 					 <svg id="sample1" style='height:600px;width:800px'></svg>
-					 <script src='d3jsDrawResults.js'></script>
+					 <script src='d3jsResults.js'></script>
 				</section>
 
 			</div>
