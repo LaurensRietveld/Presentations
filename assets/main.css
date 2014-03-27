@@ -12,7 +12,7 @@ div.bottomBar {
 	margin-bottom: 20px;
 	height: 5%;
 }
-.reveal section img.svg {
+.reveal section img.blank {
 	margin:0; background: inherit; border: 0px; box-shadow: none;
 }
 .bottomBar img {
