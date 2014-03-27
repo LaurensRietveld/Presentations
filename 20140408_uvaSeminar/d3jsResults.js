@@ -26,15 +26,90 @@ var svgContainer = d3.select("#d3jsResults").attr("width",
 		width + margin.left + margin.right).attr("height",
 		height + margin.top + margin.bottom).append("g").attr("transform",
 		"translate(" + margin.left + "," + margin.top + ")");
+var sampleMethods = null;
+//function doStuff() {
+//
+//	d3.tsv("data.tsv", function(error, data) {
+//
+//		color.domain(d3.keys(data[0]).filter(function(key) {
+//			return key !== "SampleSize";
+//		}));
+//
+//		var sampleMethods = color.domain().map(function(name) {
+//			return {
+//				name : name,
+//				values : data.map(function(d) {
+//					// return {sampleSize: d.sampleSize, recall: +d[name]};
+//					return {
+//						SampleSize : d.SampleSize,
+//						recall : +e[name]
+//					};
+//				})
+//			};
+//		});
+//
+//		x.domain(d3.extent(data, function(d) {
+//			return d.SampleSize;
+//		}));
+//		y.domain([ d3.min(sampleMethods, function(c) {
+//			return d3.min(c.values, function(v) {
+//				return v.recall;
+//			});
+//		}), d3.max(sampleMethods, function(c) {
+//			return d3.max(c.values, function(v) {
+//				return v.recall;
+//			});
+//		}) ]);
+//
+//		var newparameters = svgContainer.selectAll("g.sampleMethod").data(
+//				sampleMethods);
+//
+//		newparameters.select("path.line").transition().ease("linear").duration(
+//				750).attr("d", function(d) {
+//			return lineFunction(d.values);
+//		});
+//	});
+//}
+var legends = null;
+var drawLegend = function() {
+	/**
+	 * add legend
+	 */
+	if (!legends) {
+		legends = svgContainer.append('g').attr('class', 'legend').attr("transform", "translate(35 ,0)");
+	}
+	
+	legends.selectAll('g').remove();
+	var legend = legends.selectAll('g').data(sampleMethods.filter(function(dataObj){
+		return $(".sampleMethod." + dataObj.name).css("display") == "inline";
+	})).enter()
+			.append('g').each(function(methodObj) {
+				d3.select(this).attr("class",
+						"sampleMethodLegend " + methodObj.name);
+			});
 
-d3.tsv("allResults.tsv",
-		function(error, data) {
-			drawSelectionTable(data[0]);
+	legend.append('rect').attr('x', plotWidth - 20).attr('y',
+			function(d, i) {
+				return i * 20;
+			}).attr('width', 10).attr('height', 10)
+				.style('fill', function(d) {
+				return color(d.name);
+			});
+
+	legend.append('text').attr('x', plotWidth - 8).attr('y',
+			function(d, i) {
+				return (i * 20) + 9;
+			}).text(function(d) {
+		return d.name.replace(/_/g, " - ");
+	});
+};
+d3.tsv("allResults.tsv", function(error, data) {
+			
 			color.domain(d3.keys(data[0]).filter(function(key) {
 				return key !== "SampleSize";
 			}));
 
-			var sampleMethods = color.domain().map(function(name) {
+			sampleMethods = color.domain().map(function(name) {
 				return {
 					name : name,
 					values : data.map(function(d) {
@@ -46,7 +121,6 @@ d3.tsv("allResults.tsv",
 					})
 				};
 			});
-			console.log(sampleMethods);
 			x.domain(d3.extent(data, function(d) {
 				return d.SampleSize;
 			}));
@@ -59,35 +133,6 @@ d3.tsv("allResults.tsv",
 					return v.recall;
 				});
 			}) ]);
-
-			/**
-			 * add legend
-			 */
-			// console.log("translate(" + (width) + " ," + (height +
-			// margin.bottom - 40) + ")");
-			var legends = svgContainer.append('g').attr('class', 'legend')
-					.attr(
-							"transform",
-							"translate(35 ," + (0)
-									+ ")")
-									;
-			var legend = legends.selectAll('g').data(sampleMethods).enter()
-					.append('g');
-
-			legend.append('rect').attr('x', plotWidth - 20).attr('y',
-					function(d, i) {
-						return i * 20;
-					}).attr('width', 10).attr('height', 10).style('fill',
-					function(d) {
-						return color(d.name);
-					});
-
-			legend.append('text').attr('x', plotWidth - 8).attr('y',
-					function(d, i) {
-						return (i * 20) + 9;
-					}).text(function(d) {
-				return d.name.replace(/_/g, " - ");
-			});
 
 			// draw x axis
 			svgContainer.append("g").attr("class", "x axis").attr("transform",
@@ -122,60 +167,137 @@ d3.tsv("allResults.tsv",
 					}).style("stroke", function(d) {
 				return color(d.name);
 			});
-
+			drawSelectionTable();
 			// .each(function() {console.log(this);});
 		});
 
-function doStuff() {
 
-	d3.tsv("data.tsv", function(error, data) {
-
-		color.domain(d3.keys(data[0]).filter(function(key) {
-			return key !== "SampleSize";
-		}));
-
-		var sampleMethods = color.domain().map(function(name) {
-			return {
-				name : name,
-				values : data.map(function(d) {
-					// return {sampleSize: d.sampleSize, recall: +d[name]};
-					return {
-						SampleSize : d.SampleSize,
-						recall : +e[name]
-					};
-				})
-			};
-		});
-
-		x.domain(d3.extent(data, function(d) {
-			return d.SampleSize;
-		}));
-		y.domain([ d3.min(sampleMethods, function(c) {
-			return d3.min(c.values, function(v) {
-				return v.recall;
-			});
-		}), d3.max(sampleMethods, function(c) {
-			return d3.max(c.values, function(v) {
-				return v.recall;
-			});
-		}) ]);
-
-		var newparameters = svgContainer.selectAll("g.sampleMethod").data(
-				sampleMethods);
-
-		newparameters.select("path.line").transition().ease("linear").duration(
-				750).attr("d", function(d) {
-			return lineFunction(d.values);
-		});
+var drawSelectionTable = function() {
+	/**
+	 * First, get information of datasets and sampling methods we've just drawn.
+	 */
+	var getInfoFromClass = function(className){
+		var classInfoArray = className.split("_");
+		datasets[classInfoArray[0]] = true;
+		if (classInfoArray.length == 2) {
+			baselines[classInfoArray[1]] = true;
+		} else {
+			samplingMethods[classInfoArray[1] + " - " + classInfoArray[2]] = true;
+		}
+	};
+	var datasets = {};
+	var baselines = {};
+	var samplingMethods = {};
+	
+	$("g.sampleMethod").each(function() {
+		getInfoFromClass($(this).attr('class').replace(/\s*sampleMethod\s*/, ""));
 	});
-}
-
-function drawSelectionTable(firstTsvRow) {
-	if ($("#tableSelection").length > 0) {
-		$("#tableSelection").remove();
+	datasets = Object.keys(datasets).sort(), baselines = Object.keys(baselines).sort(), samplingMethods = Object.keys(samplingMethods).sort();
+	var allSamplingMethods = $.merge(baselines, samplingMethods);
+	//console.log(datasets,  baselines, samplingMethods);
+	/**
+	 * Now, draw the actual table
+	 */
+	var table = $("<table style='float:right;margin-top:50px;'></table>");
+	
+	/**
+	 * draw header
+	 */
+	var header = $("<tr></tr>");
+	header.append("<th colspan=2>Sampling Methods</th>");
+	for (var i = 0; i < datasets.length; i++) {
+		header.append("<th class='rotate'><span class='intact'>" + datasets[i] + "</span></th>");
 	}
-	var tsvHeaders = Object.keys(firstTsvRow);
-	tsvHeaders.sort();
-	var table = $("<table></table>");
+	table.append($("<thead></thead>").append(header));
+	
+	
+	/**
+	 * draw body
+	 */
+	var body = $("<tbody></tbody>");
+	
+	//create 'select whole col' checkboxes
+	var row = $("<tr class='selectWholeCol'></tr>").append("<td>&nbsp;</td><td>&nbsp;</td>");
+	for (var colId = 0; colId < datasets.length; colId++) {
+		row.append("<td><input type='checkbox'></td>");
+	}
+	body.append(row);
+	for (var rowId = 0; rowId < allSamplingMethods.length; rowId++) {
+		var row = $("<tr ></tr>");
+		row.append("<td>" + allSamplingMethods[rowId] + "</td>");
+		row.append("<td class='selectWholeRow'><input type='checkbox'></td>");
+		for (var colId = 0; colId < datasets.length; colId++) {
+			row.append("<td><input type='checkbox'></td>");
+		}
+		body.append(row);
+	}
+	
+	table.append(body);
+	table.delegate( "input", "change", onCheckboxChanged);
+	$(document.body).append(table);
+	
+	//init table with default vals
+	var setEnabled = function(dataset, samplingMethod) {
+		
+		var colHeader = table.find("th:has(span:contains('" + dataset + "'))");
+		var colNum = table.find("thead tr").children().index(colHeader) + 2;
+		var rowHeader = table.find("tr td:contains('" + samplingMethod + "')");
+		rowHeader.parent().find("td:nth-child(" + (colNum) + ") input").prop("checked", true).change();
+	};
+	setEnabled("SemanticWebDogFood", "Path - Pagerank");
+	setEnabled("DBpedia", "Path - Pagerank");
+	setEnabled("OpenBioMed", "WithoutLiterals - Outdegree");
+	setEnabled("BIO2RDF", "UniqueLiterals - Outdegree");
+	setEnabled("LinkedGeoData", "UniqueLiterals - Outdegree");
+	setEnabled("Metalex", "ResourceFrequency");
+	
+};
 
-}
+var onCheckboxChanged = function() {
+	var getDataset = function() {
+		var tdElement = checkBox.parent();
+		var col = tdElement.parent().children().index(tdElement);
+		var title = checkBox.closest("table").find("th").eq(col - 1).text();
+		return title;
+	};
+	var getSamplingMethod = function() {
+		return checkBox.closest("tr").find("td:first").text();
+	};
+	
+	var checkBox = $(this);
+	var doCheck = checkBox.is(':checked');
+	var dataset = getDataset();
+	var samplingMethod = getSamplingMethod();
+	console.log(dataset, samplingMethod);
+	
+	if (checkBox.closest("tr").attr("class") == "selectWholeCol") {
+		var tdElement = checkBox.parent();
+		var col = tdElement.parent().children().index(tdElement);
+		checkBox.closest("table").find('tr td:nth-child(' + (col+1) + ') input').not(checkBox).each(function(){
+			$(this).prop("checked",doCheck).change();
+		});
+		
+	} else if (checkBox.parent().attr("class") == "selectWholeRow") {
+		checkBox.parent().parent().find("input").not(checkBox).prop("checked",doCheck).change();
+	} else {
+		var className = dataset + "_" + samplingMethod.replace(" - ", "_");
+		if (doCheck) {
+			$("g." + className).show();
+			console.log("showing " + className);
+		} else {
+			$("g." + className).hide();
+		}
+		drawLegend();
+		
+		
+		if (!doCheck) {
+			//we've just unchecked this thing. make sure the 'selectAll' of this col and row is now unchecked as well
+			var tdElement = checkBox.parent();
+			var col = tdElement.parent().children().index(tdElement);
+			//uncheck row
+			tdElement.parent().find("td.selectWholeRow input").prop("checked",false);
+			//uncheck col
+			checkBox.closest("table").find('tr.selectWholeCol td:nth-child(' + (col+1) + ') input').prop("checked",doCheck);
+		}
+	}
+};
