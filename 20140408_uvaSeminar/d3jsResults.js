@@ -245,10 +245,7 @@ var drawSelectionTable = function() {
 	 * Now, draw the actual table
 	 */
 	
-	var table = $("<table style='float:right;margin-top:50px;'></table>");
-	if (window.location.search.match( /hidetable/gi)) {
-		table.hide();
-	}
+	var table = $("table");
 	/**
 	 * draw header
 	 */
@@ -283,7 +280,7 @@ var drawSelectionTable = function() {
 	
 	table.append(body);
 	table.delegate( "input", "change", onCheckboxChanged);
-	$(document.body).append(table);
+//	$("div").append(table);
 	
 	//init table with default vals
 	var setEnabled = function(dataset, samplingMethod) {
@@ -370,7 +367,8 @@ var onCheckboxChanged = function(checkBox, skipDrawingResults) {
 
 $( document ).ready(function() {
 	if (window.location.search.match( /hidetable/gi)) {
-		console.log("hide table");
 		$("table").hide();
+		$("body").css("overflow", "hidden");
+		$("svg").css("margin-top", 0);
 	}
 });

@@ -8,7 +8,6 @@ var app       = express.createServer();
 var staticDir = express.static;
 
 io            = io.listen(app);
-
 var opts = {
 	port :      1947,
 	baseDir :   __dirname + '/../../'

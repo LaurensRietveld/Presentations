@@ -3,7 +3,8 @@ body {
   margin: 0px;;
   position: relative;
   background-color: white;
-  overflow:hidden;
+  width: 100%;
+/*   overflow:hidden; */
 }
 
 svg {
@@ -88,4 +89,10 @@ td.selectWholeRow  {
 }
 .sampleMethodLegend {
 /* 		display: none; */
+}
+table {
+	position:absolute;top:0px;right:0px;margin-top:50px;
+}
+svg {
+	margin-top:200px;
 }
