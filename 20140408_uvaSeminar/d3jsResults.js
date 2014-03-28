@@ -20,56 +20,21 @@ var lineFunction = d3.svg.line().x(function(d) {
 	return x(d.SampleSize);
 }).y(function(d) {
 	return y(d.recall);
-}).interpolate("basis");
+});
+
+
+var voronoi = d3.geom.voronoi()
+.x(function(d) { return x(d.SampleSize); })
+.y(function(d) { return y(d.recall); })
+.clipExtent([[-margin.left, -margin.top], [plotWidth + margin.right, plotHeight + margin.bottom]]);
+
 
 var svgContainer = d3.select("#d3jsResults").attr("width",
 		width + margin.left + margin.right).attr("height",
 		height + margin.top + margin.bottom).append("g").attr("transform",
 		"translate(" + margin.left + "," + margin.top + ")");
 var sampleMethods = null;
-//function doStuff() {
-//
-//	d3.tsv("data.tsv", function(error, data) {
-//
-//		color.domain(d3.keys(data[0]).filter(function(key) {
-//			return key !== "SampleSize";
-//		}));
-//
-//		var sampleMethods = color.domain().map(function(name) {
-//			return {
-//				name : name,
-//				values : data.map(function(d) {
-//					// return {sampleSize: d.sampleSize, recall: +d[name]};
-//					return {
-//						SampleSize : d.SampleSize,
-//						recall : +e[name]
-//					};
-//				})
-//			};
-//		});
-//
-//		x.domain(d3.extent(data, function(d) {
-//			return d.SampleSize;
-//		}));
-//		y.domain([ d3.min(sampleMethods, function(c) {
-//			return d3.min(c.values, function(v) {
-//				return v.recall;
-//			});
-//		}), d3.max(sampleMethods, function(c) {
-//			return d3.max(c.values, function(v) {
-//				return v.recall;
-//			});
-//		}) ]);
-//
-//		var newparameters = svgContainer.selectAll("g.sampleMethod").data(
-//				sampleMethods);
-//
-//		newparameters.select("path.line").transition().ease("linear").duration(
-//				750).attr("d", function(d) {
-//			return lineFunction(d.values);
-//		});
-//	});
-//}
+var selectedSampleMethods = null;
 var legends = null;
 var drawLegend = function() {
 	/**
@@ -103,73 +68,156 @@ var drawLegend = function() {
 		return d.name.replace(/_/g, " - ");
 	});
 };
+
+function updateSampleMethodVisibility() {
+	for (var i = 0; i < sampleMethods.length; i++) {
+//		if (i < 10) {
+//			sampleMethods[i].visibility = Math.random() < 0.5 ;
+//		}
+	}
+}
+function drawResults() {
+	updateSampleMethodVisibility();
+	
+	selectedSampleMethods = sampleMethods.filter(function(sampleMethod) {
+		return sampleMethod.visibility;
+	});
+	var sampleMethod = svgContainer.selectAll(".sampleMethod").data(selectedSampleMethods, function(d){return d.name;});
+	sampleMethod.exit().transition().remove();
+	
+	
+	
+	sampleMethod.enter().append("g").each(
+			function(methodObj) {
+				d3.select(this).attr("class",
+						"sampleMethod " + methodObj.name);
+			});
+	
+	;
+	sampleMethod.enter().append("path")
+		.attr("class", "line")
+		.attr("d",
+			function(d) {
+				d.line = this;
+				return lineFunction(d.values);
+			})
+		.style("stroke", function(d) {
+			return color(d.name);
+		}
+	);
+	
+	
+	var focus = svgContainer.append("g")
+      .attr("transform", "translate(-100,-100)")
+      .attr("class", "focus");
+
+	  focus.append("circle")
+	      .attr("r", 3.5);
+
+	  focus.append("text")
+	      .attr("y", -10);
+	  
+	  var voronoiGroup = svgContainer.append("g")
+      .attr("class", "voronoi");
+	  
+	  var voronoiPaths = voronoiGroup.selectAll("path")
+      .data(function() {
+    	  var nest = d3.nest().key(function(d) {
+	        	  return x(d.SampleSize) + "," + y(d.recall); })
+	          .rollup(function(v) { 
+	        	  return v[0]; })
+	          .entries(d3.merge(selectedSampleMethods.map(function(d) {
+	        	  return d.values; 
+	        	  })))
+	          .map(function(d) { 
+	        	  return d.values; });
+    	  	return voronoi(nest);
+    	  });
+	  voronoiPaths.enter().append("path")
+      .attr("d", function(d) { 
+    	  if (d) return "M" + d.join("L") + "Z"; }
+      )
+      .datum(function(d) { 
+    	  if (d) return d.point; }
+      )
+      .on("mouseover", mouseover)
+      .on("mouseout", mouseout);
+	  voronoiPaths.exit().remove();
+  
+  function mouseover(d) {
+	  console.log(d);
+  focus.attr("transform", "translate(" + x(d.SampleSize) + "," + y(d.recall) + ")");
+  focus.selectAll("text").remove();//remove previous ones
+  focus.append("text").attr("transform","translate(0, -10)").text(d.name.replace(/_/g, " - "));
+  var amt = parseFloat(d.recall);
+  focus.append("text").attr("transform","translate(0, 20)").text(  amt.toFixed(2) + "/" + d.SampleSize);
+}
+
+function mouseout(d) {
+  d3.select(".sampleMethod." + d.name).classed("city--hover", false);
+  focus.attr("transform", "translate(-100,-100)");
+}
+}
+
 d3.tsv("allResults.tsv", function(error, data) {
-			
-			color.domain(d3.keys(data[0]).filter(function(key) {
-				return key !== "SampleSize";
-			}));
+	color.domain(d3.keys(data[0]).filter(function(key) {
+		return key !== "SampleSize";
+	}));
 
-			sampleMethods = color.domain().map(function(name) {
+	sampleMethods = color.domain().map(function(name) {
+		return {
+			name : name,
+			visibility: false,
+			line: null,
+			values : data.map(function(d) {
 				return {
-					name : name,
-					values : data.map(function(d) {
-						// return {sampleSize: d.sampleSize, recall: +d[name]};
-						return {
-							SampleSize : d.SampleSize,
-							recall : +d[name]
-						};
-					})
+					name: name,
+					SampleSize : d.SampleSize,
+					recall : +d[name]
 				};
-			});
-			x.domain(d3.extent(data, function(d) {
-				return d.SampleSize;
-			}));
-			y.domain([ d3.min(sampleMethods, function(c) {
-				return d3.min(c.values, function(v) {
-					return v.recall;
-				});
-			}), d3.max(sampleMethods, function(c) {
-				return d3.max(c.values, function(v) {
-					return v.recall;
-				});
-			}) ]);
-
-			// draw x axis
-			svgContainer.append("g").attr("class", "x axis").attr("transform",
-					"translate(0," + plotHeight + ")").call(xAxis);
-
-			// add x label
-			svgContainer.append("text").attr(
-					"transform",
-					"translate(" + (plotWidth) + " ,"
-							+ (plotHeight + margin.bottom - 40) + ")").style(
-					"text-anchor", "end").text("Sample Size");
-
-			// draw y axis
-			svgContainer.append("g").attr("class", "y axis").call(yAxis);
-
-			// add y label
-			svgContainer.append("text").attr("transform", "rotate(-90)").attr(
-					"y", 6)// offset to right
-			.attr("dy", ".71em").style("text-anchor", "end").text("Recall");
-
-			var sampleMethod = svgContainer.selectAll(".sampleMethod").data(
-					sampleMethods).enter().append("g").each(
-					function(methodObj) {
-						d3.select(this).attr("class",
-								"sampleMethod " + methodObj.name);
-					});
-			;
-
-			sampleMethod.append("path").attr("class", "line").attr("d",
-					function(d) {
-						return lineFunction(d.values);
-					}).style("stroke", function(d) {
-				return color(d.name);
-			});
-			drawSelectionTable();
-			// .each(function() {console.log(this);});
+			})
+		};
+	});
+	x.domain(d3.extent(data, function(d) {
+		return d.SampleSize;
+	}));
+	y.domain([ d3.min(sampleMethods, function(c) {
+		return d3.min(c.values, function(v) {
+			return v.recall;
 		});
+	}), d3.max(sampleMethods, function(c) {
+		return d3.max(c.values, function(v) {
+			return v.recall;
+		});
+	}) ]);
+
+	// draw x axis
+	svgContainer.append("g").attr("class", "x axis").attr("transform",
+			"translate(0," + plotHeight + ")").call(xAxis);
+
+	// add x label
+	svgContainer.append("text").attr(
+			"transform",
+			"translate(" + (plotWidth) + " ,"
+					+ (plotHeight + margin.bottom - 40) + ")").style(
+			"text-anchor", "end").text("Sample Size");
+
+	// draw y axis
+	svgContainer.append("g").attr("class", "y axis").call(yAxis);
+
+	// add y label
+	svgContainer.append("text").attr("transform", "rotate(-90)").attr(
+			"y", 6)// offset to right
+	.attr("dy", ".71em").style("text-anchor", "end").text("Recall");
+	
+	
+	
+	
+	
+//	drawResults();
+			
+	drawSelectionTable();
+});
 
 
 var drawSelectionTable = function() {
@@ -188,18 +236,19 @@ var drawSelectionTable = function() {
 	var datasets = {};
 	var baselines = {};
 	var samplingMethods = {};
-	
-	$("g.sampleMethod").each(function() {
-		getInfoFromClass($(this).attr('class').replace(/\s*sampleMethod\s*/, ""));
-	});
+	for (var i = 0; i < sampleMethods.length; i++) {
+		getInfoFromClass(sampleMethods[i].name);
+	}
 	datasets = Object.keys(datasets).sort(), baselines = Object.keys(baselines).sort(), samplingMethods = Object.keys(samplingMethods).sort();
 	var allSamplingMethods = $.merge(baselines, samplingMethods);
-	//console.log(datasets,  baselines, samplingMethods);
 	/**
 	 * Now, draw the actual table
 	 */
-	var table = $("<table style='float:right;margin-top:50px;'></table>");
 	
+	var table = $("<table style='float:right;margin-top:50px;'></table>");
+	if (window.location.search.match( /hidetable/gi)) {
+		table.hide();
+	}
 	/**
 	 * draw header
 	 */
@@ -242,7 +291,10 @@ var drawSelectionTable = function() {
 		var colHeader = table.find("th:has(span:contains('" + dataset + "'))");
 		var colNum = table.find("thead tr").children().index(colHeader) + 2;
 		var rowHeader = table.find("tr td:contains('" + samplingMethod + "')");
-		rowHeader.parent().find("td:nth-child(" + (colNum) + ") input").prop("checked", true).change();
+		rowHeader.parent().find("td:nth-child(" + (colNum) + ") input").each(function(){
+			$(this).prop("checked", true);
+			onCheckboxChanged($(this), true);
+		});
 	};
 	setEnabled("SemanticWebDogFood", "Path - Pagerank");
 	setEnabled("DBpedia", "Path - Pagerank");
@@ -250,10 +302,11 @@ var drawSelectionTable = function() {
 	setEnabled("BIO2RDF", "UniqueLiterals - Outdegree");
 	setEnabled("LinkedGeoData", "UniqueLiterals - Outdegree");
 	setEnabled("Metalex", "ResourceFrequency");
-	
+	drawResults();
+	drawLegend();
 };
 
-var onCheckboxChanged = function() {
+var onCheckboxChanged = function(checkBox, skipDrawingResults) {
 	var getDataset = function() {
 		var tdElement = checkBox.parent();
 		var col = tdElement.parent().children().index(tdElement);
@@ -263,31 +316,44 @@ var onCheckboxChanged = function() {
 	var getSamplingMethod = function() {
 		return checkBox.closest("tr").find("td:first").text();
 	};
-	
-	var checkBox = $(this);
+	if (checkBox.currentTarget) {
+		checkBox = $(checkBox.currentTarget);
+	} else {
+		checkBox = $(checkBox);
+	}
 	var doCheck = checkBox.is(':checked');
 	var dataset = getDataset();
 	var samplingMethod = getSamplingMethod();
-	console.log(dataset, samplingMethod);
 	
 	if (checkBox.closest("tr").attr("class") == "selectWholeCol") {
 		var tdElement = checkBox.parent();
 		var col = tdElement.parent().children().index(tdElement);
 		checkBox.closest("table").find('tr td:nth-child(' + (col+1) + ') input').not(checkBox).each(function(){
-			$(this).prop("checked",doCheck).change();
+			$(this).prop("checked",doCheck);
+			onCheckboxChanged($(this), true);
+			
 		});
+		drawResults();
+		drawLegend();
 		
 	} else if (checkBox.parent().attr("class") == "selectWholeRow") {
-		checkBox.parent().parent().find("input").not(checkBox).prop("checked",doCheck).change();
+		checkBox.parent().parent().find("input").not(checkBox).each(function(){
+			$(this).prop("checked",doCheck);
+			onCheckboxChanged($(this), true);
+		});
+		drawResults();
+		drawLegend();
 	} else {
 		var className = dataset + "_" + samplingMethod.replace(" - ", "_");
-		if (doCheck) {
-			$("g." + className).show();
-			console.log("showing " + className);
-		} else {
-			$("g." + className).hide();
+		for (var i = 0; i < sampleMethods.length; i++) {
+			if (sampleMethods[i].name == className) {
+				sampleMethods[i].visibility = doCheck;
+			}
+		} 
+		if (!skipDrawingResults) {
+			drawResults();
+			drawLegend();
 		}
-		drawLegend();
 		
 		
 		if (!doCheck) {
@@ -301,3 +367,10 @@ var onCheckboxChanged = function() {
 		}
 	}
 };
+
+$( document ).ready(function() {
+	if (window.location.search.match( /hidetable/gi)) {
+		console.log("hide table");
+		$("table").hide();
+	}
+});

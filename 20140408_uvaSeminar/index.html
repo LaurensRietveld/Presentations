@@ -455,9 +455,20 @@
 				
 				
 				<section>
-					<h1>Results</h1>
-					 <svg id="sample1" style='height:600px;width:800px'></svg>
-					 <script src='d3jsResults.js'></script>
+					<h1 style="margin-left: 100px;display:inline;">Results</h1>
+					<small style="vertical-align: bottom; margin-bottom: 10px;"><a href='d3jsResults.html' target='_blank'>click for more results</a></small>
+<!-- 					 <iframe id="results" style="width: 100%; height:auto" frameborder="0" src="d3jsResults.html?hidetable"></iframe> -->
+					 <iframe id="results"  style="margin-left: -20px;overflow:hidden;height:100%;width:100%" height="100%" width="100%" frameborder="0" src="d3jsResults.html?hidetable"></iframe>
+					 
+					 <script type="text/javascript">
+					 
+					 $("#results").load(function() {
+							//grmbl, chrome always calculates a height which is a few pixels too small. ugly workaround coming!
+						 $(this).height( $(this).contents().find("body").outerHeight(true) - 170 );
+						$(this).width( $(this).contents().find("body").outerWidth(true) +120 );
+						});
+					 
+					 </script>
 				</section>
 
 			</div>

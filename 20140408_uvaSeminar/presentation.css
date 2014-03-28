@@ -48,32 +48,3 @@
 	clear: none
 }
 
-th.rotate {
-    white-space: nowrap;
-    -webkit-transform-origin: 65px 60px;
-    -moz-transform-origin: 65px 60px;
-    -o-transform-origin: 65px 60px;
-    -ms-transform-origin: 65px 60px;
-    transform-origin: 65px 60px;
-    
-	-webkit-transform: rotate(270deg);
-	-moz-transform: rotate(270deg);
-	-ms-transform: rotate(270deg);
-	-o-transform: rotate(270deg);
-	transform: rotate(270deg);
-	/*display:inline-block;*/
-	/*height:30px;*/
-	/*float:left;*/
-	/*width:30px;*/
-}
-span.intact {
-	display:inline-block;
-	width:30px;
-	height:130px;
-}
-.selectWholeCol td {
-	padding-bottom: 15px;
-}
-td.selectWholeRow  {
-	padding-right: 20px;
-}

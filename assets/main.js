@@ -6,3 +6,4 @@ if( window.location.search.match( /print-pdf/gi ) ) {
 	link.href = '../reveal.js/css/print/pdf.css';
 	document.getElementsByTagName( 'head' )[0].appendChild( link );
 }
+
