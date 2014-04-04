@@ -83,7 +83,8 @@ function drawResults() {
 		return sampleMethod.visibility;
 	});
 	var sampleMethod = svgContainer.selectAll(".sampleMethod").data(selectedSampleMethods, function(d){return d.name;});
-	sampleMethod.exit().transition().remove();
+//	console.log(sampleMethod.exit());
+	
 	
 	
 	
@@ -91,10 +92,7 @@ function drawResults() {
 			function(methodObj) {
 				d3.select(this).attr("class",
 						"sampleMethod " + methodObj.name);
-			});
-	
-	;
-	sampleMethod.enter().append("path")
+			}).append("path")
 		.attr("class", "line")
 		.attr("d",
 			function(d) {
@@ -103,9 +101,20 @@ function drawResults() {
 			})
 		.style("stroke", function(d) {
 			return color(d.name);
-		}
-	);
-	
+		});
+
+	sampleMethod.exit().transition().style("opacity", 0).remove();
+//	sampleMethod.enter().append("path")
+//		.attr("class", "line")
+//		.attr("d",
+//			function(d) {
+//				d.line = this;
+//				return lineFunction(d.values);
+//			})
+//		.style("stroke", function(d) {
+//			return color(d.name);
+//		}
+//	);
 	
 	var focus = svgContainer.append("g")
       .attr("transform", "translate(-100,-100)")
@@ -145,7 +154,6 @@ function drawResults() {
 	  voronoiPaths.exit().remove();
   
   function mouseover(d) {
-	  console.log(d);
   focus.attr("transform", "translate(" + x(d.SampleSize) + "," + y(d.recall) + ")");
   focus.selectAll("text").remove();//remove previous ones
   focus.append("text").attr("transform","translate(0, -10)").text(d.name.replace(/_/g, " - "));
