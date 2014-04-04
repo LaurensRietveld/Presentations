@@ -154,7 +154,6 @@ function drawResults() {
 	  voronoiPaths.exit().remove();
   
   function mouseover(d) {
-	  console.log(d);
   focus.attr("transform", "translate(" + x(d.SampleSize) + "," + y(d.recall) + ")");
   focus.selectAll("text").remove();//remove previous ones
   focus.append("text").attr("transform","translate(0, -10)").text(d.name.replace(/_/g, " - "));

@@ -65,11 +65,12 @@
 					<tr><th>Dataset</th><th>#triples</th><th>#queries</th><th>coverage</th></tr>
 				</thead>
 				<tbody>
-					<tr><td>DBpedia</td><td>764M</td><td>a lot</td><td>unknown yet</td></tr>
-					<tr><td>Linked Geo Data</td><td>300M</td><td>a lot</td><td>unknown yet</td></tr>
-					<tr><td>Open-BioMed</td><td>93M</td><td>928</td><td>0.01%</td></tr>
-					<tr><td>BIO2RDF</td><td>50M</td><td>1294</td><td>1%</td></tr>
-					<tr><td>Semantic Web Dog Food</td><td>0.25M</td><td>197</td><td>unknown yet</td></tr>
+					<tr><td>DBpedia</td><td>459M</td><td>1640</td><td>0.003%</td></tr>
+					<tr><td>Linked Geo Data</td><td>289M</td><td>891</td><td>1.917%</td></tr>
+					<tr><td>MetaLex</td><td>204M</td><td>4933</td><td>0.016%</td></tr>
+					<tr><td>Open-BioMed</td><td>79M</td><td>931</td><td>0.011%</td></tr>
+					<tr><td>BIO2RDF (KEGG)</td><td>50M</td><td>1297</td><td>2.013%</td></tr>
+					<tr><td>Semantic Web Dog Food</td><td>0.24M</td><td>193</td><td>62.4%</td></tr>
 				</tbody>
 				</table>
 				<script type="text/javascript">
@@ -79,6 +80,7 @@
 				         "bPaginate": false,
 				         "bFilter": false,
 				         "bInfo": false,
+				         "aaSorting": []
 				    });
 				} );
 				</script>
@@ -86,25 +88,37 @@
 				
 				<section>
 				<h1>How?</h1>
-				<p style="text-align:left;">Informed vs. Uninformed</p><br>
-				<ul style="float:left;">
-				<li >Network Analysis <p style="font-size: 60%; ">e.g. Pagerank, Betweenness, Indegree, Outdegree</p></li>
-				<li>Rewrite RDF</li>
-				<li>Aggregate node weights to triples</li>
-				<li>Select <i>k</i> best triples</li>
-				<li>Evaluate</li>
-				
-				</ul>
+<!-- 				<div style="float:left; width: 100%;"> -->
+					<div style="float:left; width: 50%">
+					<h3>Informed</h3>
+<!-- 					<p style="text-align:left;">Informed vs. Uninformed</p><br> -->
+						<ul>
+						<li>Taking query solutions (as constructs) as sample</li>
+						<li>Finding commonly used triples between queries</li>
+						<li>Analyze structure of queries</li>
+						</ul>
+					</div>
+					<div style="float:right;width: 50%">
+					<h3>Uninformed</h3>
+					<ul>
+					<li >Network Analysis <p style="font-size: 60%; ">e.g. Indegree, Outdegree, Pagerank (and Betweenness?)</p></li>
+					<li>Rewrite RDF</li>
+					<li>Rank Triples</li>
+					<li>Select <i>k</i> best triples</li>
+					</ul>
+					</div>
+					
+<!-- 				</div> -->
+
 				
 				</section>
 				<section>
 				<h1>Scalability</h1>
-				<h2 style='display:inline' >Hadoop</h2> <img style='margin: 0px;max-height: 50px;'src="imgs/hadoop.png"/>
-				<h3 style='text-align: left'>Pig </h3>
-				<div>
-					  <img id='pigIcon' style='float:left; margin: 0px;max-height: 80px;'src="imgs/pig.jpg"/> 
-					  <div style="float: right; width: 90%">
-					  <iframe id='pigExample' style="height: 100%; width: 100%;"></iframe>		    
+<!-- 				<h2 style='display:inline' >Hadoop</h2> <img style='margin: 0px;max-height: 50px;'src="imgs/hadoop.png"/> -->
+<!-- 				<h3 style='text-align: left'>Pig </h3> -->
+				<div style="width: 100%;">
+					  <img id='pigIcon' style='float:left; margin: 0px;max-width: 80px;'src="imgs/pig.jpg"/> 
+					  <iframe id='pigExample' style="float:right;height: 100%; width: 90%;"></iframe>		    
 					   <script type="text/javascript">
 					   var config = { 
 							   value: "dbpedia = LOAD 'dbpediaInput' AS (lhs, rhs);\n" +
@@ -112,53 +126,20 @@
 									"counts = FOREACH dbpediaGrouped GENERATE group, COUNT(dbpedia);",
 								mode: "text/x-java" //actually looks nicer than the pig layout ;)
 					   }
-					   $("#pigExample").attr("src", "codemirror.html?" + encodeURIComponent(JSON.stringify(config)));
+					   
+					   $("#pigExample").attr("src", "codemirror.html?" + encodeURIComponent(JSON.stringify(config)))
+						.load(function() {
+							//grmbl, chrome always calculates a height which is a few pixels too small. ugly workaround coming!
+						    $(this).height( $(this).contents().find("body").outerHeight(true) - 20 );
+						});
 					   </script>
-					   </div>
 				</div>
 				<div class="spacer"></div>  
-			   <h3 style='text-align: left'>Giraph</h3>
-			   <img style='float:left;margin: 0px;max-height: 80px;'src="imgs/giraph.jpg"/> 
-				</section>
-				
-				
-				<section>
-				<h1>How?</h1>
-				<p style="text-align:left;">Informed vs. Uninformed</p><br>
-				<ul style="float:left;">
-				<li ><span style="text-decoration: underline;">Network Analysis</span> <p style="font-size: 60%; ">e.g. <span style="text-decoration: underline">Pagerank, Betweenness</span>, Indegree, Outdegree</p></li>
-				<li>Rewrite RDF</li>
-				<li>Aggregate node weights to triples</li>
-				<li>Select <i>k</i> best triples</li>
-				<li><span style="text-decoration:underline">Evaluate</span></li>
-				
-				
-				</ul>
-				</section>
-				
-				<section>
-				 <img style='margin: 0px;max-height: 130px;position: absolute; top:0px;right:0px;'src="imgs/giraph.jpg"/> 
-				<h1>PageRank</h1>
-				<div style="width: 50%; float:left;"><i>Assumption: important websites receive more links</i>
-				<ul>
-					<li>The more votes you as page gets, the higher your authority, the higher your voting weight</li>
-					<li>The more sites you point to, the less each vote counts</li>
-				</ul>
-
-				</div>
-				<div style="width: 50%; float:right;"><img src="imgs/pagerank.png"/></div>
-				</section>
-				<section>
-				<img style='margin: 0px;max-height: 130px;position: absolute; top:0px;right:0px;'src="imgs/giraph.jpg"/> 
-				<h1>Pagerank</h1>
-				<img class="blank" src="imgs/pagerank_iterations.svg" >.
-<!-- 				<p>pagerank plots</p> -->
-				</section>
-				
-				<section>
-				<img style='margin: 0px;max-height: 130px;position: absolute; top:0px;right:0px;'src="imgs/giraph.jpg"/> 
-				<h1><span style="font-size: 90%;">PageRank + Giraph</span></h1>
-				<iframe id='giraphExample' style="height: 100%; width: 100%;" frameborder="0"></iframe>		    
+<!-- 				<h3 style='text-align: left'>Giraph</h3> -->
+				<div style="width: 100%; margin-top: 10px;">
+			   <img style='float:left;margin: 0px;max-width: 80px;'src="imgs/giraph.jpg"/> 
+				<iframe id='giraphExample' style="float:right;height: 100%; width: 90%;" frameborder="0"></iframe>
+				</div>   
 				   <script type="text/javascript">
 				   var config = { 
 						   value: "public void compute(Vertex vertex, Iterable messages) {\n\
@@ -186,6 +167,40 @@
 				   </script>
 				</section>
 				
+				
+<!-- 				<section> -->
+<!-- 				<h1>How?</h1> -->
+<!-- 				<p style="text-align:left;">Informed vs. Uninformed</p><br> -->
+<!-- 				<ul style="float:left;"> -->
+<!-- 				<li ><span style="text-decoration: underline;">Network Analysis</span> <p style="font-size: 60%; ">e.g. <span style="text-decoration: underline">Pagerank, Betweenness</span>, Indegree, Outdegree</p></li> -->
+<!-- 				<li>Rewrite RDF</li> -->
+<!-- 				<li>Aggregate node weights to triples</li> -->
+<!-- 				<li>Select <i>k</i> best triples</li> -->
+<!-- 				<li><span style="text-decoration:underline">Evaluate</span></li> -->
+				
+				
+<!-- 				</ul> -->
+<!-- 				</section> -->
+				
+<!-- 				<section> -->
+<!-- 				 <img style='margin: 0px;max-height: 130px;position: absolute; top:0px;right:0px;'src="imgs/giraph.jpg"/>  -->
+<!-- 				<h1>PageRank</h1> -->
+<!-- 				<div style="width: 50%; float:left;"><i>Assumption: important websites receive more links</i> -->
+<!-- 				<ul> -->
+<!-- 					<li>The more votes you as page gets, the higher your authority, the higher your voting weight</li> -->
+<!-- 					<li>The more sites you point to, the less each vote counts</li> -->
+<!-- 				</ul> -->
+
+<!-- 				</div> -->
+<!-- 				<div style="width: 50%; float:right;"><img src="imgs/pagerank.png"/></div> -->
+<!-- 				</section> -->
+<!-- 				<section> -->
+<!-- 				<img style='margin: 0px;max-height: 130px;position: absolute; top:0px;right:0px;'src="imgs/giraph.jpg"/>  -->
+<!-- 				<h1>Pagerank</h1> -->
+<!-- 				<img class="blank" src="imgs/pagerank_iterations.svg" >. -->
+<!-- 				</section> -->
+				
+				
 
 
 				
@@ -202,17 +217,42 @@
 				</ul>
 				</section>
 				
+				
 				<section>
 				<h1>Evaluation</h1>
 				<img class="blank" style="max-height: 500px;"src="imgs/evaluation.svg"/>
 				</section>
+				<section>
+					<h1 style="margin-left: 100px;display:inline;">Results</h1>
+					<small style="vertical-align: bottom; margin-bottom: 10px;"><a href='d3jsResults.html' target='_blank'>click for more results</a></small><br>
+<!-- 					 <iframe id="results" style="width: 100%; height:auto" frameborder="0" src="d3jsResults.html?hidetable"></iframe> -->
+					 <iframe id="results"  style="margin-left: -20px;overflow:hidden;height:100%;width:100%" height="100%" width="100%" frameborder="0" src="d3jsResults.html?hidetable"></iframe>
+					 
+					 <script type="text/javascript">
+					 
+					 $(document).ready(function() {
+						 $("#results").load(function() {
+							 console.log('read results');
+								//grmbl, chrome always calculates a height which is a few pixels too small. ugly workaround coming!
+							 $(this).height( $(this).contents().find("body").outerHeight(true) - 170 );
+							//$(this).width( $(this).contents().find("body").outerWidth(true) +120 );
+							});
+						});
+						
+						
+					 
+					 
+					 </script>
+				</section>
+
 				
 				<section>
 				<h1>Evaluation: Problems</h1>
 				<ul>
 				<li>6 datasets</li>
 				<li>16 sampling methods per dataset</li>
-				<li>Samples are still quite large<br>&nbsp;</li>
+				<li>100 samples per dataset</li>
+				<li>1.4 <strong>trillion</strong> triples<br>&nbsp;</li>
 				<li>Fast loading of samples</li>
 				<li>Powerful hardware</li>
 				<li style="text-decoration: underline;">STABILITY</li>
@@ -398,7 +438,6 @@
 				
 				
 				<section>
-				<section>
 				<h1>Evaluation</h1>
 				<ul>
 				<li>Better specificity than regular recall</li>
@@ -406,6 +445,10 @@
 				<li> Special cases, e.g. GROUP BY, LIMIT, DISTINCT, OPTIONAL, UNION</li>
 				</ul>
 				</section>
+				
+				</section>
+				
+				
 				<section>
 				<h1>Special case: UNIONS</h1>
 				<div style="width: 50%;">
@@ -449,32 +492,21 @@
 				   </div>
 					<div class='spacer'></div>
 <!-- 					<h4>ResultsSet</h4> -->
-					<code style="text-align:right;">?name: "Laurens"</code>
-				</section>
-				</section>
-				
-				
-				<section>
-					<h1 style="margin-left: 100px;display:inline;">Results</h1>
-					<small style="vertical-align: bottom; margin-bottom: 10px;"><a href='d3jsResults.html' target='_blank'>click for more results</a></small>
-<!-- 					 <iframe id="results" style="width: 100%; height:auto" frameborder="0" src="d3jsResults.html?hidetable"></iframe> -->
-					 <iframe id="results"  style="margin-left: -20px;overflow:hidden;height:100%;width:100%" height="100%" width="100%" frameborder="0" src="d3jsResults.html?hidetable"></iframe>
-					 
-					 <script type="text/javascript">
-					 
-					 $("#results").load(function() {
-							//grmbl, chrome always calculates a height which is a few pixels too small. ugly workaround coming!
-						 $(this).height( $(this).contents().find("body").outerHeight(true) - 170 );
-						$(this).width( $(this).contents().find("body").outerWidth(true) +120 );
-						});
-					 
-					 </script>
+<!-- 					<code style="text-align:right;">?name: "Laurens"</code> -->
+					<table style="margin-top: -15px;"id="datasetExample">
+				   <thead><tr><th>Subject</th><th>Predicate</th><th>Object</th></tr></thead>
+				   <tbody>
+				   <tr><td>:Laurens</td><td>rdfs:label</td><td>"Laurens"</td></tr>
+				   <tr class="strikeout"><td>:Laurens</td><td>foaf:name</td><td>"Laurens"</td></tr>
+				   </tbody>
+				   </table>
 				</section>
 				
 				<section>
 					<h1>Conclusion</h1>
 					<ul>
 						<li>Sampling graphs based on network properties <i>alone</i> work!</li>
+						<li>Scalability needs to extend to evaluation</li>
 						<li>But...
 						<ul>
 						<li>'Best' sampling methods differ between datasets</li>
