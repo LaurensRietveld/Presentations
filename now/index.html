@@ -59,7 +59,7 @@
 				</section>
 	
 				<section>
-				<h1>Datasets</h1>
+				<h2>Datasets</h2>
 				<table id='datasetTable'>
 				<thead>
 					<tr><th>Dataset</th><th>#triples</th><th>#queries</th><th>coverage</th></tr>
@@ -87,7 +87,7 @@
 				</section>
 				
 				<section>
-				<h1>How?</h1>
+				<h2>How?</h2>
 <!-- 				<div style="float:left; width: 100%;"> -->
 					<div style="float:left; width: 50%">
 					<h3>Informed</h3>
@@ -113,7 +113,7 @@
 				
 				</section>
 				<section>
-				<h1>Scalability</h1>
+				<h2>Scalability</h2>
 <!-- 				<h2 style='display:inline' >Hadoop</h2> <img style='margin: 0px;max-height: 50px;'src="imgs/hadoop.png"/> -->
 <!-- 				<h3 style='text-align: left'>Pig </h3> -->
 				<div style="width: 100%;">
@@ -169,7 +169,7 @@
 				
 				
 <!-- 				<section> -->
-<!-- 				<h1>How?</h1> -->
+<!-- 				<h2>How?</h2> -->
 <!-- 				<p style="text-align:left;">Informed vs. Uninformed</p><br> -->
 <!-- 				<ul style="float:left;"> -->
 <!-- 				<li ><span style="text-decoration: underline;">Network Analysis</span> <p style="font-size: 60%; ">e.g. <span style="text-decoration: underline">Pagerank, Betweenness</span>, Indegree, Outdegree</p></li> -->
@@ -184,7 +184,7 @@
 				
 <!-- 				<section> -->
 <!-- 				 <img style='margin: 0px;max-height: 130px;position: absolute; top:0px;right:0px;'src="imgs/giraph.jpg"/>  -->
-<!-- 				<h1>PageRank</h1> -->
+<!-- 				<h2>PageRank</h2> -->
 <!-- 				<div style="width: 50%; float:left;"><i>Assumption: important websites receive more links</i> -->
 <!-- 				<ul> -->
 <!-- 					<li>The more votes you as page gets, the higher your authority, the higher your voting weight</li> -->
@@ -196,7 +196,7 @@
 <!-- 				</section> -->
 <!-- 				<section> -->
 <!-- 				<img style='margin: 0px;max-height: 130px;position: absolute; top:0px;right:0px;'src="imgs/giraph.jpg"/>  -->
-<!-- 				<h1>Pagerank</h1> -->
+<!-- 				<h2>Pagerank</h2> -->
 <!-- 				<img class="blank" src="imgs/pagerank_iterations.svg" >. -->
 <!-- 				</section> -->
 				
@@ -205,7 +205,7 @@
 
 				
 				<section>
-				<h1>Betweenness Centrality</h1>
+				<h2>Betweenness Centrality</h2>
 				<h4 style="text-align: left;">Approach</h4>
 				<ul style="text-align: left;">
 				<li>Calculate all shortest paths between all nodes</li>
@@ -219,11 +219,11 @@
 				
 				
 				<section>
-				<h1>Evaluation</h1>
+				<h2>Evaluation</h2>
 				<img class="blank" style="max-height: 500px;"src="imgs/evaluation.svg"/>
 				</section>
 				<section>
-					<h1 style="margin-left: 100px;display:inline;">Results</h1>
+					<h2 style="margin-left: 100px;display:inline;">Results</h2>
 					<small style="vertical-align: bottom; margin-bottom: 10px;"><a href='d3jsResults.html' target='_blank'>click for more results</a></small><br>
 <!-- 					 <iframe id="results" style="width: 100%; height:auto" frameborder="0" src="d3jsResults.html?hidetable"></iframe> -->
 					 <iframe id="results"  style="margin-left: -20px;overflow:hidden;height:100%;width:100%" height="100%" width="100%" frameborder="0" src="d3jsResults.html?hidetable"></iframe>
@@ -247,7 +247,7 @@
 
 				
 				<section>
-				<h1>Evaluation: Problems</h1>
+				<h2>Evaluation: Problems</h2>
 				<ul>
 				<li>6 datasets</li>
 				<li>16 sampling methods per dataset</li>
@@ -262,7 +262,7 @@
 				</section>
 				
 				<section>
-				<h1>Evaluation: How?</h1>
+				<h2>Scalable evaluation</h2>
 				<ul>
 				<li>Retrieve which triples are used by a query</li>
 				<li>Use a hadoop cluster to find the weights of these triples</li>
@@ -272,7 +272,7 @@
 				</section>
 				
 				<section>
-				<h1>Evaluation: Example</h1>
+				<h2>Example</h2>
 				<div style="float:left;width: 100%">
 				<div style="width: 50%;">
 				<h4 style="text-align: left;">Query</h4>
@@ -339,7 +339,7 @@
 				</section>
 				
 				<section>
-				<h1>Evaluation: </h1>
+<!-- 				<h2>Evaluation: </h2> -->
 				<h2>Query results &rarr; Triples</h2>
 				<div style="float:left;width: 100%">
 				<div style="width: 50%;">
@@ -397,7 +397,7 @@
 				</section>
 				
 				<section>
-				<h1>Evaluation <span style="vertical-align: middle;font-size:40%">Triples&rarr;Recall </span></h1>
+				<h2>Evaluation <span style="vertical-align: middle;font-size:40%">Triples&rarr;Recall </span></h2>
 				<h5 >Which answers would we get with a sample of 60%?</h5>
 				
 				 <table style="display:inline-block;left: -80px;margin-top: -15px;"id="datasetExampleSample">
@@ -438,7 +438,7 @@
 				
 				
 				<section>
-				<h1>Evaluation</h1>
+				<h2>Evaluation</h2>
 				<ul>
 				<li>Better specificity than regular recall</li>
 				<li>Scalable: PIG instead of SPARQL</li>
@@ -450,7 +450,7 @@
 				
 				
 				<section>
-				<h1>Special case: UNIONS</h1>
+				<h2>Special case: UNIONS</h2>
 				<div style="width: 50%;">
 <!-- 				<h4 style="text-align: left;">Query</h4> -->
 				<iframe id="sparqlUnionExample1" style=" width: 100%; height:auto;" frameborder="0" align="left"></iframe>		    
@@ -503,7 +503,7 @@
 				</section>
 				
 				<section>
-					<h1>Conclusion</h1>
+					<h2>Conclusion</h2>
 					<ul>
 						<li>Sampling graphs based on network properties <i>alone</i> work!</li>
 						<li>Scalability needs to extend to evaluation</li>
