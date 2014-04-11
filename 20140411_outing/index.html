@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>stats</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
+		<link rel="stylesheet" href="../reveal.js/css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="presentation.css">
+		<link rel="stylesheet" href="../assets/main.css">
+		
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+
+		<script src="../assets/jquery-2.1.0.min.js"></script>
+		
+		<script src="../assets/d3js/3.4.3/d3.js"></script>
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.min.js"></script>
+		
+		<script src="../assets/datatables/1.9.4/media/js/jquery.dataTables.min.js"></script>
+		<script src="../assets/jquery-ui/1.10.4/js/jquery-ui-1.10.4.custom.min.js"></script>
+		<script src="presentation.js"></script>
+		<script src="../assets/main.js"></script>
+		<!--[if lt IE 9]>
+		<script src="../reveal.js/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+
+
+<meta charset="utf-8">
+
+<body>
+
+
+
+
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+				<h1>A'dam Pop</h1>
+				<h2>Antonius, Paul, Laurens, Marat, Menolas</h2>
+				</section>
+				<section>
+				<img src="teamPhoto3.jpg">
+				</section>
+<!-- 				<section> -->
+				
+<!-- 				data -->
+<!-- 				method -->
+<!-- 				model -->
+<!-- 				analysis -->
+<!-- 				results -->
+<!-- 				interpretation -->
+				
+<!-- 				</section> -->
+				<section>
+				<h2>Method</h2>
+				<p>MAPop: Model for Amsterdam population size</p>
+				<ul>
+				<li>h<small>0</small>: MAPop explains the CEDAR data</li>
+                <li>h<small>1</small>: MAPop does not explain the cedar data</li>
+				</ul>
+				</section>
+				<section>
+				<h2>Data</h2>
+				<img src="wikipedia_stats.png">
+				
+				</section>
+				
+				<section>
+				<h3>Model</h3>
+				<img src="wikipedia_fit.jpg">
+				<p>f(x) = a*x^b</p>
+				<p> a =   1.092e-31  (-3.042e-30, 3.26e-30),  b =       11.17  (7.358, 14.97)</p>
+				<p>Using wikipedia data up to 1990, the predicted population of Amsterdam for 2013 is 894 900 (v.s. 810,084)
+				</p>
+				
+				
+				</section>
+				<section>
+				<h2>Test Data</h2>
+				<iframe style="height:500px;width: 900px;" src="http://yasgui.laurensrietveld.nl"></iframe>
+				
+				</section>
+				
+				<section>
+				<h2>Results</h2>
+				<img src="predicted_vs_cedar.jpg">
+				</section>
+				<section>
+				<h2>Analysis</h2>
+				<strong>We accept the H<small>0</small> hypothesis.*</strong>
+				<p style="font-size: 11px;">*: The 95% bounds for us to reject the H<small>0</small> are from 0 to 10^19</p>
+				
+				</section>
+				
+				<section>
+				<h2>Interpretation</h2>
+				<ul>
+				<li>13 data points.....</li>
+				<li>Its cool to use two different data sources</li>
+				<li>Data preparation still an issue</li>
+				</ul>
+				</section>
+				
+			</div>
+
+		</div>
+
+
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+				multiplex: {
+						secret: null, //multiplex secret key
+						id: null, //multiplex socket id
+						url: null //multiplex server url
+					},
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+				    //keep bottom 2 (script uncomments these when publishing as 'current' presentation)
+					//{ src: '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.10/socket.io.min.js', async: true },
+					//{ src: '../reveal.js/plugin/multiplex/client.js', async: true },
+					//{ src: '../reveal.js/plugin/multiplex/master.js', async: true },
+					{ src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
