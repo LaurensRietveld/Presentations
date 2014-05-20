@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Man vs. Machine</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
+		<link rel="stylesheet" href="../reveal.js/css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="presentation.css">
+		<link rel="stylesheet" href="../assets/main.css">
+		
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+
+		<script src="../assets/jquery-2.1.0.min.js"></script>
+		
+		<script src="../assets/d3js/3.4.3/d3.js"></script>
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.min.js"></script>
+		
+		<script src="../assets/datatables/1.9.4/media/js/jquery.dataTables.min.js"></script>
+		<script src="../assets/jquery-ui/1.10.4/js/jquery-ui-1.10.4.custom.min.js"></script>
+		<script src="presentation.js"></script>
+		<script src="../assets/main.js"></script>
+		<!--[if lt IE 9]>
+		<script src="../reveal.js/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+
+
+<meta charset="utf-8">
+
+<body>
+
+
+
+
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section  data-background="imgs/manvsmachine.jpg">
+					
+					<h1 style='color:#2D3033'>Man vs. Machine</h1>
+					<h2 style='color:#2D3033'>Differences in SPARQL queries</h2>
+<!-- 					<img class="stretch" src="imgs/large-scale-projects.jpg"/> -->
+<!-- 					<h4><a href='http://presentations.laurensrietveld.nl/' target='_blank'>http://presentations.laurensrietveld.nl/</a></h4> -->
+				</section>
+				<section>
+				<h2>USEWOD logs</h2>
+				<ul>
+				<li>Including USEWOD 2013, 5 datasets: Bio2RDF, DBpedia, Semantic Web Dog Food, Linked Geo Data and BioPortal</li>
+				<li>We have very strong assumptions on the dominance of application queries [1,2]</li>
+				<li>Yet, we know to little about the differences between human and application queries to quantify this dominance</li>
+				</ul>
+				<div style="margin-top: 40px; text-align: left">
+				<small>[1] Lorey, Johannes, and Felix Naumann. "Detecting sparql query templates for data prefetching." The Semantic Web: Semantics and Big Data. Springer Berlin Heidelberg, 2013. 124-139.</small><br>
+				<small>[2] Raghuveer, Aravindan. "Characterizing machine agent behavior through SPARQL query mining." Proceedings of the International Workshop on Usage Analysis and the Web of Data, Lyon, France. 2012.</small>
+				</div>
+				</section>
+<!-- 				<section> -->
+<!-- 				<h2>YASGUI</h2> -->
+<!-- 				<iframe width="100%" height="600px;" style="width: 100%; height: 600px;"src='http://yasgui.laurensrietveld.nl'></iframe> -->
+<!-- 				</div> -->
+<!-- 				</section> -->
+				<section>
+				<h2><a href='http://yasgui.laurensrietveld.nl' target='_blank'>YASGUI</a></h2>
+				<ul>
+<!-- 				<li>One editor to access any (private or public) endpoint</li> -->
+				<li>Queries and endpoints are logged (if permitted to do so) using <a href='https://www.google.com/analytics/web/?hl=en#report/visitors-overview/a35569470w63408389p65044199/%3F_u.date00%3D20120903%26_u.date01%3D20140525%26overview-graphOptions.selected%3Danalytics.nthWeek/' target='_blank'>google analytics</a></li>
+				<li>Unique collection of queries, solely made by humans, spanning both private and public endpoints</li>
+				
+				</ul>
+				
+				</section>
+				
+				<section>
+				<h2><a href='http://yasgui.laurensrietveld.nl' target='_blank'>Overview</a></h2>
+				<img src="imgs/location_users.png">
+				<ul>
+				<li>60% agree to track site usage</li>
+				<li>~45.000 queries</li>
+				<li>~500 endpoints</li>
+				<li>Majority of queries executed on DBpedia</li>
+				</ul>
+				
+				</section>
+				
+				<section>
+				<h2>How to compare query sets</h2>
+				<ul>
+				<li>Dissecting the query, and looking at the structural properties</li>
+				<li>Largely a similar approach as [1] and [2]</li>
+				<li>Focus on DBpedia</li>
+				</ul>
+				
+				<div style="margin-top: 40px; text-align: left">
+				<small>[1] Picalausa, Francois, and Stijn Vansummeren. "What are real SPARQL queries like?." Proceedings of the International Workshop on Semantic Web Information Management. ACM, 2011.</small><br>
+				<small>[2] Gallego, Mario Arias, et al. "An empirical study of real-world SPARQL queries." 1st International Workshop on Usage Analysis and the Web of Data (USEWOD2011) at the 20th International World Wide Web Conference (WWW 2011), Hydebarabad, India. 2011.</small>
+				</div>
+				</section>
+				<section>
+				<h2>Use of SPARQL grammar</h2>
+				
+				<table>
+				<tr><th></th><th>YASGUI</th><th>USEWOD</th></tr>
+				<tr><td># syntactically valid queries</td><td>12.242</td><td>100.763</td></tr>
+				<tr><td>% unique queries</td><td>65.73%</td><td>69.67%</td></tr>
+				<tr><td colspan=3>Query types</td></tr>
+				<tr><td>SELECT</td><td>93.91%</td><td>96.17%</td></tr>
+				<tr><td>DESCRIBE</td><td>0.72</td><td>3.00%</td></tr>
+				<tr><td>CONSTRUCT</td><td>1.49%</td><td>0.56%</td></tr>
+				<tr><td>ASK</td><td>3.87%</td><td>0.26%</td></tr>
+				<tr><td colspan=3>SPARQL features</td></tr>
+				<tr><td>ORDER BY</td><td>18.64%</td><td>6.37%</td></tr>
+				<tr><td>DISTINCT</td><td>15.07%</td><td>24.37%</td></tr>
+				<tr><td>LIMIT</td><td>42.32%</td><td>12.13%</td></tr>
+				<tr><td>OFFSET</td><td>0.14%</td><td>0.75%</td></tr>
+				<tr><td>FILTER</td><td>30.35%</td><td>15.11%</td></tr>
+				<tr><td>Subquery</td><td>2.82%</td><td>0.37%</td></tr>
+				<tr><td>SERVICE</td><td>0.91%</td><td>0.08%</td></tr>
+				<tr><td>&#8805; 1 UNION in query</td><td>24.04%</td><td>4.46%</td></tr>
+				<tr><td>&#8805; 1 OPTIONAL in query</td><td>1.71%</td><td>3.14%</td></tr>
+				</table>
+				
+				
+				</section>
+
+
+			</div>
+
+		</div>
+
+
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+				multiplex: {
+						secret: null, //multiplex secret key
+						id: null, //multiplex socket id
+						url: null //multiplex server url
+					},
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+				    //keep bottom 2 (script uncomments these when publishing as 'current' presentation)
+					//{ src: '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.10/socket.io.min.js', async: true },
+					//{ src: '../reveal.js/plugin/multiplex/client.js', async: true },
+					//{ src: '../reveal.js/plugin/multiplex/master.js', async: true },
+					{ src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
