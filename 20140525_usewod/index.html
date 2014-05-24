@@ -62,7 +62,8 @@
 				<ul>
 				<li>Including USEWOD 2013, 5 datasets: Bio2RDF, DBpedia, Semantic Web Dog Food, Linked Geo Data and BioPortal</li>
 				<li>We have very strong assumptions on the dominance of application queries [1,2]</li>
-				<li>Yet, we know to little about the differences between human and application queries to quantify this dominance</li>
+				<li>Yet, we know too little about human and application queries to quantify the differences between both</li>
+				<li>No collection of human-made queries <small>until now</small></li>
 				</ul>
 				<div style="margin-top: 40px; text-align: left">
 				<small>[1] Lorey, Johannes, and Felix Naumann. "Detecting sparql query templates for data prefetching." The Semantic Web: Semantics and Big Data. Springer Berlin Heidelberg, 2013. 124-139.</small><br>
@@ -77,7 +78,7 @@
 				<section>
 				<h2><a href='http://yasgui.laurensrietveld.nl' target='_blank'>YASGUI</a></h2>
 				<ul>
-<!-- 				<li>One editor to access any (private or public) endpoint</li> -->
+				<li>One feature-rich editor to access any (private or public) endpoint</li>
 				<li>Queries and endpoints are logged (if permitted to do so) using <a href='https://www.google.com/analytics/web/?hl=en#report/visitors-overview/a35569470w63408389p65044199/%3F_u.date00%3D20120903%26_u.date01%3D20140525%26overview-graphOptions.selected%3Danalytics.nthWeek/' target='_blank'>google analytics</a></li>
 				<li>Unique collection of queries, solely made by humans, spanning both private and public endpoints</li>
 				
@@ -90,6 +91,7 @@
 				<img src="imgs/location_users.png">
 				<ul>
 				<li>60% agree to track site usage</li>
+				<li>~3.000 users</li>
 				<li>~45.000 queries</li>
 				<li>~500 endpoints</li>
 				<li>Majority of queries executed on DBpedia</li>
@@ -100,9 +102,10 @@
 				<section>
 				<h2>How to compare query sets</h2>
 				<ul>
-				<li>Dissecting the query, and looking at the structural properties</li>
+				<li>Dissecting the query, and looking at the structural properties (Jena)</li>
 				<li>Largely a similar approach as [1] and [2]</li>
 				<li>Focus on DBpedia</li>
+				<li>Purely observational: how do man-made queries differ from query logs</li>
 				</ul>
 				
 				<div style="margin-top: 40px; text-align: left">
@@ -113,25 +116,25 @@
 				<section>
 				<h2>Use of SPARQL grammar</h2>
 				
-				<table>
-				<tr><th></th><th>YASGUI</th><th>USEWOD</th></tr>
-				<tr><td># syntactically valid queries</td><td>12.242</td><td>100.763</td></tr>
-				<tr><td>% unique queries</td><td>65.73%</td><td>69.67%</td></tr>
-				<tr><td colspan=3>Query types</td></tr>
-				<tr><td>SELECT</td><td>93.91%</td><td>96.17%</td></tr>
-				<tr><td>DESCRIBE</td><td>0.72</td><td>3.00%</td></tr>
-				<tr><td>CONSTRUCT</td><td>1.49%</td><td>0.56%</td></tr>
-				<tr><td>ASK</td><td>3.87%</td><td>0.26%</td></tr>
-				<tr><td colspan=3>SPARQL features</td></tr>
-				<tr><td>ORDER BY</td><td>18.64%</td><td>6.37%</td></tr>
-				<tr><td>DISTINCT</td><td>15.07%</td><td>24.37%</td></tr>
-				<tr><td>LIMIT</td><td>42.32%</td><td>12.13%</td></tr>
-				<tr><td>OFFSET</td><td>0.14%</td><td>0.75%</td></tr>
-				<tr><td>FILTER</td><td>30.35%</td><td>15.11%</td></tr>
-				<tr><td>Subquery</td><td>2.82%</td><td>0.37%</td></tr>
-				<tr><td>SERVICE</td><td>0.91%</td><td>0.08%</td></tr>
-				<tr><td>&#8805; 1 UNION in query</td><td>24.04%</td><td>4.46%</td></tr>
-				<tr><td>&#8805; 1 OPTIONAL in query</td><td>1.71%</td><td>3.14%</td></tr>
+				<table style="font-size: 90%;margin-left: auto;margin-right: auto;">
+				<tr><th width="420px"></th><th width="130px">YASGUI</th><th width="130px">USEWOD</th></tr>
+				<tr><td># syntactically valid queries</td><td class="datacol">12.242</td><td class="datacol">100.763</td></tr>
+				<tr><td>% unique queries</td><td class="datacol">65.73%</td><td class="datacol">69.67%</td></tr>
+<!-- 				<tr><td colspan=3>Query types</td></tr> -->
+				<tr><td>SELECT</td><td class="datacol">93.91%</td><td class="datacol">96.17%</td></tr>
+				<tr><td>DESCRIBE</td><td class="datacol">0.72%</td><td class="datacol">3.00%</td></tr>
+				<tr><td>CONSTRUCT</td><td class="datacol">1.49%</td><td class="datacol">0.56%</td></tr>
+				<tr><td>ASK</td><td class="datacol">3.87%</td><td class="datacol">0.26%</td></tr>
+<!-- 				<tr><td colspan=3>SPARQL features</td></tr> -->
+				<tr><td>ORDER BY</td><td class="datacol">18.64%</td><td class="datacol">6.37%</td></tr>
+				<tr><td>DISTINCT</td><td class="datacol">15.07%</td><td class="datacol">24.37%</td></tr>
+				<tr><td>LIMIT</td><td class="datacol">42.32%</td><td class="datacol">12.13%</td></tr>
+				<tr><td>OFFSET</td><td class="datacol">0.14%</td><td class="datacol">0.75%</td></tr>
+				<tr><td>FILTER</td><td class="datacol">30.35%</td><td class="datacol">15.11%</td></tr>
+				<tr><td>Subquery</td><td class="datacol">2.82%</td><td class="datacol">0.37%</td></tr>
+				<tr><td>SERVICE</td><td class="datacol">0.91%</td><td class="datacol">0.08%</td></tr>
+				<tr><td>&#8805; 1 UNION in query</td><td class="datacol">24.04%</td><td  class="datacol">4.46%</td></tr>
+				<tr><td>&#8805; 1 OPTIONAL in query</td><td class="datacol">1.71%</td><td class="datacol">3.14%</td></tr>
 				</table>
 				
 				
@@ -139,20 +142,20 @@
 				<section>
 				<h2>Triple pattern types</h2>
 				
-				<table>
-				<tr><th></th><th>YASGUI</th><th>USEWOD</th></tr>
-				<tr><td>VCC</td><td>45.91%</td><td>19.92%</td></tr>
-				<tr><td>VCV</td><td>36.22%</td><td>19.06%</td></tr>
-				<tr><td>CCV</td><td>7.10%</td><td>42.71%</td></tr>
-				<tr><td>CVV</td><td>2.95%</td><td>6.10%</td></tr>
-				<tr><td>VVC</td><td>2.88%</td><td>3.92%</td></tr>
-				<tr><td>VVV</td><td>1.61%</td><td>1.88%</td></tr>
-				<tr><td>CCC</td><td>0.28%</td><td>0.17%</td></tr>
-				<tr><td>CVC</td><td>0.12%</td><td>0.06%</td></tr>
-				<tr><td>V*C</td><td>2.59%</td><td>6.01%</td></tr>
-				<tr><td>V*V</td><td>0.30%</td><td>0.10%</td></tr>
-				<tr><td>C*V</td><td>0.05%</td><td>0.08%</td></tr>
-				<tr><td>C*C</td><td>0.00%</td><td>0.00%</td></tr>
+				<table style="font-size: 90%;margin-left: auto;margin-right: auto;">
+				<tr><th width="90px"></th><th width="150px">YASGUI</th><th width="150px">USEWOD</th><th></th></tr>
+				<tr><td>VCC</td><td class="datacol">45.91%</td><td class="datacol">19.92%</td><td><i>e.g.</i> ?sub rdf:type foaf:person</td></tr>
+				<tr><td>VCV</td><td class="datacol">36.22%</td><td class="datacol">19.06%</td><td></td></tr>
+				<tr><td>CCV</td><td class="datacol">7.10%</td><td class="datacol">42.71%</td><td></td></tr>
+				<tr><td>CVV</td><td class="datacol">2.95%</td><td class="datacol">6.10%</td><td></td></tr>
+				<tr><td>VVC</td><td class="datacol">2.88%</td><td class="datacol">3.92%</td><td></td></tr>
+				<tr><td>VVV</td><td class="datacol">1.61%</td><td class="datacol">1.88%</td><td></td></tr>
+				<tr><td>CCC</td><td class="datacol">0.28%</td><td class="datacol">0.17%</td><td></td></tr>
+				<tr><td>CVC</td><td class="datacol">0.12%</td><td class="datacol">0.06%</td><td></td></tr>
+				<tr><td>V*V</td><td class="datacol">0.30%</td><td class="datacol">0.10%</td><td><i>e.g.</i> ?x foaf:knows/foaf:name ?name </td></tr>
+				<tr><td>V*C</td><td class="datacol">2.59%</td><td class="datacol">6.01%</td><td></td></tr>
+				<tr><td>C*V</td><td class="datacol">0.05%</td><td class="datacol">0.08%</td><td></td></tr>
+				<tr><td>C*C</td><td class="datacol">0.00%</td><td class="datacol">0.00%</td><td></td></tr>
 				</table>
 				
 				</section>
@@ -164,7 +167,21 @@
 				<h2>#Joins in queries</h2>
 				<img src="imgs/joins.png">
 				</section>
+				<section>
+				<h2>Proportion of join types</h2>
+				<img src="imgs/joinTypes.png">
+				</section>
+				<section>
+				<h2>Possiblities: Use of the LOD cloud</h2>
+				<img src="imgs/lodcloud-usage-2014.png">
 				
+				</section>
+				<section>
+				<h2>Possibilities: Use of namespaces</h2>
+				<img src="imgs/lod-used-namespace-2014.png">
+				
+				</section>
+				<section>
 				<section>
 				<h2>Now what?</h2>
 				<ul>
@@ -172,11 +189,12 @@
 				<li>Human queries are larger, more complex, more joins, and use more SPARQL features</li>
 				<li>Particularly interesting to research related to <i>users</i> on the Web of Data</li>
 				<li>Large range of endpoints for which we collect logs</li>
-				<li>Future: publish YASGUI logs</li>
+				<li>Future: publish YASGUI logs (Piwik)</li>
 				</ul>
-				
+				</section>
 				
 				</section>
+				
 			</div>
 
 		</div>

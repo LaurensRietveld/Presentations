@@ -5,7 +5,9 @@
   shape-rendering: crispEdges;
 }
 
-
+.datacol {
+	text-align: right !important;
+}
 
 .line {
   fill: none;
