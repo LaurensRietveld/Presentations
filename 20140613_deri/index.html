@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>A Panoramic</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
+		<link rel="stylesheet" href="../reveal.js/css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="presentation.css">
+		<link rel="stylesheet" href="../assets/main.css">
+		
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+
+		<script src="../assets/jquery-2.1.0.min.js"></script>
+		
+		<script src="../assets/d3js/3.4.3/d3.js"></script>
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.min.js"></script>
+		
+		<script src="../assets/datatables/1.9.4/media/js/jquery.dataTables.min.js"></script>
+		<script src="../assets/jquery-ui/1.10.4/js/jquery-ui-1.10.4.custom.min.js"></script>
+		<script src="presentation.js"></script>
+		<script src="../assets/main.js"></script>
+		<!--[if lt IE 9]>
+		<script src="../reveal.js/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+
+
+<meta charset="utf-8">
+
+<body>
+
+
+
+
+	<body>
+		<div class="reveal">
+			<div class="slides">
+<!-- 				<section data-background="imgs/manvsmachine.jpg"> -->
+				<section>
+					
+					<h1>About me</h1>
+					<img src="imgs/me.jpg"/>
+<!-- 					<h2 style='color:#2D3033'>Differences in SPARQL queries</h2> -->
+<!-- 					<img class="stretch" src="imgs/large-scale-projects.jpg"/> -->
+<!-- 					<h4><a href='http://presentations.laurensrietveld.nl/' target='_blank'>http://presentations.laurensrietveld.nl/</a></h4> -->
+				</section>
+			<section>
+				<h2>Panoramic view</h2>
+				<ol>
+					<li>Structure of RDF graphs: SampLD</li>
+					<li>LOD cloud as a whole: LOD Laundromat</li>
+					<li>Access to and use of the LOD cloud: YASGUI</li>
+				</ol>
+			</section>
+			<section>
+				<h2>SampLD: why?</h2>
+				<ul>
+					<li>Big datasets, and we only <i>need</i> a fraction</li>
+					<li>Different scenarios:
+					<ol>
+					<li>We know which parts are more-or-less interesting: Informed Sampling</li>
+					<li>We only have the dataset to go by: Uninformed sampling</li>
+					</ol>
+				</ul>
+			</section>
+			<section>
+				<h2>SampLD: How?</h2>
+				<ul>
+					<li >Network Analysis <p style="font-size: 60%; ">e.g. Indegree, Outdegree, Pagerank</p></li>
+					<li>Rewrite RDF</li>
+					<li>Rank Triples</li>
+					<li>Select <i>k</i> best triples</li>
+				</ul>
+			</section>
+			<section>
+				<h2 style="margin-left: 100px;display:inline;">SampLD: Results</h2>
+				<small style="vertical-align: bottom; margin-bottom: 10px;"><a href='d3jsResults.html' target='_blank'>click for more results</a></small><br>
+<!-- 					 <iframe id="results" style="width: 100%; height:auto" frameborder="0" src="d3jsResults.html?hidetable"></iframe> -->
+				 <iframe class="stretch" id="results"  style="margin-left: -20px;overflow:hidden;height:100%;width:100%" height="100%" width="100%" frameborder="0" src="d3jsResults.html?hidetable"></iframe>
+				 
+				 <script type="text/javascript">
+				 
+				 $(document).ready(function() {
+					 $("#results").load(function() {
+						 console.log('read results');
+							//grmbl, chrome always calculates a height which is a few pixels too small. ugly workaround coming!
+						 $(this).height( $(this).contents().find("body").outerHeight(true) - 10 );
+						//$(this).width( $(this).contents().find("body").outerWidth(true) +120 );
+						});
+					});
+					
+					
+				 
+				 
+				 </script>
+			</section>
+			<section>
+			<h2>LOD Laundromat</h2>
+			<h3>Publishing other peoples dirty data</h3>
+			<img class="stretch" src="imgs/washingMachine.gif">
+			</section>
+			
+			<section>
+				<h2>Laundromat: Why?</h2>
+				<ul>
+					<li>High levels of dirty data on LOD cloud</li>
+					<li>Existing solutions insufficient: standards, guidelines, tools</li>
+					<li>Instead, we remove the stains from the LOD cloud</li>
+					<li>Low ambitions, high usability/sustainability: publishing as gzipped ntriples ('sibbling datasets')</li>
+				</ul>
+				
+				
+			</section>
+			
+			<section>
+				<h2>Laundromat: Approach</h2>
+				<ul>
+					<li>Automatic process, crawling any RDF format</li>
+					<li>Seed list from catalogues, VoiD descriptions, user input</li>
+					<li>Transparent: Report any TCP, HTTP, and parse errors</li>
+					<li>Cleaning process
+						<ul>
+						<li>Remove duplicates</li>
+						<li>Remove blank nodes</li>
+						</ul>
+					</li>
+					<li>(Meta)Data accessible at <a href="http://lodlaundry.github.io" target="_blank">http://lodlaundry.github.io</a>
+				</ul>
+			</section>
+			<section>
+				<h2>Laundromat: Future work</h2>
+				<ul>
+					<li>Increase coverage</li>
+					<li>Start analyzing the LOD cloud
+					<ul>
+						<li>Create dataset descriptions, e.g. VoiD and Bio2RDF metrics</li>
+						<li>Analyze the structure of LOD cloud as a whole</li>
+						<li>New and improved LOD cloud picture</li>
+					</ul>
+					</li>
+				</ul>
+			</section>
+			
+			<section>
+			<h2>Using the LOD cloud: YASGUI</h2>
+			<iframe class="stretch" id="yasqe"  style="margin-left: -20px;overflow:hidden;height:100%;width:100%" height="100%" width="100%" frameborder="0" src="yasqe.html"></iframe>
+			</section>
+			<section>
+			<h2>YASGUI: Background</h2>
+			<ul>
+				<li>Based on the FLINT editor</li>
+				<li>Enhanced with services such as <a href="http://prefix.cc" target="_blank">prefix.cc</a>, <a href="http://lov.okfn.org" target="_blank">Linked Open Vocabularies</a>, <a href="http://datahub.io" target="_blank">datahub.io</a>, and <a href="http://preflabel.org" target="_blank">preflabel.org</a>.
+				<li>Recently, published separate YASQE and YASR js libraries</li>
+				<li>Primary goal: making Semantic Web easier</li>
+				<li>Bonus: insight into <i>usage</i> of SPARQL endpoints</li>
+			</ul>
+			
+			</section>
+			<section>
+			<h2>YASGUI: Logs</h2>
+				<ul>
+					<li>Unique collection of queries, solely made by humans, spanning both private and public endpoints</li>
+					<li>60% agree to track site usage</li>
+					<li>~3.000 users</li>
+					<li>~45.000 queries</li>
+					<li>~500 endpoints</li>
+					<li>Majority of queries executed on DBpedia</li>
+				</ul>
+			</section>
+			<section>
+				<h2>Use of the LOD cloud</h2>
+				<img src="imgs/lodcloud-usage-2014.png">
+				
+				</section>
+				<section>
+				<h2>Use of namespaces</h2>
+				<img src="imgs/lod-used-namespace-2014.png">
+				
+			</section>
+			
+			<section>
+			<h2>Summary</h2>
+			<ul>
+				<li>SampLD: using structural properties to create samples</li>
+				<li>LOD Laundromat: publishing other peoples dirty data</li>
+				<li>YASGUI: increasing ease of access + analyzing LD usages</li>
+			</ul>
+			</section>
+			<section>
+			<h1>Questions?</h1>
+			<img class="stretch" src="imgs/questions.gif">
+			</section>
+			
+			
+				
+			</div>
+
+		</div>
+
+
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+				multiplex: {
+						secret: null, //multiplex secret key
+						id: null, //multiplex socket id
+						url: null //multiplex server url
+					},
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+				    //keep bottom 2 (script uncomments these when publishing as 'current' presentation)
+					//{ src: '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.10/socket.io.min.js', async: true },
+					//{ src: '../reveal.js/plugin/multiplex/client.js', async: true },
+					//{ src: '../reveal.js/plugin/multiplex/master.js', async: true },
+					{ src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
