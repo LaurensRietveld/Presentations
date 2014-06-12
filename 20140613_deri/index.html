@@ -51,84 +51,46 @@
 		<div class="reveal">
 			<div class="slides">
 <!-- 				<section data-background="imgs/manvsmachine.jpg"> -->
-				<section>
-					
-					<h1>About me</h1>
-					<img src="imgs/me.jpg"/>
+			<section>
+				
+<!-- 					<h1>About me</h1> -->
+				<h3>Laurens Rietveld</h3>
+				<h4>laurens.rietveld@vu.nl</h4>
+				<img src="imgs/me.jpg"/>
 <!-- 					<h2 style='color:#2D3033'>Differences in SPARQL queries</h2> -->
 <!-- 					<img class="stretch" src="imgs/large-scale-projects.jpg"/> -->
 <!-- 					<h4><a href='http://presentations.laurensrietveld.nl/' target='_blank'>http://presentations.laurensrietveld.nl/</a></h4> -->
-				</section>
-			<section>
-				<h2>Panoramic view</h2>
-				<ol>
-					<li>Structure of RDF graphs: SampLD</li>
-					<li>LOD cloud as a whole: LOD Laundromat</li>
-					<li>Access to and use of the LOD cloud: YASGUI</li>
-				</ol>
 			</section>
-			<section>
-				<h2>SampLD: why?</h2>
-				<ul>
-					<li>Big datasets, and we only <i>need</i> a fraction</li>
-					<li>Different scenarios:
-					<ol>
-					<li>We know which parts are more-or-less interesting: Informed Sampling</li>
-					<li>We only have the dataset to go by: Uninformed sampling</li>
-					</ol>
-				</ul>
+			<section data-background="white">
+				<img style="border: 0px solid black; box-shadow: 0 0 0px;"class="stretch" src="imgs/largeNetwork.png">
 			</section>
-			<section>
-				<h2>SampLD: How?</h2>
-				<ul>
-					<li >Network Analysis <p style="font-size: 60%; ">e.g. Indegree, Outdegree, Pagerank</p></li>
-					<li>Rewrite RDF</li>
-					<li>Rank Triples</li>
-					<li>Select <i>k</i> best triples</li>
-				</ul>
-			</section>
-			<section>
-				<h2 style="margin-left: 100px;display:inline;">SampLD: Results</h2>
-				<small style="vertical-align: bottom; margin-bottom: 10px;"><a href='d3jsResults.html' target='_blank'>click for more results</a></small><br>
-<!-- 					 <iframe id="results" style="width: 100%; height:auto" frameborder="0" src="d3jsResults.html?hidetable"></iframe> -->
-				 <iframe class="stretch" id="results"  style="margin-left: -20px;overflow:hidden;height:100%;width:100%" height="100%" width="100%" frameborder="0" src="d3jsResults.html?hidetable"></iframe>
-				 
-				 <script type="text/javascript">
-				 
-				 $(document).ready(function() {
-					 $("#results").load(function() {
-						 console.log('read results');
-							//grmbl, chrome always calculates a height which is a few pixels too small. ugly workaround coming!
-						 $(this).height( $(this).contents().find("body").outerHeight(true) - 10 );
-						//$(this).width( $(this).contents().find("body").outerWidth(true) +120 );
-						});
-					});
-					
-					
-				 
-				 
-				 </script>
-			</section>
+			
+			
 			<section>
 			<h2>LOD Laundromat</h2>
 			<h3>Publishing other peoples dirty data</h3>
 			<img class="stretch" src="imgs/washingMachine.gif">
 			</section>
+			<!--
+			Start with huge graph, explain we are not good in publishing AND using it
+			Wall of Shame: rdfs type, 100% duplicates
+			 -->
+			 
 			
-			<section>
-				<h2>Laundromat: Why?</h2>
-				<ul>
-					<li>High levels of dirty data on LOD cloud</li>
-					<li>Existing solutions insufficient: standards, guidelines, tools</li>
-					<li>Instead, we remove the stains from the LOD cloud</li>
-					<li>Low ambitions, high usability/sustainability: publishing as gzipped ntriples ('sibbling datasets')</li>
-				</ul>
+<!-- 			<section> -->
+<!-- 				<h2>Laundromat: Why?</h2> -->
+<!-- 				<ul> -->
+<!-- 					<li>High levels of dirty data on LOD cloud</li> -->
+<!-- 					<li>Existing solutions insufficient: standards, guidelines, tools</li> -->
+<!-- 					<li>Instead, we remove the stains from the LOD cloud</li> -->
+<!-- 					<li>Low ambitions, high usability/sustainability: publishing as gzipped ntriples ('sibling datasets')</li> -->
+<!-- 				</ul> -->
 				
 				
-			</section>
+<!-- 			</section> -->
 			
 			<section>
-				<h2>Laundromat: Approach</h2>
+<!-- 				<h2>Approach</h2> -->
 				<ul>
 					<li>Automatic process, crawling any RDF format</li>
 					<li>Seed list from catalogues, VoiD descriptions, user input</li>
@@ -139,11 +101,12 @@
 						<li>Remove blank nodes</li>
 						</ul>
 					</li>
+					<li>Publish as zipped ntriples (future: ordered)</li>
 					<li>(Meta)Data accessible at <a href="http://lodlaundry.github.io" target="_blank">http://lodlaundry.github.io</a>
 				</ul>
 			</section>
 			<section>
-				<h2>Laundromat: Future work</h2>
+				<h2>Future work</h2>
 				<ul>
 					<li>Increase coverage</li>
 					<li>Start analyzing the LOD cloud
@@ -155,31 +118,35 @@
 					</li>
 				</ul>
 			</section>
-			
+			<!-- TODO add gif -->
 			<section>
-			<h2>Using the LOD cloud: YASGUI</h2>
+			<h1>How about <i>using</i> the LOD Cloud?</h1>
+			</section>
+			<section>
+			<h2>YASGUI</h2>
 			<iframe class="stretch" id="yasqe"  style="margin-left: -20px;overflow:hidden;height:100%;width:100%" height="100%" width="100%" frameborder="0" src="yasqe.html"></iframe>
+			<!-- TODO: show on click -->
+			Check <a href="http://yasgui.github.io/YASQE" target="_blank">http://yasgui.github.io/YASQE</a> and <a href="http://yasgui.github.io/YASR" target="_blank">http://yasgui.github.io/YASR</a> as well!
 			</section>
-			<section>
-			<h2>YASGUI: Background</h2>
-			<ul>
-				<li>Based on the FLINT editor</li>
-				<li>Enhanced with services such as <a href="http://prefix.cc" target="_blank">prefix.cc</a>, <a href="http://lov.okfn.org" target="_blank">Linked Open Vocabularies</a>, <a href="http://datahub.io" target="_blank">datahub.io</a>, and <a href="http://preflabel.org" target="_blank">preflabel.org</a>.
-				<li>Recently, published separate YASQE and YASR js libraries</li>
-				<li>Primary goal: making Semantic Web easier</li>
-				<li>Bonus: insight into <i>usage</i> of SPARQL endpoints</li>
-			</ul>
+<!-- 			<section> -->
+<!-- 			<h2>YASGUI: Background</h2> -->
+<!-- 			<ul> -->
+<!-- 				<li>Based on the FLINT editor</li> -->
+<!-- 				<li>Enhanced with services such as <a href="http://prefix.cc" target="_blank">prefix.cc</a>, <a href="http://lov.okfn.org" target="_blank">Linked Open Vocabularies</a>, <a href="http://datahub.io" target="_blank">datahub.io</a>, and <a href="http://preflabel.org" target="_blank">preflabel.org</a>. -->
+<!-- 				<li>Recently, published separate YASQE and YASR js libraries</li> -->
+<!-- 				<li>Primary goal: making Semantic Web easier</li> -->
+<!-- 				<li>Bonus: insight into <i>usage</i> of SPARQL endpoints</li> -->
+<!-- 			</ul> -->
 			
-			</section>
+<!-- 			</section> -->
 			<section>
-			<h2>YASGUI: Logs</h2>
+			<h2>There is a bonus!</h2>
 				<ul>
 					<li>Unique collection of queries, solely made by humans, spanning both private and public endpoints</li>
 					<li>60% agree to track site usage</li>
 					<li>~3.000 users</li>
 					<li>~45.000 queries</li>
 					<li>~500 endpoints</li>
-					<li>Majority of queries executed on DBpedia</li>
 				</ul>
 			</section>
 			<section>
@@ -188,17 +155,273 @@
 				
 				</section>
 				<section>
-				<h2>Use of namespaces</h2>
+				<h2>Shared use of namespaces</h2>
 				<img src="imgs/lod-used-namespace-2014.png">
 				
 			</section>
 			
+			<section>TODO: searching gif</section>
+
+			<section>
+				<h2>SampLD</h2>
+				<ul>
+<!-- 					<li>Big datasets, and we only <i>need</i> a fraction</li> -->
+					<li>Different scenarios:
+					<ol>
+					<li>We know which parts are more-or-less interesting: Informed Sampling</li>
+					<li>We only have the dataset to go by: Uninformed sampling</li>
+					</ol>
+				</ul>
+			</section>
+			<section>
+				<h2>Approach</h2>
+				<ul>
+					<li >Network Analysis <p style="font-size: 60%; ">e.g. Indegree, Outdegree, Pagerank</p></li>
+					<li>Rewrite RDF</li>
+					<li>Rank Triples</li>
+					<li>Select <i>k</i> best triples</li>
+				</ul>
+			</section>
+			<section>
+				<section>
+					<h2 style="margin-left: 100px;display:inline;">SampLD: Results</h2>
+					<small style="vertical-align: bottom; margin-bottom: 10px;"><a href='d3jsResults.html' target='_blank'>click for more results</a></small><br>
+	<!-- 					 <iframe id="results" style="width: 100%; height:auto" frameborder="0" src="d3jsResults.html?hidetable"></iframe> -->
+					 <iframe class="stretch" id="results"  style="margin-left: -20px;overflow:hidden;height:100%;width:100%" height="100%" width="100%" frameborder="0" src="d3jsResults.html?hidetable"></iframe>
+					 
+					 <script type="text/javascript">
+					 
+					 $(document).ready(function() {
+						 $("#results").load(function() {
+							 console.log('read results');
+								//grmbl, chrome always calculates a height which is a few pixels too small. ugly workaround coming!
+							 $(this).height( $(this).contents().find("body").outerHeight(true) - 10 );
+							//$(this).width( $(this).contents().find("body").outerWidth(true) +120 );
+							});
+						});
+						
+						
+					 
+					 
+					 </script>
+				</section>
+				<section>
+				<h2>Evaluation: Problems</h2>
+				<ul>
+				<li>6 datasets</li>
+				<li>16 sampling methods per dataset</li>
+				<li>100 samples per dataset</li>
+				<li>1.4 <strong>trillion</strong> triples<br>&nbsp;</li>
+				<li>Fast loading of samples</li>
+				<li>Powerful hardware</li>
+				<li style="text-decoration: underline;">STABILITY</li>
+				
+				</ul>
+				
+				</section>
+				
+				<section>
+				<h2>Scalable evaluation</h2>
+				<ul>
+				<li>Retrieve which triples are used by a query</li>
+				<li>Use a hadoop cluster to find the weights of these triples</li>
+				<li>Determine whether the weight of these triples is high enough to have been included in the sample</li>
+				</ul>
+				
+				</section>
+				
+				<section>
+				<h2>Example</h2>
+				<div style="float:left;width: 100%">
+				<div style="width: 50%;">
+				<h4 style="text-align: left;">Query</h4>
+				<iframe id=sparqlQueryExample style=" width: 100%; height:auto;" frameborder="0" align="left"></iframe>		    
+				   <script type="text/javascript">
+				   var config = { 
+						   value: "SELECT ?person ?country WHERE {\n\
+  ?person :bornIn ?city .\n\
+  ?city :capitalOf ?country .\n\
+}",
+							mode: "sparql"
+				   }
+				   $("#sparqlQueryExample").attr("src", "codemirror.html?" + encodeURIComponent(JSON.stringify(config)))
+				   .load(function() {
+					   //$(this).iframeAutoHeight();
+					   //return true;
+					   
+					  // console.log($(this).contents().find("body").height() );
+					   
+						//grmbl, chrome always calculates a height which is a few pixels too small. ugly workaround coming!
+					    $(this).height( $(this).contents().find(".CodeMirror").outerHeight(true) + 28 );
+					});
+					
+				   </script>
+				   </div>
+				   <div  style="float:right; width: 50%">
+						<table id="resultsetExample">
+						   <thead><tr><th>?person</th><th>?country</th></tr></thead>
+						   <tbody>
+						   <tr><td>:Laurens</td><td>:NL</td></tr>
+						   <tr><td>:Stefan</td><td>:Germany</td></tr>
+						   </tbody>
+					   </table>
+				   </div>
+				   </div>
+					<div class='spacer'></div>
+				   <h4 style="text-align: left;">Dataset</h4>
+				   <table style="margin-top: -15px;"id="datasetExample">
+				   <thead><tr><th>Subject</th><th>Predicate</th><th>Object</th><th>Weight</th></tr></thead>
+				   <tbody>
+				   <tr><td>:Laurens</td><td>:bornIn</td><td>:Amsterdam</td><td>0.6</td></tr>
+				   <tr><td>:Amsterdam</td><td>:capitalOf</td><td>:NL</td><td>0.1</td></tr>
+				   <tr><td>:Stefan</td><td>:bornIn</td><td>:Berline</td><td>0.5</td></tr>
+				   <tr><td>:Berlin</td><td>:capitalOf</td><td>:Germany</td><td>0.5</td></tr>
+				   <tr><td>:Rinke</td><td>:bornIn</td><td>:Heerenveen</td><td>0.1</td></tr>
+				   </tbody>
+				   </table>
+				   <script type="text/javascript">
+				   $(document).ready(function() {
+					    $('#resultsetExample').dataTable({
+					    	 "bLengthChange": false,
+					         "bPaginate": false,
+					         "bFilter": false,
+					         "bInfo": false,
+					    });
+					    $('#datasetExample').dataTable({
+					    	 "bLengthChange": false,
+					         "bPaginate": false,
+					         "bFilter": false,
+					         "bInfo": false,
+					    });
+					} );
+				   </script>
+				</section>
+				
+				<section>
+<!-- 				<h2>Evaluation: </h2> -->
+				<h2>Query results &rarr; Triples</h2>
+				<div style="float:left;width: 100%">
+				<div style="width: 50%;">
+<!-- 				<h4 style="text-align: left;">Query</h4> -->
+				<iframe id="sparqlQueryExample2" style=" width: 100%; height:auto;" frameborder="0" align="left"></iframe>		    
+				   <script type="text/javascript">
+				   var config = { 
+						   value: "SELECT ?person ?country WHERE {\n\
+  ?person :bornIn ?city .\n\
+  ?city :capitalOf ?country .\n\
+}",
+							mode: "sparql"
+				   }
+				   $("#sparqlQueryExample2").attr("src", "codemirror.html?" + encodeURIComponent(JSON.stringify(config)))
+				   .load(function() {
+						//grmbl, chrome always calculates a height which is a few pixels too small. ugly workaround coming!
+					    $(this).height( $(this).contents().find(".CodeMirror").outerHeight(true) + 28 );
+					});
+					
+				   </script>
+				   </div>
+				   <div  style="float:right; width: 50%">
+						<iframe id="sparqlQueryExample3" style=" width: 100%; height:auto;" frameborder="0" align="left"></iframe>	 
+				   <script type="text/javascript">
+				   var config = { 
+						   value: "SELECT DISTINCT * WHERE {\n\
+  ?person :bornIn ?city .\n\
+  ?city :capitalOf ?country .\n\
+}",
+							mode: "sparql"
+				   }
+				   $("#sparqlQueryExample3").attr("src", "codemirror.html?" + encodeURIComponent(JSON.stringify(config)))
+				   .load(function() {
+						//grmbl, chrome always calculates a height which is a few pixels too small. ugly workaround coming!
+					    $(this).height( $(this).contents().find(".CodeMirror").outerHeight(true) + 28 );
+					});
+					
+				   </script>
+				   </div>
+				   </div>
+					<div class='spacer'></div>
+<!-- 					<div style="float:right;width:100%;"> -->
+<!-- 					<div style="font-size: 12px;float:left; width: 50%;"> -->
+				   <table style="margin-left: -50px;">
+				   <thead><tr><th>Subject</th><th>Predicate</th><th>Object</th><th>&nbsp;&nbsp;&nbsp;</th><th class="">?person</th><th  class="">?city</th><th class="">?country</th></tr></thead>
+				   <tbody>
+				   
+				   <tr style="border-top: 4px dashed #eeeeee;border-right: 4px dashed #eeeeee;border-left: 4px dashed #eeeeee;"><td class="variableFromQuery">:Laurens</td><td class="constantFromQuery">:bornIn</td><td class="variableFromQuery">:Amsterdam</td><td>&nbsp;</td><td class="variableFromQuery">:Laurens</td><td class="variableFromQuery">:Amsterdam</td><td class="variableFromQuery">:NL</td></tr>
+				   <tr style="border-bottom: 4px dashed #eeeeee;border-right: 4px dashed #eeeeee;border-left: 4px dashed #eeeeee;"><td  class="variableFromQuery">:Amsterdam</td><td class="constantFromQuery">:capitalOf</td><td class="variableFromQuery">:NL</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+				   <tr style="border-right: 4px dashed #eeeeee;border-left: 4px dashed #eeeeee;"><td class="variableFromQuery">:Stefan</td><td class="constantFromQuery">:bornIn</td><td class="variableFromQuery">:Berlin</td><td>&nbsp;</td><td class="variableFromQuery">:Stefan</td><td class="variableFromQuery">:Berlin</td><td class="variableFromQuery">:Germany</td></tr>
+				   <tr style="border-bottom: 4px dashed #eeeeee;border-right: 4px dashed #eeeeee;border-left: 4px dashed #eeeeee;"><td class="variableFromQuery">:Berlin</td><td class="constantFromQuery">:capitalOf</td><td class="variableFromQuery">:Germany</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+				   </tbody>
+				   </table>
+
+				</section>
+				
+				<section>
+				<h2>Evaluation <span style="vertical-align: middle;font-size:40%">Triples&rarr;Recall </span></h2>
+				<h5 >Which answers would we get with a sample of 60%?</h5>
+				
+				 <table style="display:inline-block;left: -80px;margin-top: -15px;"id="datasetExampleSample">
+				   <thead><tr><td style="text-align: center; font-weight:bold;" colspan=4>Dataset</td></tr><tr><th>Subject</th><th>Predicate</th><th>Object</th><th>Weight</th></tr></thead>
+				   <tbody>
+				   <tr style="background-color: rgb(22, 105, 35);"><td>:Laurens</td><td>:bornIn</td><td>:Amsterdam</td><td>0.6</td></tr>
+   				   <tr style="background-color: rgb(22, 105, 35);"><td>:Stefan</td><td>:bornIn</td><td>:Berlin</td><td>0.5</td></tr>
+				   <tr style="background-color: rgb(22, 105, 35);"><td>:Berlin</td><td>:capitalOf</td><td>:Germany</td><td>0.5</td></tr>
+				   <tr><td>:Amsterdam</td><td>:capitalOf</td><td>:NL</td><td>0.1</td></tr>
+				   <tr><td>:Rinke</td><td>:bornIn</td><td>:Heerenveen</td><td>0.1</td></tr>
+				   </tbody>
+				   </table>
+				   <script type="text/javascript">
+				   $(document).ready(function() {
+					    $('#datasetExampleSample').dataTable({
+					    	 "bLengthChange": false,
+					         "bPaginate": false,
+					         "bFilter": false,
+					         "bInfo": false,
+					         "aaSorting": [[3,'desc']]
+					    });
+					    $("#datasetExampleSample").parent().addClass("dualColElement");
+					} );
+				   </script>
+				
+				<table class="dualColElement" id="resultSetSelection" style="display:inline-block;">
+				   <thead><tr><td colspan=3 style="text-align: center; font-weight:bold;">Triples used in query resultsets</td><tr><th>Subject</th><th>Predicate</th><th>Object</th></tr></thead>
+				   <tbody>
+				   
+				   <tr  style="background-color: rgb(235, 67, 67);border-top: 4px dashed #eeeeee;border-right: 4px dashed #eeeeee;border-left: 4px dashed #eeeeee;"><td class="">:Laurens</td><td class="">:bornIn</td><td class="">:Amsterdam</td></tr>
+				   <tr class="strikeout" style="background-color: rgb(235, 67, 67);border-bottom: 4px dashed #eeeeee;border-right: 4px dashed #eeeeee;border-left: 4px dashed #eeeeee;"><td  class="">:Amsterdam</td><td class="">:capitalOf</td><td class="">:NL</td></tr>
+				   <tr style="background-color: rgb(22, 105, 35);border-right: 4px dashed #eeeeee;border-left: 4px dashed #eeeeee;"><td class="">:Stefan</td><td class="">:bornIn</td><td class="">:Berlin</td></tr>
+				   <tr style="background-color: rgb(22, 105, 35);border-bottom: 4px dashed #eeeeee;border-right: 4px dashed #eeeeee;border-left: 4px dashed #eeeeee;"><td class="">:Berlin</td><td class="">:capitalOf</td><td class="">:Germany</td></tr>
+				   </tbody>
+				   </table>
+				
+				</section>
+				
+				
+				<section>
+				<h2>Evaluation</h2>
+				<ul>
+				<li>Better specificity than regular recall</li>
+				<li>Scalable</li>
+				<li> Special cases, e.g. GROUP BY, LIMIT, DISTINCT, OPTIONAL, UNION</li>
+				</ul>
+				</section>
+			</section>
+			
+			
+			
+<!-- 			<section> -->
+<!-- 				<h2>Panoramic view</h2> -->
+<!-- 				<ol> -->
+<!-- 					<li>Structure of RDF graphs: SampLD</li> -->
+<!-- 					<li>LOD cloud as a whole: LOD Laundromat</li> -->
+<!-- 					<li>Access to and use of the LOD cloud: YASGUI</li> -->
+<!-- 				</ol> -->
+<!-- 			</section> -->			
 			<section>
 			<h2>Summary</h2>
 			<ul>
-				<li>SampLD: using structural properties to create samples</li>
 				<li>LOD Laundromat: publishing other peoples dirty data</li>
-				<li>YASGUI: increasing ease of access + analyzing LD usages</li>
+				<li>YASGUI: increasing ease of access, and analyzing the use of Linked Data</li>
+				<li>SampLD: using structural properties to create samples</li>
 			</ul>
 			</section>
 			<section>
