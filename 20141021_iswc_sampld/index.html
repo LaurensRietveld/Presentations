@@ -57,10 +57,16 @@
 					<img class="stretch" src="imgs/large-scale-projects.jpg"/>
 					<h4>Laurens Rietveld</h4>
 <!-- 					<h5>laurens.rietveld@vu.nl</h5> -->
-<!-- 					<h4><a href='http://presentations.laurensrietveld.nl/' target='_blank'>http://presentations.laurensrietveld.nl/</a></h4> -->
+					<h4><a href='http://presentations.laurensrietveld.nl/now' target='_blank'>http://presentations.laurensrietveld.nl/now</a></h4>
 				</section>
 				<section>
-				<h2>Datasets</h2>
+				<h2>LOD Datasets</h2>
+				<ul>
+                    <li>Datasets become too large to run on 'common' hardware</li>
+                    <li>We <i>use</i> only a small portion</li>
+                    <li>Can't we extract the part we are interested in?</li>
+                 </ul>
+                 <br><br>
 				<table id='datasetTable'>
 				<thead>
 					<tr><th>Dataset</th><th>#triples</th><th>#queries</th><th>coverage</th></tr>
@@ -88,7 +94,16 @@
 				</section>
 				
 				<section>
-				<h2>How?</h2>
+					<h2>Overview</h2>
+					<ul>
+					<li>Relevance-based Sampling: Find smallest graph with maximum query coverage</li>
+					<li>Predict relevance using network analysis algorithms</li>
+				    <li>Scalable RDF Sampling pipeline</li>
+				    <li>Scalable evaluation</li>
+					</ul>
+				</section>
+				<section>
+				<h2>Extracting Relevant Triples</h2>
 <!-- 				<div style="float:left; width: 100%;"> -->
 					<div style="float:left; width: 50%">
 					<h3>Informed</h3>
@@ -110,79 +125,78 @@
 					<li>Select <i>k</i> best triples</li>
 					</ul>
 					</div>
-					
+				</section>
 				
-				</section>
 				<section>
-				<h2>RDF Rewriting</h2>
-				<img style=''src="imgs/rewrite.png"/> 
-				</section>
-                <section>
+                <h2>Analyze RDF Network</h2>
                 
-                <h2>Sample</h2>
-                
-                <ul>
-                <li>Analyze
-	                <ul>
-		                <li>Indegree</li>
-		                <li> Outdegree</li>
-		                <li>Pagerank</li>
-	                </ul>
-	            </li>
-                <li>Rank triples</li>
-                <li>Select top-K triples</li>
+                <h4>Scalable Network Analysis</h4>
+                    <ul>
+                        <li>Indegree</li>
+                        <li>Outdegree</li>
+                        <li>Pagerank</li>
+                    </ul>
+                    <br><br>
+                <h4>Applying network algorithms on RDF</h4>
+                <img style=''src="imgs/rewrite.png"/> 
                 </section>
+                
+                <section>
+                <h2>Ranked List of Triples</h2>
+                <ul>
+                    <li>Nodes Weights &rarr; Triples Weights<br>
+                    <pre>W(triple) = max(W(sub), W(pred), W(obj))</pre></li>
+                    <li>List of triples &rarr; Sample</li>
+                </ul>
+                </section>
+                
 				
 				
 				<section>
 				<h2>Evaluation</h2>
-				<img class="blank" style="max-height: 500px;"src="imgs/evaluation.svg"/>
+				
+				<img class="blank" style="max-height: 400px;"src="imgs/evaluation.svg"/>
+				<ul>
+<!--                 <li>Smallest graph vs. Maximum query coverage</li> -->
+                <li>Baselines:
+                <ul>
+                <li>Random Sample</li>
+                <li>Resource Frequency</li>
+                
+                </ul>
+                </li>
+                </ul>
 				</section>
-				<section>
-					<h2 style="margin-left: 100px;display:inline;">Results</h2>
-					<small style="vertical-align: bottom; margin-bottom: 10px;"><a href='d3jsResults.html' target='_blank'>click for more results</a></small><br>
-<!-- 					 <iframe id="results" style="width: 100%; height:auto" frameborder="0" src="d3jsResults.html?hidetable"></iframe> -->
-					 <iframe id="results"  style="margin-left: -20px;overflow:hidden;height:100%;width:100%" height="100%" width="100%" frameborder="0" src="d3jsResults.html?hidetable"></iframe>
-					 
-					 <script type="text/javascript">
-					 
-					 $(document).ready(function() {
-						 $("#results").load(function() {
-							 console.log('read results');
-								//grmbl, chrome always calculates a height which is a few pixels too small. ugly workaround coming!
-							 $(this).height( $(this).contents().find("body").outerHeight(true) - 170 );
-							//$(this).width( $(this).contents().find("body").outerWidth(true) +120 );
-							});
-						});
-						
-						
-					 
-					 
-					 </script>
-				</section>
+				
 
 				
 				<section>
-				<h2>Evaluation: Problems</h2>
+				<h2>Issues</h2>
 				<ul>
 				<li>6 datasets</li>
 				<li>16 sampling methods per dataset</li>
 				<li>100 samples per dataset</li>
-				<li>1.4 <strong>trillion</strong> triples<br>&nbsp;</li>
-				<li>Fast loading of samples</li>
-				<li>Powerful hardware</li>
-				<li style="text-decoration: underline;">STABILITY</li>
-				
+				<li>Over 15.000 datasets, and over 1.4 <strong>trillion</strong> triples</li>
+				<li>Requirements
+				    <ul>
+					<li>Fast loading of samples</li>
+					<li>Powerful hardware</li>
+	<!-- 				<li style="text-decoration: underline;">STABILITY</li> -->
+				    </ul>
+			    </li>
+			    <li>Not Scalable: load all triples, execute queries, and calculate recall</li>
 				</ul>
 				
 				</section>
 				
 				<section>
-				<h2>Scalable evaluation</h2>
+				<h2>Scalable Approach</h2>
 				<ul>
 				<li>Retrieve which triples are used by a query</li>
 				<li>Use a hadoop cluster to find the weights of these triples</li>
-				<li>Determine whether the weight of these triples is high enough to have been included in the sample</li>
+<!-- 				<li>Determine whether the weight of these triples is high enough to have been included in the sample</li> -->
+				<li>Analyze whether these triples <i>would have been</i> included in the sample<br><br></li>
+				<li>Scalable. Only execute each query <i>once</i></li>
 				</ul>
 				
 				</section>
@@ -231,7 +245,7 @@
 				   <tbody>
 				   <tr><td>:Laurens</td><td>:bornIn</td><td>:Amsterdam</td><td>0.6</td></tr>
 				   <tr><td>:Amsterdam</td><td>:capitalOf</td><td>:NL</td><td>0.1</td></tr>
-				   <tr><td>:Stefan</td><td>:bornIn</td><td>:Berline</td><td>0.5</td></tr>
+				   <tr><td>:Stefan</td><td>:bornIn</td><td>:Berlin</td><td>0.5</td></tr>
 				   <tr><td>:Berlin</td><td>:capitalOf</td><td>:Germany</td><td>0.5</td></tr>
 				   <tr><td>:Rinke</td><td>:bornIn</td><td>:Heerenveen</td><td>0.1</td></tr>
 				   </tbody>
@@ -313,7 +327,7 @@
 				</section>
 				
 				<section>
-				<h2>Evaluation <span style="vertical-align: middle;font-size:40%">Triples&rarr;Recall </span></h2>
+				<h2>Triples&rarr;Recall </span></h2>
 				<h5 >Which answers would we get with a sample of 60%?</h5>
 				
 				 <table style="display:inline-block;left: -80px;margin-top: -15px;"id="datasetExampleSample">
@@ -354,6 +368,7 @@
 				
 				
 				<section>
+				<section>
 				<h2>Evaluation</h2>
 				<ul>
 				<li>Better specificity than regular recall</li>
@@ -361,74 +376,100 @@
 				<li> Special cases, e.g. GROUP BY, LIMIT, DISTINCT, OPTIONAL, UNION</li>
 				</ul>
 				</section>
-				
+				<section>
+                <h2>Special case: UNIONS</h2>
+                <div style="width: 50%;">
+<!--                <h4 style="text-align: left;">Query</h4> -->
+                <iframe id="sparqlUnionExample1" style=" width: 100%; height:auto;" frameborder="0" align="left"></iframe>          
+                   <script type="text/javascript">
+                   var config = { 
+                           value: "SELECT ?name WHERE {\n\
+  {:laurens rdfs:label ?name}\n\
+  UNION\n\
+  {:laurens foaf:name ?name}\n\
+}",
+                            mode: "sparql"
+                   }
+                   $("#sparqlUnionExample1").attr("src", "codemirror.html?" + encodeURIComponent(JSON.stringify(config)))
+                   .load(function() {
+                        //grmbl, chrome always calculates a height which is a few pixels too small. ugly workaround coming!
+                        $(this).height( $(this).contents().find(".CodeMirror").outerHeight(true) + 28 );
+                    });
+                    
+                   </script>
+                   </div>
+                   <div  style="float:right; width: 50%">
+                        <iframe id=sparqlUnionExample2 style=" width: 90%; height:auto;" frameborder="0" align="left"></iframe>  
+                   <script type="text/javascript">
+                   var config = { 
+                           value: "SELECT DISTINCT * WHERE {\n\
+  {:laurens rdfs:label ?name}\n\
+  UNION\n\
+  {:laurens foaf:name ?name}\n\
+}",
+                            mode: "sparql"
+                   }
+                   $("#sparqlUnionExample2").attr("src", "codemirror.html?" + encodeURIComponent(JSON.stringify(config)))
+                   .load(function() {
+                        //grmbl, chrome always calculates a height which is a few pixels too small. ugly workaround coming!
+                        $(this).height( $(this).contents().find(".CodeMirror").outerHeight(true) + 28 );
+                    });
+                    
+                   </script>
+                   </div>
+                    <div class='spacer'></div>
+<!--                    <h4>ResultsSet</h4> -->
+<!--                    <code style="text-align:right;">?name: "Laurens"</code> -->
+                    <table style="margin-top: -15px;"id="datasetExample">
+                   <thead><tr><th>Subject</th><th>Predicate</th><th>Object</th></tr></thead>
+                   <tbody>
+                   <tr><td>:Laurens</td><td>rdfs:label</td><td>"Laurens"</td></tr>
+                   <tr class="strikeout"><td>:Laurens</td><td>foaf:name</td><td>"Laurens"</td></tr>
+                   </tbody>
+                   </table>
+                </section>
 				</section>
+				
+				
+				
+				
 				
 				
 				<section>
-				<h2>Special case: UNIONS</h2>
-				<div style="width: 50%;">
-<!-- 				<h4 style="text-align: left;">Query</h4> -->
-				<iframe id="sparqlUnionExample1" style=" width: 100%; height:auto;" frameborder="0" align="left"></iframe>		    
-				   <script type="text/javascript">
-				   var config = { 
-						   value: "SELECT ?name WHERE {\n\
-  {:laurens rdfs:label ?name}\n\
-  UNION\n\
-  {:laurens foaf:name ?name}\n\
-}",
-							mode: "sparql"
-				   }
-				   $("#sparqlUnionExample1").attr("src", "codemirror.html?" + encodeURIComponent(JSON.stringify(config)))
-				   .load(function() {
-						//grmbl, chrome always calculates a height which is a few pixels too small. ugly workaround coming!
-					    $(this).height( $(this).contents().find(".CodeMirror").outerHeight(true) + 28 );
-					});
-					
-				   </script>
-				   </div>
-				   <div  style="float:right; width: 50%">
-						<iframe id=sparqlUnionExample2 style=" width: 90%; height:auto;" frameborder="0" align="left"></iframe>	 
-				   <script type="text/javascript">
-				   var config = { 
-						   value: "SELECT DISTINCT * WHERE {\n\
-  {:laurens rdfs:label ?name}\n\
-  UNION\n\
-  {:laurens foaf:name ?name}\n\
-}",
-							mode: "sparql"
-				   }
-				   $("#sparqlUnionExample2").attr("src", "codemirror.html?" + encodeURIComponent(JSON.stringify(config)))
-				   .load(function() {
-						//grmbl, chrome always calculates a height which is a few pixels too small. ugly workaround coming!
-					    $(this).height( $(this).contents().find(".CodeMirror").outerHeight(true) + 28 );
-					});
-					
-				   </script>
-				   </div>
-					<div class='spacer'></div>
-<!-- 					<h4>ResultsSet</h4> -->
-<!-- 					<code style="text-align:right;">?name: "Laurens"</code> -->
-					<table style="margin-top: -15px;"id="datasetExample">
-				   <thead><tr><th>Subject</th><th>Predicate</th><th>Object</th></tr></thead>
-				   <tbody>
-				   <tr><td>:Laurens</td><td>rdfs:label</td><td>"Laurens"</td></tr>
-				   <tr class="strikeout"><td>:Laurens</td><td>foaf:name</td><td>"Laurens"</td></tr>
-				   </tbody>
-				   </table>
-				</section>
-				
+                    <h2 style="margin-left: 100px;display:inline;">Results</h2>
+                    <small style="vertical-align: bottom; margin-bottom: 10px;"><a href='d3jsResults.html' target='_blank'>click for more results</a></small><br>
+<!--                     <iframe id="results" style="width: 100%; height:auto" frameborder="0" src="d3jsResults.html?hidetable"></iframe> -->
+                     <iframe id="results"  style="margin-left: -20px;overflow:hidden;height:100%;width:100%" height="100%" width="100%" frameborder="0" src="d3jsResults.html?hidetable"></iframe>
+                     
+                     <script type="text/javascript">
+                     
+                     $(document).ready(function() {
+                         $("#results").load(function() {
+                             console.log('read results');
+                                //grmbl, chrome always calculates a height which is a few pixels too small. ugly workaround coming!
+                             $(this).height( $(this).contents().find("body").outerHeight(true) - 170 );
+                            //$(this).width( $(this).contents().find("body").outerWidth(true) +120 );
+                            });
+                        });
+                        
+                        
+                     
+                     
+                     </script>
+                </section>
+                
+                
 				<section>
 					<h2>Conclusion</h2>
 					<ul>
 						<li>Sampling graphs based on network properties <i>alone</i> work!</li>
 						<li>Scalability needs to extend to evaluation</li>
-						<li>But...
+						<li>Future work
 						<ul>
 						<li>'Best' sampling methods differ between datasets</li>
 						<li>What is the influence of dataset and query set</li>
 						<li>Can we predict this influence given a dataset and query set?</li>
-<!-- 						<li>Next: informed sampling!</li> -->
+						<li>More query sets!</li>
 						</ul>
 						</li>
 						
