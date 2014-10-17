@@ -26,6 +26,13 @@
 		<script src="../assets/jquery-2.1.0.min.js"></script>
 		
 		<script src="../assets/d3js/3.4.3/d3.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
+  });
+</script>
+<script type='text/javascript' src='http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+
 		<script src="../reveal.js/lib/js/head.min.js"></script>
 		<script src="../reveal.js/js/reveal.min.js"></script>
 		
@@ -54,20 +61,20 @@
 					
 					<h1>SampLD</h1>
 					<h2>Structural Properties as Proxy for Semantic Relevance</h2>
-					<img class="stretch" src="imgs/large-scale-projects.jpg"/>
+<!-- 					<img class="stretch" src="imgs/large-scale-projects.jpg"/> -->
 					<h4>Laurens Rietveld</h4>
 <!-- 					<h5>laurens.rietveld@vu.nl</h5> -->
 					<h4><a href='http://presentations.laurensrietveld.nl/now' target='_blank'>http://presentations.laurensrietveld.nl/now</a></h4>
 				</section>
 				<section>
-				<h2>LOD Datasets</h2>
+				<h2>Quantity over Quality</h2>
 				<ul>
-                    <li>Datasets become too large to run on 'common' hardware</li>
+                    <li>Datasets become too large to run on commodity hardware</li>
                     <li>We <i>use</i> only a small portion</li>
                     <li>Can't we extract the part we are interested in?</li>
                  </ul>
                  <br><br>
-				<table id='datasetTable'>
+				<table id='datasetTable' style="font-size:80%;margin: 0px auto;">
 				<thead>
 					<tr><th>Dataset</th><th>#triples</th><th>#queries</th><th>coverage</th></tr>
 				</thead>
@@ -94,56 +101,86 @@
 				</section>
 				
 				<section>
-					<h2>Overview</h2>
+					<h2>Relevance Based Sampling</h2>
 					<ul>
-					<li>Relevance-based Sampling: Find smallest graph with maximum query coverage</li>
-					<li>Predict relevance using network analysis algorithms</li>
-				    <li>Scalable RDF Sampling pipeline</li>
-				    <li>Scalable evaluation</li>
+					<li>Find the smallest possible RDF subgraph, that covers the maximum number of potential queries<br><br></li>
+					<li>How can we determine which triples are relevant, and which are not?</li>
+				    <li>Can we implement a scalable sampling pipeline?</li>
+				    <li>Can we evaluate the results in a scalable fashion?</li>
 					</ul>
-				</section>
-				<section>
-				<h2>Extracting Relevant Triples</h2>
-<!-- 				<div style="float:left; width: 100%;"> -->
-					<div style="float:left; width: 50%">
-					<h3>Informed</h3>
-<!-- 					<p style="text-align:left;">Informed vs. Uninformed</p><br> -->
-						<ul>
-						<li>Take query solutions (as constructs) as sample</li>
-						<li>Find commonly used triples between queries</li>
-						<li>Analyze structure of queries</li>
-						</ul>
-					</div>
-					<div style="float:right;width: 50%">
-					<h3>Uninformed</h3>
-					<ul>
-					<li >Network Analysis 
-<!-- 					<p style="font-size: 60%; ">e.g. Indegree, Outdegree, Pagerank (and Betweenness?)</p> -->
-					</li>
-<!-- 					<li>Rewrite RDF</li> -->
-					<li>Rank Triples</li>
-					<li>Select <i>k</i> best triples</li>
-					</ul>
-					</div>
 				</section>
 				
 				<section>
-                <h2>Analyze RDF Network</h2>
-                
-                <h4>Scalable Network Analysis</h4>
+				<h2>How to determine relevance of triples</h2>
+<!-- 				<div style="float:left; width: 100%;"> -->
+					<div style="float:left; width: 40%">
+					<h3>Informed Sampling </h3>
+<!-- 					<p style="text-align:left;">Informed vs. Uninformed</p><br> -->
+						<ul>
+						<li>We know exactly which queries will be asked</li>
+						<li>Extract those triples needed to answer the queries</li>
+						<li>Problem: only a limited number of queries known</li>
+						</ul>
+					</div>
+					<div style="float:right;width: 60%">
+					<h3>Uninformed Sampling</h3>
+					<ul>
+					<li>We do not know which queries will be asked</li>
+<!-- 					<li>Rewrite RDF</li> -->
+					<li>Use information contained in the graph to determine relevance</li>
+<!-- 					<li>Select <i>k</i> best triples</li> -->
+					<li>Rank triples by relevance, and select the <i>k</i> best triples (0 < <i>k</i> < size of graph)</li>
+					</ul>
+					</div>
+				</section>
+                <section>
+                <h2>Approach</h2>
                     <ul>
-                        <li>Indegree</li>
-                        <li>Outdegree</li>
-                        <li>Pagerank</li>
+                    <li>Use the topology of the graph to determine relevance (network analysis)</li>
+                    <li>Evaluate the relevance of our samples against the queries that we <i>do</i> know</li>
+                    <li>Is network structure a good predictor for query answerability?</li>
+                    
                     </ul>
-                    <br><br>
-                <h4>Applying network algorithms on RDF</h4>
-                <img style=''src="imgs/rewrite.png"/> 
+                
                 </section>
+                <section>
+	                <h2>Network Analysis</h2>
+	                <ul>
+<!-- 	                    <li>Analyze structure of a network</li> -->
+	                    <li>Example: Explain real-world phenomenons</li>
+	                    <li>Find central parts of the graph</li>
+	                    <li>Betweenness Centrality</li>
+	                    <li>Google PageRank<br><br></li>
+	                    
+	                    <li>We apply
+                        <ul>
+                        <li>In Degree</li>
+                        <li>Out Degree</li>
+                        <li>PageRank</li>
+                        </ul>
+	                </ul>
+                
+                
+                </section>
+<!-- 				<section> -->
+<!--                 <h2>Analyze RDF Network</h2> -->
+                
+<!--                 <h4>Scalable Network Analysis</h4> -->
+<!--                     <ul> -->
+<!--                         <li>Indegree</li> -->
+<!--                         <li>Outdegree</li> -->
+<!--                         <li>Pagerank</li> -->
+<!--                     </ul> -->
+<!--                     <br><br> -->
+                
+<!--                 </section> -->
                 
                 <section>
                 <h2>Ranked List of Triples</h2>
+                
                 <ul>
+                    <li>Rewrite<img style=''src="imgs/rewrite.png"/> </li>
+                    <li>Apply network analysis</li>
                     <li>Nodes Weights &rarr; Triples Weights<br>
                     <pre>W(triple) = max(W(sub), W(pred), W(obj))</pre></li>
                     <li>List of triples &rarr; Sample</li>
@@ -154,13 +191,12 @@
 				
 				<section>
 				<h2>Evaluation</h2>
-				
-				<img class="blank" style="max-height: 400px;"src="imgs/evaluation.svg"/>
+				<img class="blank" style="max-height: 400px;" src="imgs/sample-evaluation.png"/>
 				<ul>
-<!--                 <li>Smallest graph vs. Maximum query coverage</li> -->
+                <li>Sample sizes: 1% - 99%</li>
                 <li>Baselines:
                 <ul>
-                <li>Random Sample</li>
+                <li>Random Sample (10x)</li>
                 <li>Resource Frequency</li>
                 
                 </ul>
@@ -171,11 +207,14 @@
 
 				
 				<section>
-				<h2>Issues</h2>
+				<h2>Naive evaluation does not scale</h2>
+				<br><br>
+<div>
+$t_e(t_d) = \sum\limits_{i=1}^{99}  \frac{i}{100} \cdot methods_s \cdot methods_b \cdot t_d$ 
+
+</div>
+<br><br>
 				<ul>
-				<li>6 datasets</li>
-				<li>16 sampling methods per dataset</li>
-				<li>100 samples per dataset</li>
 				<li>Over 15.000 datasets, and over 1.4 <strong>trillion</strong> triples</li>
 				<li>Requirements
 				    <ul>
@@ -431,8 +470,33 @@
 				</section>
 				
 				
-				
-				
+				<section>
+				<h2>Evaluation Datasets</h2>
+				<table id='datasetTable2' style="font-size:80%;margin: 0px auto;">
+                <thead>
+                    <tr><th>Dataset</th><th>#triples</th><th>#queries</th><th>coverage</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>DBpedia</td><td>459M</td><td>1640</td><td>0.003%</td></tr>
+                    <tr><td>Linked Geo Data</td><td>289M</td><td>891</td><td>1.917%</td></tr>
+                    <tr><td>MetaLex</td><td>204M</td><td>4933</td><td>0.016%</td></tr>
+                    <tr><td>Open-BioMed</td><td>79M</td><td>931</td><td>0.011%</td></tr>
+                    <tr><td>BIO2RDF (KEGG)</td><td>50M</td><td>1297</td><td>2.013%</td></tr>
+                    <tr><td>Semantic Web Dog Food</td><td>0.24M</td><td>193</td><td>62.4%</td></tr>
+                </tbody>
+                </table>
+                <script type="text/javascript">
+                $(document).ready(function() {
+                    $('#datasetTable2').dataTable({
+                         "bLengthChange": false,
+                         "bPaginate": false,
+                         "bFilter": false,
+                         "bInfo": false,
+                         "aaSorting": []
+                    });
+                } );
+                </script>
+				</section>
 				
 				
 				<section>
@@ -458,20 +522,35 @@
                      </script>
                 </section>
                 
+                <section>
+                <h2>Observations</h2>
+                <ul>
+                <li>The influence of a single triple</li>
+<!--                 <li>Long vs. Short queries</li> -->
+                <li>DBpedia
+                    <ul>
+                    <li>Good: Path + PageRank</li>
+                    <li>Bad: Path + Out Degree</li>
+                    <li>Queries: 2/3 require literals</li>
+                    </ul>
+                </li>
+                    <li>Other Observations
+                    <ul>
+                    <li># properties vs 'Context Literals' rewrite method</li>
+                    <li># query triple patterns</li>
+                    </ul>
+                    </li>
+                </ul>
                 
+                </section>
 				<section>
 					<h2>Conclusion</h2>
 					<ul>
-						<li>Sampling graphs based on network properties <i>alone</i> work!</li>
-						<li>Scalability needs to extend to evaluation</li>
-						<li>Future work
-						<ul>
-						<li>'Best' sampling methods differ between datasets</li>
-						<li>What is the influence of dataset and query set</li>
-						<li>Can we predict this influence given a dataset and query set?</li>
-						<li>More query sets!</li>
-						</ul>
-						</li>
+						<li>Scalable pipeline: network analysis algorithms + rewrite methods</li>
+						<li>Able to eval over 15.000 datasets, and 1.4 trillion triples</li>
+						<li>Number of query sets too limited to learn significant correlations<br><br></li>
+						<li>Topology of the graphs <i>can</i> be used to determine <i>good</i> samples</li>
+						<li>Mimic <i>semantic</i> relevance through <i>structural</i> properties, <i>without</i> an a-priori notion of relevance</li>
 						
 					</ul>
 				<div><small><Br><br><br>Special thanks to Semantic Web Science Association (SWSA)</small></div>
@@ -518,7 +597,12 @@
 					{ src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
 				]
 			});
-
+			MathJax.Hub.Config({
+			    tex2jax: {
+			      inlineMath: [['$','$'], ['\\(','\\)']],
+			      processEscapes: true
+			    }
+			  });
 		</script>
 
 	</body>
