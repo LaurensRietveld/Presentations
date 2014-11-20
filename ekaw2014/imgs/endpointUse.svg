@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="199"
+   height="199"
+   aria-label="Een diagram."
+   aria-hidden="true"
+   style="overflow:hidden"
+   version="1.1"
+   id="svg2"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="endpointUse.svg">
+  <metadata
+     id="metadata49">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1855"
+     inkscape:window-height="1056"
+     id="namedview47"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="2.5809397"
+     inkscape:cx="205.62855"
+     inkscape:cy="104.20029"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <defs
+     id="defs" />
+  <g
+     id="g35"
+     transform="translate(-139.5,-60.5)">
+    <path
+       d="M 239,160 236.51212,61.031265 A 99,99 0 0 1 239,61 l 0,99 a 0,0 0 0 0 0,0"
+       id="path37"
+       inkscape:connector-curvature="0"
+       style="fill:#dc3912;stroke:#ffffff;stroke-width:1" />
+  </g>
+  <g
+     id="g39"
+     transform="translate(-139.5,-60.5)">
+    <path
+       d="m 239,160 0,-99 a 99,99 0 1 1 -2.48788,0.03126 L 239,160 a 0,0 0 0 0 0,0"
+       id="path41"
+       inkscape:connector-curvature="0"
+       style="fill:#3366cc;stroke:#ffffff;stroke-width:1" />
+    <text
+       x="222.99429"
+       y="243.31877"
+       font-size="12"
+       id="text43"
+       style="font-size:12px;text-anchor:start;fill:#ffffff;stroke:none;font-family:Arial">99.6%</text>
+  </g>
+  <g
+     id="g45"
+     transform="translate(-139.5,-60.5)" />
+</svg>

@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>YASGUI - Feeling the Pulse of Linked Data</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
+		<link rel="stylesheet" href="../reveal.js/css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="presentation.css">
+		<link rel="stylesheet" href="../assets/main.css">
+		
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+
+		<script src="../assets/jquery-2.1.0.min.js"></script>
+		
+		<script src="../assets/d3js/3.4.3/d3.js"></script>
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.min.js"></script>
+		
+		<script src="../assets/datatables/1.9.4/media/js/jquery.dataTables.min.js"></script>
+		<script src="../assets/jquery-ui/1.10.4/js/jquery-ui-1.10.4.custom.min.js"></script>
+		<script src="presentation.js"></script>
+		<script src="../assets/main.js"></script>
+		<!--[if lt IE 9]>
+		<script src="../reveal.js/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+
+
+<meta charset="utf-8">
+
+<body>
+
+
+
+
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					
+					<h1>YASGUI</h1>
+					<h2>Feeling the pulse of Linked Data</h2>
+					
+					<p>Laurens Rietveld<br>VU University Amsterdam<br><a href="http://presentations.laurensrietveld.nl/ekaw2014">http://presentations.laurensrietveld.nl/ekaw2014</a></p>
+				</section>
+				
+				
+				<section data-background="imgs/cloud.jpg">
+				    <h1 class='darkGrey'>What we <i>(don't)</i> know about the LOD Cloud</h1>
+				</section>
+				
+				<section data-background="imgs/logs.jpg">
+				    <h1 class='white'>Strengths and weaknesses of server logs</h1>
+				</section>
+				
+				<section>
+                    <img src="imgs/yasgui.png">
+                </section>
+				
+				<section>
+				    <h2>Feature-set</h2>
+                    <ul>
+						<li>Full SPARQL 1.1 syntax support</li>
+						<li>Full SPARQL query results support</li>
+						<li>Auto-completion</li>
+						<li>Syntax Highlighting</li>
+						<li>Syntax Checking</li>
+						<li>Access to <i>any</i> SPARQL endpoint</li>
+						<li>Platform independent</li>
+						<li>Retention of user settings</li>
+						<li>Easily sharing queries</li>
+						<li>Downloading results</li>
+                    </ul>
+                </section>
+				
+				
+				<section class="darkGrey" data-background="imgs/up.jpg">
+                    <h2 class="darkGrey">Latest Numbers</h2>
+                    
+                    
+                    
+					<ul>
+					<li>80.000 queries</li>
+					<li>2. coming from 4600 users</li>
+					<li>executed on ~600 endpoints </li>
+					<li>All the statistics presented next, are based on this 57% </li>
+					</ul>
+                </section>
+				
+				
+				<section data-background="imgs/manvsmachine.jpg">
+                    <h1 class='darkGrey'>Relation to USEWOD</h1>
+                </section>
+				
+				<section data-background="imgs/manvsmachine.jpg">
+                    <h1 class='darkGrey'>Relation to USEWOD</h1>
+                </section>
+                
+                <section>
+                    <h1>The Basics</h1>
+                <img class="clean max" src="imgs/queryTypes.svg">
+                
+                </section>
+				
+				
+				<section data-background="imgs/complexity.jpg">
+                    <h1 class='white'>Complexity</h1>
+                </section>
+				
+				
+                <section data-background="imgs/public-private.jpg">
+                    <h1 class='white'>Endpoints</h1>
+                </section>
+                
+                <section>
+                    <h1>Endpoint stats</h1>
+                    <img class="clean max" src="imgs/endpoints.svg">
+                </section>
+                
+                
+                <section>
+                    <h1>Actual <i>use</i></h1>
+                    <img class="clean max" src="imgs/endpointUse.svg">
+                </section>
+                
+                
+                
+                
+				<section>
+				asd
+				</section>
+<!-- 				<section> -->
+<!-- 				<h2>YASGUI</h2> -->
+<!-- 				<iframe width="100%" height="600px;" style="width: 100%; height: 600px;"src='http://yasgui.laurensrietveld.nl'></iframe> -->
+<!-- 				</div> -->
+<!-- 				</section> -->
+				<section>
+				<h2><a href='http://yasgui.laurensrietveld.nl' target='_blank'>YASGUI</a></h2>
+				<ul>
+				<li>One feature-rich editor to access any (private or public) endpoint</li>
+				<li>Queries and endpoints are logged (if permitted to do so) using <a href='https://www.google.com/analytics/web/?hl=en#report/visitors-overview/a35569470w63408389p65044199/%3F_u.date00%3D20120903%26_u.date01%3D20140525%26overview-graphOptions.selected%3Danalytics.nthWeek/' target='_blank'>google analytics</a></li>
+				<li>Unique collection of queries, solely made by humans, spanning both private and public endpoints</li>
+				
+				</ul>
+				
+				</section>
+				
+				<section>
+				<h2><a href='http://yasgui.laurensrietveld.nl' target='_blank'>Overview</a></h2>
+				<img src="imgs/location_users.png">
+				<ul>
+				<li>60% agree to track site usage</li>
+				<li>~3.000 users</li>
+				<li>~45.000 queries</li>
+				<li>~500 endpoints</li>
+				<li>Majority of queries executed on DBpedia</li>
+				</ul>
+				
+				</section>
+				
+				<section>
+				<h2>How to compare query sets</h2>
+				<ul>
+				<li>Dissecting the query, and looking at the structural properties (Jena)</li>
+				<li>Largely a similar approach as [1] and [2]</li>
+				<li>Focus on DBpedia</li>
+				<li>Purely observational: how do man-made queries differ from query logs</li>
+				</ul>
+				
+				<div style="margin-top: 40px; text-align: left">
+				<small>[1] Picalausa, Francois, and Stijn Vansummeren. "What are real SPARQL queries like?." Proceedings of the International Workshop on Semantic Web Information Management. ACM, 2011.</small><br>
+				<small>[2] Gallego, Mario Arias, et al. "An empirical study of real-world SPARQL queries." 1st International Workshop on Usage Analysis and the Web of Data (USEWOD2011) at the 20th International World Wide Web Conference (WWW 2011), Hydebarabad, India. 2011.</small>
+				</div>
+				</section>
+				<section>
+				<h2>Use of SPARQL grammar</h2>
+				
+				<table style="font-size: 90%;margin-left: auto;margin-right: auto;">
+				<tr><th width="420px"></th><th width="130px">YASGUI</th><th width="130px">USEWOD</th></tr>
+				<tr><td># syntactically valid queries</td><td class="datacol">12.242</td><td class="datacol">100.763</td></tr>
+				<tr><td>% unique queries</td><td class="datacol">65.73%</td><td class="datacol">69.67%</td></tr>
+<!-- 				<tr><td colspan=3>Query types</td></tr> -->
+				<tr><td>SELECT</td><td class="datacol">93.91%</td><td class="datacol">96.17%</td></tr>
+				<tr><td>DESCRIBE</td><td class="datacol">0.72%</td><td class="datacol">3.00%</td></tr>
+				<tr><td>CONSTRUCT</td><td class="datacol">1.49%</td><td class="datacol">0.56%</td></tr>
+				<tr><td>ASK</td><td class="datacol">3.87%</td><td class="datacol">0.26%</td></tr>
+<!-- 				<tr><td colspan=3>SPARQL features</td></tr> -->
+				<tr><td>ORDER BY</td><td class="datacol">18.64%</td><td class="datacol">6.37%</td></tr>
+				<tr><td>DISTINCT</td><td class="datacol">15.07%</td><td class="datacol">24.37%</td></tr>
+				<tr><td>LIMIT</td><td class="datacol">42.32%</td><td class="datacol">12.13%</td></tr>
+				<tr><td>OFFSET</td><td class="datacol">0.14%</td><td class="datacol">0.75%</td></tr>
+				<tr><td>FILTER</td><td class="datacol">30.35%</td><td class="datacol">15.11%</td></tr>
+				<tr><td>Subquery</td><td class="datacol">2.82%</td><td class="datacol">0.37%</td></tr>
+				<tr><td>SERVICE</td><td class="datacol">0.91%</td><td class="datacol">0.08%</td></tr>
+				<tr><td>&#8805; 1 UNION in query</td><td class="datacol">24.04%</td><td  class="datacol">4.46%</td></tr>
+				<tr><td>&#8805; 1 OPTIONAL in query</td><td class="datacol">1.71%</td><td class="datacol">3.14%</td></tr>
+				</table>
+				
+				
+				</section>
+				<section>
+				<h2>Triple pattern types</h2>
+				
+				<table style="font-size: 90%;margin-left: auto;margin-right: auto;">
+				<tr><th width="90px"></th><th width="150px">YASGUI</th><th width="150px">USEWOD</th><th></th></tr>
+				<tr><td>VCC</td><td class="datacol">45.91%</td><td class="datacol">19.92%</td><td><i>e.g.</i> ?sub rdf:type foaf:person</td></tr>
+				<tr><td>VCV</td><td class="datacol">36.22%</td><td class="datacol">19.06%</td><td></td></tr>
+				<tr><td>CCV</td><td class="datacol">7.10%</td><td class="datacol">42.71%</td><td></td></tr>
+				<tr><td>CVV</td><td class="datacol">2.95%</td><td class="datacol">6.10%</td><td></td></tr>
+				<tr><td>VVC</td><td class="datacol">2.88%</td><td class="datacol">3.92%</td><td></td></tr>
+				<tr><td>VVV</td><td class="datacol">1.61%</td><td class="datacol">1.88%</td><td></td></tr>
+				<tr><td>CCC</td><td class="datacol">0.28%</td><td class="datacol">0.17%</td><td></td></tr>
+				<tr><td>CVC</td><td class="datacol">0.12%</td><td class="datacol">0.06%</td><td></td></tr>
+				<tr><td>V*V</td><td class="datacol">0.30%</td><td class="datacol">0.10%</td><td><i>e.g.</i> ?x foaf:knows/foaf:name ?name </td></tr>
+				<tr><td>V*C</td><td class="datacol">2.59%</td><td class="datacol">6.01%</td><td></td></tr>
+				<tr><td>C*V</td><td class="datacol">0.05%</td><td class="datacol">0.08%</td><td></td></tr>
+				<tr><td>C*C</td><td class="datacol">0.00%</td><td class="datacol">0.00%</td><td></td></tr>
+				</table>
+				
+				</section>
+				<section>
+				<h2>#Triple Patterns per query (log)</h2>
+				<img src="imgs/triplePatterns.png">
+				</section>
+				<section>
+				<h2>#Joins in queries</h2>
+				<img src="imgs/joins.png">
+				</section>
+				<section>
+				<h2>Proportion of join types</h2>
+				<img src="imgs/joinTypes.png">
+				</section>
+				
+				<section>
+				<section>
+				<h2>To Finalize</h2>
+				<ul>
+				<li>Server query logs and user query sets differ greatly in structure</li>
+				<li>Human queries are larger, more complex, more joins, and use more SPARQL features</li>
+				<li>Particularly interesting to research related to <i>users</i> on the Web of Data</li>
+				<li>Large range of endpoints for which we collect logs</li>
+				<li>Future: publish YASGUI logs (Piwik)</li>
+				<li>Future: broader analysis of the LOD cloud</li>
+				</ul>
+				</section>
+				<section>
+				<h2>Use of the LOD cloud</h2>
+				<img src="imgs/lodcloud-usage-2014.png">
+				
+				</section>
+				<section>
+				<h2>Use of namespaces</h2>
+				<img src="imgs/lod-used-namespace-2014.png">
+				
+				</section>
+				</section>
+				
+			</div>
+
+		</div>
+
+
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+			    autoSlide: 20000,
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+				multiplex: {
+						secret: null, //multiplex secret key
+						id: null, //multiplex socket id
+						url: null //multiplex server url
+					},
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+				    //keep bottom 2 (script uncomments these when publishing as 'current' presentation)
+					//{ src: '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.10/socket.io.min.js', async: true },
+					//{ src: '../reveal.js/plugin/multiplex/client.js', async: true },
+					//{ src: '../reveal.js/plugin/multiplex/master.js', async: true },
+					{ src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
