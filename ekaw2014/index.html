@@ -75,30 +75,31 @@
 				<section>
 				    <h2>YASGUI Feature-set</h2>
                     <ul>
-						<li>Full SPARQL 1.1 syntax support</li>
-						<li>Full SPARQL query results support</li>
+						<li>Access to <i>any</i> SPARQL endpoint</li>
 						<li>Auto-completion</li>
 						<li>Syntax Highlighting</li>
+						<li>Full SPARQL 1.1 syntax support</li>
+						<li>Full SPARQL query results support</li>
 						<li>Syntax Checking</li>
-						<li>Access to <i>any</i> SPARQL endpoint</li>
 						<li>Platform independent</li>
 						<li>Retention of user settings</li>
-						<li>Easily sharing queries</li>
+						<li>Easily bookmark and share queries</li>
+						<li>Easily search for endpoints</li>
 						<li>Downloading results</li>
                     </ul>
                 </section>
 				
 				
 				<section class="darkGrey" data-background="imgs/up.jpg">
-                    <h2 class="darkGrey">Latest Numbers</h2>
+                    <h1 class="darkGrey">Latest Numbers</h1>
                     
                     
                     
 					<ul>
+					<li>Tracking information of 57% of the user base</li>
 					<li>80.000 queries</li>
-					<li>2. coming from 4600 users</li>
-					<li>executed on ~600 endpoints </li>
-					<li>All the statistics presented next, are based on this 57% </li>
+					<li>4.600 users</li>
+					<li>Executed on ~600 endpoints </li>
 					</ul>
                 </section>
 				
@@ -115,8 +116,9 @@
                 </section>
 				
 				
-				<section data-background="imgs/complexity.jpg">
-                    <h1 class='white'>Complexity</h1>
+				<section>
+                    <h2 class='white'>We write complex queries</h2>
+                    <img class="clean max" src="imgs/joins.svg">
                 </section>
 				
 				
@@ -132,7 +134,7 @@
                 
                 <section>
                     <h1>We <i>use</i> only a fraction</h1>
-                    <img class="clean max" src="imgs/endpointUse.svg">
+                    <img class="clean" style="width: 50%"  src="imgs/endpointUse.svg">
                 </section>
                 
                 <section>
@@ -142,7 +144,7 @@
                 <section>
                     <h1>Popularity</h1>
                     <table class='rightAlign leftAlignFirstCol' >
-                    <tr style="border-bottom: 3px"><th>Namespace</th><th>Ding et al. (2005)</th>  <th>prefix.cc</th>   <th>YASGUI</th></tr>
+                    <tr style="border-bottom: 3px"><th>Namespace</th><th>Ding et al. [1]</th>  <th>prefix.cc</th>   <th>YASGUI</th></tr>
 					<tr><td>rdf:</td>    <td>1</td>   <td>2</td>   <td>2</td></tr>
 					<tr><td>foaf:</td>   <td>2</td>   <td>3</td>   <td>6</td></tr>
 					<tr><td>dc:</td> <td>3   <td>5</td>   <td>10</td></tr>
@@ -152,9 +154,7 @@
 					<tr><td>vcard:</td>  <td>7</td>   <td>32</td>  <td>20</td></tr>
 					<tr><td>bio:</td>    <td>8</td>   <td>52</td>  <td>none</td></tr>
 					</table>
-                    
-                    
-                    </table>
+					<small>[1] Ding, Li, et al. "How the semantic web is being used: An analysis of foaf documents." HICSS'05</small>
                 </section>
                 
                 <section>
@@ -168,131 +168,28 @@
 <!--                     <img src="imgs/lod-used-namespace-2014"> -->
                 </section>
                 
+                  <section data-background="imgs/whats-next.jpg">
+<!--                     <h1>Future work</h1> -->
+<!--                     <h1>Relations between datasets</h1> -->
+<!--                     <img src="imgs/yasqe.png"> -->
+<!--                     <img src="imgs/yasr.png"> -->
+<!--                     <img src="imgs/yasqe.png"> -->
+                </section>
                 
+                <section data-autoslide="40000">
+                    <h1>Conclusions</h1>
+                    <ul>
+                   
+<!--                     <li>Unique observational lense</li> -->
+                    
+                    
+                    </ul>
+                </section>
+                
+              
 				<section>
-				asd
+				    
 				</section>
-				<section>
-				<h2><a href='http://yasgui.laurensrietveld.nl' target='_blank'>YASGUI</a></h2>
-				<ul>
-				<li>One feature-rich editor to access any (private or public) endpoint</li>
-				<li>Queries and endpoints are logged (if permitted to do so) using <a href='https://www.google.com/analytics/web/?hl=en#report/visitors-overview/a35569470w63408389p65044199/%3F_u.date00%3D20120903%26_u.date01%3D20140525%26overview-graphOptions.selected%3Danalytics.nthWeek/' target='_blank'>google analytics</a></li>
-				<li>Unique collection of queries, solely made by humans, spanning both private and public endpoints</li>
-				
-				</ul>
-				
-				</section>
-				
-				<section>
-				<h2><a href='http://yasgui.laurensrietveld.nl' target='_blank'>Overview</a></h2>
-				<img src="imgs/location_users.png">
-				<ul>
-				<li>60% agree to track site usage</li>
-				<li>~3.000 users</li>
-				<li>~45.000 queries</li>
-				<li>~500 endpoints</li>
-				<li>Majority of queries executed on DBpedia</li>
-				</ul>
-				
-				</section>
-				
-				<section>
-				<h2>How to compare query sets</h2>
-				<ul>
-				<li>Dissecting the query, and looking at the structural properties (Jena)</li>
-				<li>Largely a similar approach as [1] and [2]</li>
-				<li>Focus on DBpedia</li>
-				<li>Purely observational: how do man-made queries differ from query logs</li>
-				</ul>
-				
-				<div style="margin-top: 40px; text-align: left">
-				<small>[1] Picalausa, Francois, and Stijn Vansummeren. "What are real SPARQL queries like?." Proceedings of the International Workshop on Semantic Web Information Management. ACM, 2011.</small><br>
-				<small>[2] Gallego, Mario Arias, et al. "An empirical study of real-world SPARQL queries." 1st International Workshop on Usage Analysis and the Web of Data (USEWOD2011) at the 20th International World Wide Web Conference (WWW 2011), Hydebarabad, India. 2011.</small>
-				</div>
-				</section>
-				<section>
-				<h2>Use of SPARQL grammar</h2>
-				
-				<table style="font-size: 90%;margin-left: auto;margin-right: auto;">
-				<tr><th width="420px"></th><th width="130px">YASGUI</th><th width="130px">USEWOD</th></tr>
-				<tr><td># syntactically valid queries</td><td class="datacol">12.242</td><td class="datacol">100.763</td></tr>
-				<tr><td>% unique queries</td><td class="datacol">65.73%</td><td class="datacol">69.67%</td></tr>
-<!-- 				<tr><td colspan=3>Query types</td></tr> -->
-				<tr><td>SELECT</td><td class="datacol">93.91%</td><td class="datacol">96.17%</td></tr>
-				<tr><td>DESCRIBE</td><td class="datacol">0.72%</td><td class="datacol">3.00%</td></tr>
-				<tr><td>CONSTRUCT</td><td class="datacol">1.49%</td><td class="datacol">0.56%</td></tr>
-				<tr><td>ASK</td><td class="datacol">3.87%</td><td class="datacol">0.26%</td></tr>
-<!-- 				<tr><td colspan=3>SPARQL features</td></tr> -->
-				<tr><td>ORDER BY</td><td class="datacol">18.64%</td><td class="datacol">6.37%</td></tr>
-				<tr><td>DISTINCT</td><td class="datacol">15.07%</td><td class="datacol">24.37%</td></tr>
-				<tr><td>LIMIT</td><td class="datacol">42.32%</td><td class="datacol">12.13%</td></tr>
-				<tr><td>OFFSET</td><td class="datacol">0.14%</td><td class="datacol">0.75%</td></tr>
-				<tr><td>FILTER</td><td class="datacol">30.35%</td><td class="datacol">15.11%</td></tr>
-				<tr><td>Subquery</td><td class="datacol">2.82%</td><td class="datacol">0.37%</td></tr>
-				<tr><td>SERVICE</td><td class="datacol">0.91%</td><td class="datacol">0.08%</td></tr>
-				<tr><td>&#8805; 1 UNION in query</td><td class="datacol">24.04%</td><td  class="datacol">4.46%</td></tr>
-				<tr><td>&#8805; 1 OPTIONAL in query</td><td class="datacol">1.71%</td><td class="datacol">3.14%</td></tr>
-				</table>
-				
-				
-				</section>
-				<section>
-				<h2>Triple pattern types</h2>
-				
-				<table style="font-size: 90%;margin-left: auto;margin-right: auto;">
-				<tr><th width="90px"></th><th width="150px">YASGUI</th><th width="150px">USEWOD</th><th></th></tr>
-				<tr><td>VCC</td><td class="datacol">45.91%</td><td class="datacol">19.92%</td><td><i>e.g.</i> ?sub rdf:type foaf:person</td></tr>
-				<tr><td>VCV</td><td class="datacol">36.22%</td><td class="datacol">19.06%</td><td></td></tr>
-				<tr><td>CCV</td><td class="datacol">7.10%</td><td class="datacol">42.71%</td><td></td></tr>
-				<tr><td>CVV</td><td class="datacol">2.95%</td><td class="datacol">6.10%</td><td></td></tr>
-				<tr><td>VVC</td><td class="datacol">2.88%</td><td class="datacol">3.92%</td><td></td></tr>
-				<tr><td>VVV</td><td class="datacol">1.61%</td><td class="datacol">1.88%</td><td></td></tr>
-				<tr><td>CCC</td><td class="datacol">0.28%</td><td class="datacol">0.17%</td><td></td></tr>
-				<tr><td>CVC</td><td class="datacol">0.12%</td><td class="datacol">0.06%</td><td></td></tr>
-				<tr><td>V*V</td><td class="datacol">0.30%</td><td class="datacol">0.10%</td><td><i>e.g.</i> ?x foaf:knows/foaf:name ?name </td></tr>
-				<tr><td>V*C</td><td class="datacol">2.59%</td><td class="datacol">6.01%</td><td></td></tr>
-				<tr><td>C*V</td><td class="datacol">0.05%</td><td class="datacol">0.08%</td><td></td></tr>
-				<tr><td>C*C</td><td class="datacol">0.00%</td><td class="datacol">0.00%</td><td></td></tr>
-				</table>
-				
-				</section>
-				<section>
-				<h2>#Triple Patterns per query (log)</h2>
-				<img src="imgs/triplePatterns.png">
-				</section>
-				<section>
-				<h2>#Joins in queries</h2>
-				<img src="imgs/joins.png">
-				</section>
-				<section>
-				<h2>Proportion of join types</h2>
-				<img src="imgs/joinTypes.png">
-				</section>
-				
-				<section>
-				<section>
-				<h2>To Finalize</h2>
-				<ul>
-				<li>Server query logs and user query sets differ greatly in structure</li>
-				<li>Human queries are larger, more complex, more joins, and use more SPARQL features</li>
-				<li>Particularly interesting to research related to <i>users</i> on the Web of Data</li>
-				<li>Large range of endpoints for which we collect logs</li>
-				<li>Future: publish YASGUI logs (Piwik)</li>
-				<li>Future: broader analysis of the LOD cloud</li>
-				</ul>
-				</section>
-				<section>
-				<h2>Use of the LOD cloud</h2>
-				<img src="imgs/lodcloud-usage-2014.png">
-				
-				</section>
-				<section>
-				<h2>Use of namespaces</h2>
-				<img src="imgs/lod-used-namespace-2014.png">
-				
-				</section>
-				</section>
-				
 			</div>
 
 		</div>

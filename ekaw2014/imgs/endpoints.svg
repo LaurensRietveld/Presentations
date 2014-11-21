@@ -7,8 +7,8 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="350.66437"
-   height="234.66438"
+   width="353.95343"
+   height="199"
    aria-label="Een diagram."
    aria-hidden="true"
    style="overflow:hidden"
@@ -50,21 +50,22 @@
      inkscape:window-x="65"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g35" />
+     inkscape:current-layer="g11" />
   <defs
      id="defs" />
   <g
      id="g11"
-     transform="translate(-183.33562,-61)">
+     transform="translate(-183.33562,-96.66438)">
     <rect
-       x="390"
-       y="61"
+       x="384"
+       y="101"
        width="144"
        height="69"
        id="rect13"
        style="fill:#ffffff;fill-opacity:0;stroke:none" />
     <g
-       id="g15">
+       id="g15"
+       transform="translate(-6,40)">
       <rect
          x="390"
          y="61"
@@ -80,7 +81,7 @@
            y="71.199997"
            font-size="12"
            id="text21"
-           style="font-size:12px;text-anchor:start;fill:#f2f2f2;stroke:none;font-family:Arial">Public. In DataHub</text>
+           style="font-size:12px;text-anchor:start;fill:#f2f2f2;stroke:none;font-family:Arial">Accessible.Registered</text>
       </g>
       <rect
          x="390"
@@ -91,7 +92,8 @@
          style="fill:#3366cc;stroke:none" />
     </g>
     <g
-       id="g25">
+       id="g25"
+       transform="translate(-6,40)">
       <rect
          x="390"
          y="80"
@@ -106,7 +108,7 @@
            y="90.199997"
            font-size="12"
            id="text31"
-           style="font-size:12px;text-anchor:start;fill:#f2f2f2;stroke:none;font-family:Arial">Public. Not in DataHub</text>
+           style="font-size:12px;text-anchor:start;fill:#f2f2f2;stroke:none;font-family:Arial">Accessible.Unregistered</text>
       </g>
       <rect
          x="390"
@@ -119,32 +121,34 @@
     <g
        id="g35">
       <rect
-         x="390"
-         y="99"
+         x="384"
+         y="139"
          width="144"
          height="12"
          id="rect37"
          style="fill:#ffffff;fill-opacity:0;stroke:none" />
       <g
          id="g39"
-         style="fill:#f2f2f2">
+         style="fill:#f2f2f2"
+         transform="translate(-6,40)">
         <text
            x="407"
            y="109.2"
            font-size="12"
            id="text41"
-           style="font-size:12px;text-anchor:start;fill:#f2f2f2;stroke:none;font-family:Arial">Private. Private data</text>
+           style="font-size:12px;text-anchor:start;fill:#f2f2f2;stroke:none;font-family:Arial">Inaccessible. Private data</text>
       </g>
       <rect
-         x="390"
-         y="99"
+         x="384"
+         y="139"
          width="12"
          height="12"
          id="rect43"
          style="fill:#ff9900;stroke:none" />
     </g>
     <g
-       id="g45">
+       id="g45"
+       transform="translate(-6,40)">
       <rect
          x="390"
          y="118"
@@ -160,7 +164,7 @@
            y="128.2"
            font-size="12"
            id="text51"
-           style="font-size:12px;text-anchor:start;fill:#f2f2f2;stroke:none;font-family:Arial">Private. Public data</text>
+           style="font-size:12px;text-anchor:start;fill:#f2f2f2;stroke:none;font-family:Arial">Inaccessible. Public data</text>
       </g>
       <rect
          x="390"
@@ -173,7 +177,7 @@
   </g>
   <g
      id="g55"
-     transform="translate(-139.5,-24.835616)">
+     transform="translate(-139.5,-60.5)">
     <path
        d="M 239,160 198.09007,69.848029 A 99,99 0 0 1 239,61 l 0,99 a 0,0 0 0 0 0,0"
        id="path57"
@@ -182,7 +186,7 @@
   </g>
   <g
      id="g59"
-     transform="translate(-139.5,-24.835616)">
+     transform="translate(-139.5,-60.5)">
     <path
        d="m 239,160 -89.41833,-42.48955 a 99,99 0 0 1 48.5084,-47.662421 L 239,160 a 0,0 0 0 0 0,0"
        id="path61"
@@ -197,7 +201,7 @@
   </g>
   <g
      id="g65"
-     transform="translate(-139.5,-24.835616)">
+     transform="translate(-139.5,-60.5)">
     <path
        d="m 239,160 -98.91997,3.97995 a 99,99 0 0 1 9.50164,-46.4695 L 239,160 a 0,0 0 0 0 0,0"
        id="path67"
@@ -212,7 +216,7 @@
   </g>
   <g
      id="g71"
-     transform="translate(-139.5,-24.835616)">
+     transform="translate(-139.5,-60.5)">
     <path
        d="m 239,160 0,-99 A 99,99 0 1 1 140.08003,163.97995 L 239,160 a 0,0 0 0 0 0,0"
        id="path73"
@@ -227,5 +231,5 @@
   </g>
   <g
      id="g77"
-     transform="translate(-139.5,-24.835616)" />
+     transform="translate(-139.5,-60.5)" />
 </svg>
