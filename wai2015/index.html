@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Presentation</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
+		<link rel="stylesheet" href="../reveal.js/css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="presentation.css">
+		<link rel="stylesheet" href="../assets/main.css">
+		
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+
+		<script src="../assets/jquery-2.1.0.min.js"></script>
+		
+		<script src="../assets/d3js/3.4.3/d3.js"></script>
+
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.min.js"></script>
+		
+		<script src="../assets/datatables/1.9.4/media/js/jquery.dataTables.min.js"></script>
+		<script src="../assets/jquery-ui/1.10.4/js/jquery-ui-1.10.4.custom.min.js"></script>
+		<script src="presentation.js"></script>
+		<script src="../assets/main.js"></script>
+		<!--[if lt IE 9]>
+		<script src="../reveal.js/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+
+
+<meta charset="utf-8">
+
+<body>
+
+
+
+
+	<body>
+		<div class="reveal">
+				<div class="slides">
+				<section>
+					
+<!-- 					<h1>Some catchy title</h1> -->
+					<h2>Balancing Expressivity vs. Completeness</h2>
+<!-- 					<img class="stretch" src="imgs/large-scale-projects.jpg"/> -->
+					<h4>Laurens Rietveld</h4>
+<!-- 					<h5>laurens.rietveld@vu.nl</h5> -->
+					<h4><a href='http://presentations.laurensrietveld.nl/wai2015' target='_blank'>http://presentations.laurensrietveld.nl/wai/2015</a></h4>
+				</section>
+				
+				<section>
+				    <ul style="list-style-type: none;">
+				    <li>
+					    <span style="font-size: 90%;text-decoration:underline; display: block;">My research is about</span>
+<!-- 					    <span style="">Balancing expressivity and completeness with respect to answering SPARQL queries</span> -->
+					    <span style="">Balancing completeness and timeliness with respect to answering SPARQL queries</span>
+				    </li>
+				    <li style="margin-top: 20px;">
+	                    <span style="font-size: 90%;text-decoration:underline; display: block;">I'm trying to achieve</span>
+<!-- 	                    <span style="">Exploring this balancing act, in an environment where users are constraints by time. <i>Work in progress: feedback welcome!</i></span> -->
+                        <span style="">Exploring and quantifying this balancing act. <br>
+                        <i>Work in progress: feedback welcome!</i></span>
+                    </li>
+                    <li style="margin-top: 20px;">
+	                    <span style="font-size: 90%;text-decoration:underline; display: block;">My research question is</span>
+<!-- 	                    <span style="">How does completeness and relate to  each other with respect to serving scalable Linked Data</span> -->
+                            <span>How do existing Linked Data publishing tools behave under time-constraints.</span>
+                    </li>
+                    <li style="margin-top: 20px;">
+	                    <span style="font-size: 90%;text-decoration:underline;display: block;">Why you want to listen</span>
+	                    <span style="">A different evaluation approach: measuring how something performs in a constraint environment</span>
+                    </li>
+				    </ul>
+				</section>
+				
+				
+				<section>
+				<h2>Problem</h2>
+				<ul>
+				 <li>600.000+ Linked Data documents vs. 260 SPARQL endpoints</li>
+				 <li>Difficult to host Linked Data via API</li>
+				 <li>Those datasets that <i>are</i> published via an API can be slow</li>
+				 <li>How do such APIs perform in a constraint environment?</li>
+				 <li>Our dimension: Time-constraints</li>
+<!-- 				 <li>What can we sacrifice to host this data in a responsive and queryable fashion? -->
+<!-- 				    <ul> -->
+<!-- 					    <li>Expressivity</li> -->
+<!-- 					    <li>Completeness</li> -->
+<!-- 				    </ul> -->
+<!-- 				 </li> -->
+				</ul>
+				</section>
+				
+				
+				<section>
+				<h2>SPARQL</h2>
+				
+				 <iframe id="sparqlQueryExample5" style=" width: 100%; height:auto;" frameborder="0" align="left"></iframe>         
+                   <script type="text/javascript">
+                   var config = { 
+                           value: "SELECT ?person ?country WHERE {\n\
+  ?person :bornIn ?city .\n\
+  ?city :capitalOf ?country .\n\
+} ORDER BY ?person",
+                            mode: "sparql"
+                   }
+                   $("#sparqlQueryExample5").attr("src", "codemirror.html?" + encodeURIComponent(JSON.stringify(config)))
+                   .load(function() {
+                       //$(this).iframeAutoHeight();
+                       //return true;
+                       
+                      // console.log($(this).contents().find("body").height() );
+                       
+                        //grmbl, chrome always calculates a height which is a few pixels too small. ugly workaround coming!
+                        $(this).height( $(this).contents().find(".CodeMirror").outerHeight(true) + 28 );
+                    });
+                    
+                   </script>
+				
+				
+				
+				</section>
+				
+				<section>
+<!--                     <h2>Linked </h2> -->
+                    <img src="imgs/ldf.png"/>
+                    <br><br>
+                    <small>Verborgh, Ruben, et al. "Web-scale querying through linked data fragments." Proceedings of the 7th Workshop on Linked Data on the Web. 2014.</small>
+                </section>
+                
+                
+                
+                
+                
+              <section>
+                <h2>Triple Pattern Fragments API</h2>
+                <h3>SPARQL</h3>
+                <iframe id=sparqlQueryExample style=" width: 100%; height:auto;" frameborder="0" align="left"></iframe>         
+                   <script type="text/javascript">
+                   var config = { 
+                           value: "SELECT ?person ?country WHERE {\n\
+  ?person :bornIn ?city .\n\
+  ?city :capitalOf ?country .\n\
+} ORDER BY ?person",
+                            mode: "sparql"
+                   }
+                   $("#sparqlQueryExample").attr("src", "codemirror.html?" + encodeURIComponent(JSON.stringify(config)))
+                   .load(function() {
+                       //$(this).iframeAutoHeight();
+                       //return true;
+                       
+                      // console.log($(this).contents().find("body").height() );
+                       
+                        //grmbl, chrome always calculates a height which is a few pixels too small. ugly workaround coming!
+                        $(this).height( $(this).contents().find(".CodeMirror").outerHeight(true) + 28 );
+                    });
+                    
+                   </script>
+
+                 <h3>Triple Pattern Fragment</h3>
+                 <iframe id="tpfQueryExample" style=" width: 100%; height:auto;" frameborder="0" align="left"></iframe>         
+                   <script type="text/javascript">
+                   var config = { 
+                           value: "?person :bornIn ?city",
+                            mode: "sparql"
+                   }
+                   $("#tpfQueryExample").attr("src", "codemirror.html?" + encodeURIComponent(JSON.stringify(config)))
+                   .load(function() {
+                       //$(this).iframeAutoHeight();
+                       //return true;
+                       
+                      // console.log($(this).contents().find("body").height() );
+                       
+                        //grmbl, chrome always calculates a height which is a few pixels too small. ugly workaround coming!
+                        $(this).height( $(this).contents().find(".CodeMirror").outerHeight(true) + 28 );
+                    });
+                    
+                   </script>
+                  <iframe id="tpfQueryExample2" style=" width: 100%; height:auto;" frameborder="0" align="left"></iframe>         
+                   <script type="text/javascript">
+                   var config = { 
+                           value: ":city :capitalOf ?country",
+                            mode: "sparql"
+                   }
+                   $("#tpfQueryExample2").attr("src", "codemirror.html?" + encodeURIComponent(JSON.stringify(config)))
+                   .load(function() {
+                       //$(this).iframeAutoHeight();
+                       //return true;
+                       
+                      // console.log($(this).contents().find("body").height() );
+                       
+                        //grmbl, chrome always calculates a height which is a few pixels too small. ugly workaround coming!
+                        $(this).height( $(this).contents().find(".CodeMirror").outerHeight(true) + 28 );
+                    });
+                    
+                   </script>
+                </section>
+                
+                
+                
+                <section>
+	                <h2>SPARQL &rarr; Triple Pattern Fragments</h2>
+	                <ul>
+	                <li><a href="http://client.linkeddatafragments.org/" target="_blank">Triple Pattern Fragment SPARQL client</a></li>
+	                <li>Anytime behaviour: Monotonic increase of completeness</li>
+	                </ul>
+                </section>
+                
+                <section>
+                    <h2>Completeness</h2>
+                    <ul>
+	                    <li>Relevance Based Sampling: SampLD[1]</li>
+	                    <li>Find the smallest possible RDF subgraph, that covers the maximum number of potential queries</li>
+                    </ul>
+                    <br><br>
+                    <small>[1] Rietveld, Laurens, et al. "Structural Properties as Proxy for Semantic Relevance in RDF Graph Sampling." The Semantic Web–ISWC 2014. Springer International Publishing, 2014. 81-96.</small>
+                </section>
+                
+                
+                
+                
+                <section>
+                    <h2 style="margin-left: 100px;display:inline;">Results</h2>
+                    <small style="vertical-align: bottom; margin-bottom: 10px;"><a href='d3jsResults.html' target='_blank'>click for more results</a></small><br>
+<!--                     <iframe id="results" style="width: 100%; height:auto" frameborder="0" src="d3jsResults.html?hidetable"></iframe> -->
+                     <iframe id="results"  style="margin-left: -20px;overflow:hidden;height:100%;width:100%" height="100%" width="100%" frameborder="0" src="d3jsResults.html?hidetable"></iframe>
+                     
+                     <script type="text/javascript">
+                     
+                     $(document).ready(function() {
+                         $("#results").load(function() {
+                             console.log('read results');
+                                //grmbl, chrome always calculates a height which is a few pixels too small. ugly workaround coming!
+                             $(this).height( $(this).contents().find("body").outerHeight(true) - 170 );
+                            //$(this).width( $(this).contents().find("body").outerWidth(true) +120 );
+                            });
+                        });
+                        
+                        
+                     
+                     
+                     </script>
+                </section>
+                <section>
+                    <h2>Recap</h2>
+                    <ol>
+                        <li>Complete Dataset via SPARQL</li>
+                        <li>Incomplete Dataset via SPARQL (SampLD)</li>
+                        <li>Complete Dataset via Triple Pattern Fragments</li>
+                    </ol>
+                </section>   
+                <section>
+<!--                 http://www.nngroup.com/articles/response-times-3-important-limits/ -->
+                    <h2>Constraints</h2>
+                    
+                    <ul>
+                        <li>How complete is the query response after <i>x</i> seconds?</li>
+                        <li>Interaction guidelines
+                        <ul>
+                        <li>0.1 sec: The limit for having the user feel that the system is reacting instantaneously</li>
+                        <li>1 sec: The limit for the user's flow of thought to stay uninterrupted</li>
+                        <li>10 sec: The limit for keeping the user's attention</li>
+                        </ul>
+                        </li>
+                    </ul>
+                    <br>
+                    <br>
+                    <small>Card, Stuart K., George G. Robertson, and Jock D. Mackinlay. "The information visualizer, an information workspace." Proceedings of the SIGCHI Conference on Human factors in computing systems. ACM, 1991.</small>
+                </section>
+                
+                
+                
+                <section>
+                    <h2>Results????</h2>
+                    <ul>
+                    <li>Recall after <i>x</i> seconds:
+                        <ul>
+                            <li>Complete Dataset via SPARQL: [0,1]</li>
+                            <li>Dataset sample via SPARQL: [0-1]</li>
+                            <li>Complete Dataset via TPF: [0-1]</li>
+                        
+                        </ul>
+                    
+                    </li>
+                    
+                    
+                    </ul>
+                </section>   
+				
+				<section>
+				    <h2>Conclusion</h2>
+				    <ul>
+				    <li>Analysis of publishing Linked Data in a constraint environment</li>
+				    <li>Three approaches
+				       <ol>
+                        <li>Complete Dataset via SPARQL endpoint</li>
+                        <li>Incomplete Dataset via SPARQL endpoint (SampLD)</li>
+                        <li>Complete Dataset via Triple Pattern Fragments</li>
+                    </ol>
+				    </li>
+				    <li>No results yet </li>
+				    <li>Feedback?</li>
+<!-- 				    <li>Using a temporal dimension to compare Linked Data publishing approaches </li> -->
+				    
+
+				    </ul>
+				</section>
+
+			</div>
+
+		</div>
+
+
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+				multiplex: {
+						secret: null, //multiplex secret key
+						id: null, //multiplex socket id
+						url: null //multiplex server url
+					},
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+				    //keep bottom 2 (script uncomments these when publishing as 'current' presentation)
+					//{ src: '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.10/socket.io.min.js', async: true },
+					//{ src: '../reveal.js/plugin/multiplex/client.js', async: true },
+					//{ src: '../reveal.js/plugin/multiplex/master.js', async: true },
+					{ src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+			MathJax.Hub.Config({
+			    tex2jax: {
+			      inlineMath: [['$','$'], ['\\(','\\)']],
+			      processEscapes: true
+			    }
+			  });
+		</script>
+
+	</body>
+</html>
