@@ -4,4 +4,5 @@ log/*.log
 tmp/**
 node_modules/
 .sass-cache
-presentation
+css/reveal.min.css
+js/reveal.min.js
