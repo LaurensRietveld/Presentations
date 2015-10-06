@@ -4,9 +4,55 @@
   stroke: #000;
   shape-rendering: crispEdges;
 }
+.notes{
+  display:none;
+}
+table.comparisonTable td {
+  padding: 0px
+}
+table.comparisonTable th {
+	    border-bottom: 0px solid;
+}
+table.vaultRegular td {
+	    border-bottom: 0px solid;
+}
+table.vaultRegular tr td:nth-child(1) {
+    border-right: 1px solid;
+}
+table.vaultRegular tr td:nth-child(3) {
+    border-right: 1px solid;
+}
+table.vaultRegular tr td:nth-child(1) {
+    text-align: left;
+}
+table.vaultRegular tr td {
+    text-align: right;
+}
+table.vaultDegree tr td:nth-child(1) {
+    text-align: left;
+}
+table.vaultDegree tr td {
+    text-align: right;
+}
+table.vaultDegree td {
+		border-bottom: 0px solid;
+}
 
-
-
+table.bestPractices td{
+		border-bottom: 0px solid;
+}
+table.bestPractices tr td:nth-child(3) {
+    border-right: 1px solid;
+}
+table.bestPractices tr td:nth-child(1) {
+    text-align: left;
+}
+table.bestPractices tr td:nth-child(4) {
+    text-align: left;
+}
+table.bestPractices tr td {
+    text-align: right;
+}
 .line {
   fill: none;
   stroke: steelblue;
@@ -22,7 +68,7 @@
 
 .constantFromQuery {
 	color: #ae81ff;
-} 
+}
 .variableFromQuery {
 	color: #9effff;
 }
@@ -47,4 +93,3 @@
 	width: 50%;
 	clear: none
 }
-
