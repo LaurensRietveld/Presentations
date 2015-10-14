@@ -60,11 +60,13 @@
 					<!-- <h1>Problem</h1> -->
 					<img src="imgs/articlesPerDataset.png"/>
 					<!-- Datasets per research paper: [1,6] (2 on average) -->
-					<div class="notes">
-						- We are optimizing for dbpedia
+					<aside class="notes">
+
+						- We do not take the true variety of Linked Data into account
+						- Our results are less generelizable than they should be
 						- We excluded papers on vocabularies, stream reasoning
 						- Some of these papers required a gold standard or used a benchmark
-					</div>
+					</aside>
 				</section>
 				<section>
 					<h2>Why is Web Scale Linked Data Evaluation Difficult?</h2>
@@ -179,7 +181,7 @@ author:1ec76...f4b foaf:name; "Jian Yu".
 
 
 					<section><!--vertical3-->
-						<h2>(3/3) Accessibility</h2>
+						<!-- <h2>(3/3) Accessibility</h2>
 						<pre style="zoom:120%"><code>$ ./frank documents --namespace owl --downloadUri | head -n 5
 
 http://download.lodlaundromat.org/000000e0599d427f4d2245fc84f9d65b
@@ -187,8 +189,23 @@ http://download.lodlaundromat.org/000b6d8261e02652c4749012ddf605c0
 http://download.lodlaundromat.org/001ea7f30d61fda37a42332b1a9c33dc
 http://download.lodlaundromat.org/002284beb28523eb96844a32d17420d8
 http://download.lodlaundromat.org/0032d1f3c356798f23cb89874eaabb98
-						</code></pre>
+						</code></pre> -->
+						<h2>(3/3) Accessibility</h2>
+						<pre style="zoom:120%"><code>$ ./frank documents --namespace void --minTriples 1000 \
+| ./frank statements --predicate foaf:name \
+| head -n 5;
+
+europa:Eurostat foaf:name "Eurostat".
+tw:ReviewCommission foaf:name "Review Commission"^^xsd::string.
+sw:gianluca-demartini foaf:name "Gianluca Demartini".
+sw:mohammad-mannan foaf:name "Mohammad Mannan".
+sw:tom-minka foaf:name "Tom Minka".
+</code></pre>
+
 					</section><!--vertical3-->
+					<section><!--vertical4-->
+						<img src="imgs/frankFlow.png" class="blank"/>
+					</section>
 				</section>
 
 
@@ -217,9 +234,15 @@ eurostat:aei_fm_manfert_esms.htm rdf:type dcmitype:Text .
 						<li>RDF Header Dictionary Triples (HDT)<br>
 						<small>Fernández, Javier D., et al. "Binary RDF representation for publication and exchange (HDT)." Web Semantics: Science, Services and Agents on the World Wide Web 19, 2013. 22-41.</small></li>
 						<li>Linked Data Best Practices<br>
-						<small>Schmachtenberg, Max, Christian Bizer, and Heiko Paulheim. "Adoption of the linked data best practices in different topical domains." The Semantic Web–ISWC 2014. Springer International Publishing, 2014. 245-260.</small>
+						<small>Schmachtenberg, M., et al. "Adoption of the linked data best practices in different topical domains." The Semantic Web–ISWC 2014. Springer International Publishing, 2014. 245-260.</small>
 						</li>
 					</ol>
+					<aside class="notes">
+						<ol>
+							<li>Hamid Bazoobandi, RDF Vault, Compact In Memory Dictionary, ESWC this year</li>
+							<li>Javier Fernandez, Binary RDF representation for publication and exchange (HDT), Web Semantics 2013. Compressed but queryable binary files.</li>
+							<li>Max Schmachtenberg, Adoption of Linked Data Best Practices in different topical domains, ISWC last year. Explorative paper measuring often used vocabularies, namespaces, links between datasets, and much more</li>
+					</aside>
 				</section>
 
 				<section>
@@ -358,7 +381,7 @@ eurostat:aei_fm_manfert_esms.htm rdf:type dcmitype:Text .
 
 						<pre style="zoom:180%"><code>$ ./frank documents \
 --minAvgDegree 5 --maxAvgDegree 10 \
-| ./hdtCompressDocument.sh</code></pre>
+| ./hdtCompressDocument</code></pre>
 					</section>
 				</section>
 
@@ -472,7 +495,7 @@ eurostat:aei_fm_manfert_esms.htm rdf:type dcmitype:Text .
 					</section>
 					<section>
 						<pre style="zoom:180%"><code>$ ./frank documents --downloadUri
-| ./countNamespacesForDocument.sh</code></pre>
+| ./countNamespacesForDocument</code></pre>
 
 					</section>
 				</section>
@@ -506,6 +529,7 @@ eurostat:aei_fm_manfert_esms.htm rdf:type dcmitype:Text .
 			// Full list of configuration options available here:
 			// https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
+				// showNotes: true,
 				controls: true,
 				progress: true,
 				history: true,

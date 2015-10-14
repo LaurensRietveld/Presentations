@@ -100,7 +100,10 @@ table.bestPractices tr td {
 }
 
 
-
+pre code.hljs.brainfuck {
+  background-color: white !important;
+  color: black;
+}
 pre code.hljs.groovy {
   background-color: white !important;
   color: black;
@@ -108,6 +111,13 @@ pre code.hljs.groovy {
 pre code .hljs-string {
   color: #ff0055;
 }
+pre code .hljs-literal {
+  color: #ff0055;
+}
+
 pre code .hljs-number {
   color: #739200;
+}
+pre code .hljs-comment {
+  color: black;
 }
