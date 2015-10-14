@@ -98,3 +98,16 @@ table.bestPractices tr td {
   margin: 0;
   zoom:140%;
 }
+
+
+
+pre code.hljs.groovy {
+  background-color: white !important;
+  color: black;
+}
+pre code .hljs-string {
+  color: #ff0055;
+}
+pre code .hljs-number {
+  color: #739200;
+}
