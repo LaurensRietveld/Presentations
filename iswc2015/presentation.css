@@ -93,3 +93,8 @@ table.bestPractices tr td {
 	width: 50%;
 	clear: none
 }
+.reveal pre {
+  width:100%;
+  margin: 0;
+  zoom:140%;
+}
