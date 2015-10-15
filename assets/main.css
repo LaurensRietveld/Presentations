@@ -13,13 +13,23 @@ div.bottomBar {
 	margin-bottom: 20px;
 	height: 5%;
 }
+
 .reveal section img.blank {
 	margin:0; background: inherit; border: 0px; box-shadow: none;
 }
-.bottomBar img {
+div.bottomBar img {
 	height:auto;
 	width:auto;
-	margin-left: 20px;
+	margin: 0px 0px 0px 20px;
+	background-color:inherit;
+	border:0;
+	box-shadow:none;
+}
+.print-pdf div.bottomBar img {
+	max-height: 40px;
+}
+.print-pdf div.bottomBar {
+	bottom: -20px;
 }
 img.commitLogo {
 	max-height: 90%;
@@ -29,13 +39,13 @@ table thead tr th {
 	padding-bottom: 5px;
 	border-bottom: 4px solid #eeeeee;
 }
-table.dataTable tbody tr td { 
+table.dataTable tbody tr td {
 	padding: 5px 5px;
 /*     padding: 10px; */
 }
-div.spacer {  
-clear: both;  
-} 
+div.spacer {
+clear: both;
+}
 
 table {
 	border-spacing: 0px; /*set to 0, otherwise we have a thin line crossing all the highlighted rows*/
@@ -48,4 +58,4 @@ tr.strikeout td:before {                     /* Create a new element that       
   position: absolute;                        /* …is absolutely positioned       */
   left: 0; top: 50%; width: 100%;            /* …with the top across the middle */
   border-bottom: 5px solid #000;             /* …and with a border on the top   */
-}  
+}
