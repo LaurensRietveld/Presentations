@@ -7,7 +7,7 @@ $( document ).ready(function() {
 		'<img class="d2sLogo" src="imgs/elaborate-logo-150dpi.png">'+
 		'</div>';
 	if ( window.location.search.match( /print-pdf/gi ) ) {
-		$('section').append(header);
+		$('section:not(.stack)').append($(header).css('transform', 'scale(0.7)'));
 	}
 	else {
 		$('div.reveal').append(header);
