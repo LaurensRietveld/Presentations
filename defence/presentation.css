@@ -1,3 +1,37 @@
+/**SOME THEME CHANGES**/
+body.bluegrey {
+  background-color: #66848C !important;
+  background: #66848C;
+  background: -moz-radial-gradient(center, circle cover, #f7fbfc 0%, #66848C 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #f7fbfc), color-stop(100%, #66848C));
+  background: -webkit-radial-gradient(center, circle cover, #f7fbfc 0%, #66848C 100%);
+  background: -o-radial-gradient(center, circle cover, #f7fbfc 0%, #66848C 100%);
+  background: -ms-radial-gradient(center, circle cover, #f7fbfc 0%, #66848C 100%);
+  background: radial-gradient(center, circle cover, #f7fbfc 0%, #66848C 100%);
+  background-color: #f7fbfc;
+
+
+}
+.reveal .controls div.navigate-left.enabled{
+  border-right-color: #151D23
+}
+.reveal .controls div.navigate-right.enabled{
+  border-left-color: #151D23
+}
+.reveal .controls div.navigate-top.enabled{
+  border-bottom-color: #151D23
+}
+.reveal .controls div.navigate-bottom.enabled{
+  border-top-color: #151D23
+}
+.reveal div.slide-number {
+  color: #151D23;
+}
+
+
+/**OTHER CHANGES**/
+
+
 .axis path,
 .axis line {
   fill: none;
