@@ -57,40 +57,161 @@
 
 				</section>
 
+
 				<section>
-					<div style="display:flex">
-						<div style=" flex-grow: 0;  flex-shrink: 0;  flex-basis: 40%;">
-							<img style="width:35%;margin:0;"class="noborder noshadow" src="imgs/google_logo.svg"></img>
-							<img class="noborder" src='imgs/google_amsterdam_snippet.png'></img>
+					<img style="margin:0;"class="noborder noshadow" src="imgs/yahoo_search_einstein.png"></img>
+				</section>
+				<section>
+					<img style="margin:0;"class="noborder noshadow" src="imgs/yahoo_search_results_einstein.png"></img>
+				</section>
+				<!-- <section>
+					<img style="margin:0;"class="noborder noshadow" src="imgs/google_search_results_einstein.png"></img>
+				</section> -->
+
+				<section >
+					<img style="width:3%" class="fragment grow noborder noshadow" src='imgs/wikipedia_einstein_all.png'></img>
+				</section>
+
+
+				<section>
+					<ul>
+						<li>Geef alle 'dingen' een URL</li>
+						<li>Link deze URLs naar elkaar</li>
+					</ul>
+				</section>
+				<section>
+					<!-- <ul> -->
+						<div>
+							<div>"Albert Einstein"</div>
+							<div>&darr;</div>
+							<div><code>http://dbpedia.org/resource/Albert_Einstein</code></div>
 						</div>
-						<div class="vCenterContent" style=" flex-grow: 0;  flex-shrink: 0;  flex-basis: 10%; transform: rotate(180deg);">
-							<img class="noborder noshadow" src="imgs/arrow.svg"></img>
+						<hr>
+						<div>
+							<div>"Heeft geboorteplaats"</div>
+							<div>&darr;</div>
+							<div><code>http://dbpedia.org/ontology/birthPlace</code></div>
 						</div>
-						<div class="" style="flex-grow: 0;  flex-shrink: 0;  flex-basis: 40%;">
-							<img style="width:20%;margin:0;"class="noborder noshadow" src="imgs/wikipedia_logo.svg"></img>
-							<img class="noborder noshadow" src='imgs/wikipedia_amsterdam_head.png'></img>
+						<hr>
+						<div>
+							<div>"Ulm"</div>
+							<div>&darr;</div>
+							<div><code>http://dbpedia.org/resource/ulm</code></div>
 						</div>
+						<!-- <p><code>1879-03-14</code></p> -->
+					<!-- </ul> -->
+				</section>
+				<section>
+					<div>"Einstein heeft geboorteplaats Ulm"</div>
+					<div>&darr;</div>
+					<div><code>&lang;subject&rang; &lang;predicate&rang; &lang;object&rang;</code></div>
+					<div>&darr;</div>
+					<div><code style="font-size:80%">&lang;http://Einstein&rang; &lang;http://birthPlace&rang; &lang;http://Ulm&rang;</code></div>
+
+				</section>
+				<section>
+					<img class="svg" src="imgs/einstein_network.svg"/>
+				</section>
+
+
+				<section>
+
+					<h2>Voordelen Linked Data:</h2>
+					<ul>
+						<li>Semantiek/betekenis in een graaf structuur</li>
+						<li>Flexibel: Niet vast aan 1 vast data schema</li>
+						<!-- <li>Interoperabiliteit: links naar/van URLs uit andere datasets.</li> -->
+						<li>Een gedistribueerd netwerk van URLs en datasets, maar wel met elkaar verbonden</li>
+						<li>Dezelfde architectuur als het internet</li>
+					</ul>
+				</section>
+
+				<!-- <section>
+					<h2>Problemen</h2>
+
+
+				</section> -->
+				<section>
+					<h3>Probleem 1: Ongeldige Linked Data</h3>
+					Goed:
+					<div><code class="correct" style="font-size:80%"><b>&lang;</b>http://Einstein&rang; &lang;http://birthPlace&rang; &lang;http://Ulm&rang; .</code></div>
+					Fout:
+					<div><code class="incorrect" style="font-size:80%">http://Einstein&rang; &lang;http://birthPlace&rang; &lang;http://Ulm&rang; .</code></div>
+				</section>
+				<section>
+					<h3>Probleem 1: Ongeldige Linked Data</h3>
+
+					<h4>LOD Laundromat</h4>
+					<h6>36 miljard feiten, 650.000 datasets</h6>
+					<img src="imgs/laundry.png" class="noborder noshadow"/>
+				</section>
+				<section>
+					<h3>Probleem 2: Vinden van Linked Open Data</h3>
+					<ul>
+						<li>In welke datasets komt Einstein voor?</li>
+						<li>In welke datasets staat geografische informatie?</li>
+						<li>Wat voor netwerk structuur hebben de datasets?</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Probleem 2: Vinden van Linked Open Data</h3>
+					<h4>LOD Laundromat Meta-Dataset</h4>
+					<img style="width:40%; height:40%;" src="imgs/washingMachineGlass.svg" class="noborder noshadow"/>
+				</section>
+				<section>
+					<h3>Probleem 3: Linked Open Data Onderzoek op grote schaal</h3>
+					<img class="fragment noborder noshadow" style="width:50%;height:50%" src="imgs/overview.png"/>
+				</section>
+				<section>
+					<h2>Probleem 4: Bevragen van Linked Data</h2>
+					<img class="noborder" src="imgs/query_plain.png"/>
+				</section>
+				<section>
+					<h2>Probleem 4: Bevragen van Linked Data</h2>
+					<img class="noborder" src="imgs/query_yasgui.png"/>
+				</section>
+				<section>
+					<h3>Probleem 5: Linked Data Hosting</h3>
+					<img class="noborder" src="imgs/sparqles.png"/>
+				</section>
+				<section>
+					<h3>Probleem 5: Linked Data Hosting</h3>
+					<div style="display: flex; align-items: center;">
+						<img class="noborder noshadow" src="imgs/laundry.png"/>
+						<span style="margin: 30px;font-size: 80px;">+</span>
+						<img class="noborder noshadow" src="imgs/ldf.svg"/>
 					</div>
 				</section>
+				<section>
+					<h3>Probleem 5: Linked Data Hosting</h3>
+					<h3>SampLD</h3>
+					<ul>
 
-
-
-				<section >
-
-							<img style="width: 70%; height:70%" class="noborder noshadow" src='imgs/internet.svg'></img>
+						<li>Datasets kleiner maken (sampling)</li>
+						<li>Relevantie van triples meten d.m.v. netwerk analyse</li>
+						<li>Je kunt soms tot 95% van de dataset weggooien</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Publishing and Consuming <br>Linked Data</h3>
+					<h4>Optimizing for the Unknown</h4>
+					<img style="zoom:80%"class="blank" src="imgs/cover.svg"/>
+					<h5>Laurens Rietveld</h5>
 
 				</section>
-				<section >
 
-							<img class="noborder noshadow" src='imgs/wikipedia_amsterdam_head.png'></img>
-
-				</section>
-				<section >
-
-							<img style="width:4%" class="noborder noshadow" src='imgs/wikipedia_amsterdam_all_resized.png'></img>
-
+				<!-- <section>
+					<h3>Linked Data en het Internet</h3>
+					<ul>
+						<li>URLs om informatie op te halen</li>
+						<li>Links tussen URLs</li>
+					</ul>
 				</section>
 
+				<section>
+					"Einstein heeft geboortedatum 1879-03-14"
+
+				</section> -->
 
 			</div>
 
@@ -138,6 +259,38 @@
 				]
 			});
 // Reveal.configure({ slideNumber: true });
+
+
+//load all external svgs inline
+
+$('img.svg').each(function(){
+		var $img = jQuery(this);
+		var imgID = $img.attr('id');
+		var imgClass = $img.attr('class');
+		var imgURL = $img.attr('src');
+
+		jQuery.get(imgURL, function(data) {
+				// Get the SVG tag, ignore the rest
+				var $svg = jQuery(data).find('svg');
+
+				// Add replaced image's ID to the new SVG
+				if(typeof imgID !== 'undefined') {
+						$svg = $svg.attr('id', imgID);
+				}
+				// Add replaced image's classes to the new SVG
+				if(typeof imgClass !== 'undefined') {
+						$svg = $svg.attr('class', imgClass+' replaced-svg');
+				}
+
+				// Remove any invalid XML tags as per http://validator.w3.org
+				$svg = $svg.removeAttr('xmlns:a');
+
+				// Replace image with new SVG
+				$img.replaceWith($svg);
+
+		}, 'xml');
+
+});
 		</script>
 
 	</body>

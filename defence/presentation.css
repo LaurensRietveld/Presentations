@@ -42,3 +42,26 @@ body.bluegrey {
 .vCenterContent {
   -ms-flex-align: center;	display: flex;align-items: center;justify-content: center;
 }
+.grow { transition: all 1s ease-in-out !important; transform: scale(25); transform-origin: top; }
+/*.grow:hover { transform: scale(1); }*/
+.reveal code {
+padding: 2px 4px;
+font-size: 90%;
+color: #c7254e;
+background-color: #FCFEFF;
+border-radius: 4px;
+}
+
+.reveal code.correct {
+  background-color: #CCFFC4;
+  color: black;
+}
+.reveal code.incorrect {
+  background-color: #FF9292;
+  color:black;
+}
+
+
+.svg.country, svg.state {
+  visibility: hidden;
+}
