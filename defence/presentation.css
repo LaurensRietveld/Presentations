@@ -65,3 +65,6 @@ border-radius: 4px;
 .svg.country, svg.state {
   visibility: hidden;
 }
+.reveal table td {
+  vertical-align: middle;
+}
