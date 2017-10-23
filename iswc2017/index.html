@@ -38,7 +38,6 @@
 
 
 
-<meta charset="utf-8">
 
 <body>
 
@@ -49,8 +48,8 @@
 		<div class="reveal">
 				<div class="slides">
 				<section>
-					<!-- <h2>Experiments at LOD Scale</h2> -->
-					<h5><u>Laurens Rietveld</u> and Rinke Hoekstra</h5>
+					<h2>The YASGUI family of SPARQL clients</h2>
+					<h6><u>Laurens Rietveld</u> and Rinke Hoekstra</h6>
 					<a href="#">http://presentations.laurensrietveld.nl/iswc2017/</a>,
 					<div class="sideBySideImgs" style="margin-top:10px; ">
 						<img style="max-height: 80px; width:auto; height:auto;" class="blank" src="imgs/VU.png"/>
@@ -59,7 +58,7 @@
 				</section>
 
 				<section>
-					<h4>Frustration-driven research<h4>
+					<h4>Frustration-driven research</h4>
 						<img style="height:200px;" class="blank" src="imgs/frustration.gif" />
 				</section>
 				<section>
@@ -78,6 +77,7 @@
 				<section>
 					<h4>Developed for <i>us</i></h4>
 					<ul>
+						<li>No install required (web app)</li>
 						<li>Syntax highlighting</li>
 						<li>Syntax checking</li>
 						<li>Accessing <i>any</i> SPARQL endpoint</li>
@@ -86,11 +86,14 @@
 					</ul>
 				</section>
 
-				<section data-background-image="imgs/yasgui.legacy.png" data-background-size="contain"></section>
+				<section data-background-image="imgs/yasgui.legacy.png" data-background-size="contain">
+					<h4 style="color:#222222; font-weight: 200;background-color: white;display:inline-block; transform:rotate(20deg);box-shadow: 5px 5px 5px gray;"><b>Y</b>et <b>A</b>nother <b>S</b>PARQL <b>GUI</b></h4>
+				</section>
 				<section>
 					<h4>Problems and limitations</h4>
 					<ul>
 						<li>Inconsitent error reporting</li>
+						<li>Unknown endpoint capabilities</li>
 						<li>Lowest common denominator</li>
 					</ul>
 				</section>
@@ -105,6 +108,9 @@
 
 				<section data-background-image="imgs/yasgui.yasqe.png" data-background-size="contain"></section>
 				<section data-background-image="imgs/yasgui.yasr.png" data-background-size="contain"></section>
+				<section data-background-image="imgs/yasr-pivot.png" data-background-size="contain"></section>
+				<section data-background-image="imgs/yasr-gchart.png" data-background-size="contain"></section>
+				<section data-background-image="imgs/yasr-geo.png" data-background-size="contain"></section>
 				<section data-background-image="imgs/yasgui.yasgui.png" data-background-size="contain"></section>
 				<section data-background-image="imgs/yasgui.current.png" data-background-size="contain"></section>
 				<section>
@@ -170,8 +176,6 @@
 
 
 		<script>
-// Full list of configuration options available here:
-// https://github.com/hakimel/reveal.js#configuration
 Reveal.initialize({
   // showNotes: true,
   controls: true,
